@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  border: 0.25rem solid var(--main-purple);
+  border-radius: 1rem;
+  width: 100%;
+  background-color: var(--background-purple);
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  width: 100%;
+  height: 100%;
+}
+.card-desktop .card-text h3 {
+  margin: 0.5rem;
+  font-size: 2rem;
+}
+
+.card-desktop .card-image .icon {
+  width: 6rem;
+  height: 6rem;
+}
+
+.card-desktop .card-text .card-text-description p {
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+}
+
+.card-mobile .card-image .icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.card-mobile .card-text h3 {
+  margin: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.card-mobile .card-text .card-text-description p {
+  margin: 0 0.25rem;
+}
