@@ -1,3 +1,17 @@
+body {
+  font-family: "Inter", sans-serif; // Use Inter as the default font for the body
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Mulish", sans-serif; // Use Mulish for headings
+}
+
+p {
+  font-family: "Noto Sans", sans-serif; // Use Noto Sans for paragraphs
+}
+
 :root {
   --main-purple: rgb(145, 6, 233);
   --background-purple: rgb(144, 6, 233, 0.2);
