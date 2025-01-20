@@ -183,11 +183,11 @@
                     }
                 }
             },
-            "templateData": "<button type=\"button\" [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    {{label}}\n</button>"
+            "templateData": "<button type=\"button\" [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    <p>{{label}}</p>\n</button>"
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-9b2b9f9572daa8e27b170f3625922f3b1bc1d0d8d4152079cc7598692e89e4ca943f7171ee2aaed3b853e71f641f71fa1cf11bbebdcd10fb631d214b4431f025",
+            "id": "component-CardComponent-30f599b2f61b5391b468dbc718a65223bcd9fe216f2c73a49c6738107f4bc106a6c7c73a0c6eff5e1a1f1c1d7cdb29e4a2f708c590aad9f23729e2684ad2a666",
             "file": "src/app/components/elements/card/card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -208,7 +208,7 @@
                     "defaultValue": "'Example description!'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 15,
                     "type": "string",
                     "decorators": []
                 },
@@ -217,8 +217,16 @@
                     "defaultValue": "'desktop'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 13,
                     "type": "\"desktop\" | \"mobile\"",
+                    "decorators": []
+                },
+                {
+                    "name": "svgContent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -226,7 +234,7 @@
                     "defaultValue": "'Title'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 14,
                     "type": "string",
                     "decorators": []
                 }
@@ -237,11 +245,37 @@
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 16,
                     "type": "EventEmitter"
                 }
             ],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_svgContent",
+                    "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n            stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path d=\"M2 12h1\" />\n            <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n            <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M9 12h6\" />\n            <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n            <path d=\"M22 12h-1\" />\n        </svg>`",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "safeSvgContent",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SafeHtml",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33
+                }
+            ],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -257,24 +291,86 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './card.component.html',\n  styleUrl: './card.component.scss',\n})\nexport class CardComponent {\n  @Input() size: 'desktop' | 'mobile' = 'desktop';\n  @Input() title: string = 'Title';\n  @Input() description: string = 'Example description!';\n  @Output() onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';\n    return ['card', mode];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n@Component({\n  selector: 'app-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './card.component.html',\n  styleUrl: './card.component.scss',\n})\nexport class CardComponent {\n  @Input() size: 'desktop' | 'mobile' = 'desktop';\n  @Input() title: string = 'Title';\n  @Input() description: string = 'Example description!';\n  @Output() onClick = new EventEmitter<Event>();\n  @Input() set svgContent(content: string) {\n    this._svgContent = content || this._svgContent;\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(content);\n  }\n\n  private _svgContent: string = `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n            stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path d=\"M2 12h1\" />\n            <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n            <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M9 12h6\" />\n            <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n            <path d=\"M22 12h-1\" />\n        </svg>`;\n  safeSvgContent: SafeHtml = '';\n  \n  constructor(private sanitizer: DomSanitizer) {\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(this._svgContent);\n  }\n\n  get svgContent(): string {\n    return this._svgContent;\n  }\n\n  public get classes(): string[] {\n    const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';\n    return ['card', mode];\n  }\n}\n",
             "styleUrl": "./card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "sanitizer",
+                        "type": "DomSanitizer",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 33,
+                "jsdoctags": [
+                    {
+                        "name": "sanitizer",
+                        "type": "DomSanitizer",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
             "accessors": {
+                "svgContent": {
+                    "name": "svgContent",
+                    "setSignature": {
+                        "name": "svgContent",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "content",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 17,
+                        "jsdoctags": [
+                            {
+                                "name": "content",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "svgContent",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 39
+                    }
+                },
                 "classes": {
                     "name": "classes",
                     "getSignature": {
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 17
+                        "line": 43
                     }
                 }
             },
-            "templateData": "<div [ngClass]=\"classes\">\n    <div class=\"card-image\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n            stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path d=\"M2 12h1\" />\n            <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n            <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M9 12h6\" />\n            <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n            <path d=\"M22 12h-1\" />\n        </svg>\n    </div>\n    <div class=\"card-text\">\n        <div class=\"card-text-title\">\n            <h3>{{title}}</h3>\n        </div>\n        <div class=\"card-text-description\">\n            <p>{{description}}</p>\n        </div>\n    </div>\n</div>"
+            "templateData": "<div [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    <div class=\"card-image\">\n        <div class=\"svg-container\" [innerHTML]=\"safeSvgContent\"></div>\n    </div>\n    <div class=\"card-text\">\n        <div class=\"card-text-title\">\n            <h3>{{title}}</h3>\n        </div>\n        <div class=\"card-text-description\">\n            <p>{{description}}</p>\n        </div>\n    </div>\n</div>"
         }
     ],
     "modules": [],
@@ -351,7 +447,7 @@
                 "linktype": "component",
                 "name": "CardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/9",
                 "status": "low"
             }
         ]

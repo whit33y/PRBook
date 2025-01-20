@@ -4,6 +4,7 @@
   border-radius: 1rem;
   width: 100%;
   background-color: var(--background-purple);
+  cursor: pointer;
 }
 
 .card-text {
@@ -18,7 +19,12 @@
   font-size: 2rem;
 }
 
-.card-desktop .card-image .icon {
+.card-desktop .card-image .svg-container {
+  width: 6rem;
+  height: 6rem;
+}
+
+.card-desktop .card-image .svg-container .icon{
   width: 6rem;
   height: 6rem;
 }
@@ -28,7 +34,12 @@
   margin: 0 0.5rem;
 }
 
-.card-mobile .card-image .icon {
+.card-mobile .card-image .svg-container {
+  width: 4rem;
+  height: 4rem;
+}
+
+.card-mobile .card-image .svg-container .icon{
   width: 4rem;
   height: 4rem;
 }
