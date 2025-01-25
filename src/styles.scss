@@ -1,15 +1,18 @@
+html,
 body {
-  font-family: "Inter", sans-serif; // Use Inter as the default font for the body
+  font-family: "Inter", sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Mulish", sans-serif; // Use Mulish for headings
+  font-family: "Mulish", sans-serif;
 }
 
 p {
-  font-family: "Noto Sans", sans-serif; // Use Noto Sans for paragraphs
+  font-family: "Noto Sans", sans-serif;
 }
 
 :root {

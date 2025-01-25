@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-8d7ecd60ac2b476a6979ef38966f3975586a75b098c8b0b72edc05efd7034e37334ecf2aa9f21d3cc5a686147231949949178e520b10c0a1630a60bfda328874",
+            "id": "component-AppComponent-64fa42ad72ccbe085e977b65edc6e65107b8734752ffe7721af7abee3d8640e471c34458071beaa0ca6c05bdfb568fa5e827f0ff35f35b16df6bb2c184986178",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -28,17 +28,6 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "svg",
-                    "defaultValue": "`<svg  xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-abacus\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 3v18\" /><path d=\"M19 21v-18\" /><path d=\"M5 7h14\" /><path d=\"M5 15h14\" /><path d=\"M8 13v4\" /><path d=\"M11 13v4\" /><path d=\"M16 13v4\" /><path d=\"M14 5v4\" /><path d=\"M11 5v4\" /><path d=\"M8 5v4\" /><path d=\"M3 21h18\" /></svg>`",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 15
-                },
-                {
                     "name": "title",
                     "defaultValue": "'PRBook'",
                     "deprecated": false,
@@ -47,7 +36,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 15
                 }
             ],
             "methodsClass": [
@@ -64,7 +53,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 18,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -90,24 +79,20 @@
                     "name": "RouterOutlet"
                 },
                 {
-                    "name": "ButtonComponent",
-                    "type": "component"
-                },
-                {
-                    "name": "CardComponent",
+                    "name": "HeaderComponent",
                     "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { ButtonComponent } from './components/elements/button/button.component';\nimport { CardComponent } from './components/elements/card/card.component';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet, ButtonComponent, CardComponent],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss',\n})\nexport class AppComponent {\n  title = 'PRBook';\n  svg = `<svg  xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-abacus\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 3v18\" /><path d=\"M19 21v-18\" /><path d=\"M5 7h14\" /><path d=\"M5 15h14\" /><path d=\"M8 13v4\" /><path d=\"M11 13v4\" /><path d=\"M16 13v4\" /><path d=\"M14 5v4\" /><path d=\"M11 5v4\" /><path d=\"M8 5v4\" /><path d=\"M3 21h18\" /></svg>`\n\n  clickFunction(event: Event) {\n    console.log('xd', event);\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { ButtonComponent } from './components/elements/button/button.component';\nimport { CardComponent } from './components/elements/card/card.component';\nimport { HeaderComponent } from './components/header/header.component';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet, HeaderComponent],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss',\n})\nexport class AppComponent {\n  title = 'PRBook';\n  // svg = `<svg  xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-abacus\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 3v18\" /><path d=\"M19 21v-18\" /><path d=\"M5 7h14\" /><path d=\"M5 15h14\" /><path d=\"M8 13v4\" /><path d=\"M11 13v4\" /><path d=\"M16 13v4\" /><path d=\"M14 5v4\" /><path d=\"M11 5v4\" /><path d=\"M8 5v4\" /><path d=\"M3 21h18\" /></svg>`\n\n  clickFunction(event: Event) {\n    console.log('xd', event);\n  }\n}\n",
             "styleUrl": "./app.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<app-button [label]=\"'Click me'\" size=\"medium\" (onClick)=\"clickFunction($event)\"></app-button>\n<app-card title=\"Testowy tytuł\" description=\"Testowe description bardzo dlugie\" [svgContent]=\"svg\"></app-card>\n<router-outlet />"
+            "templateData": "<!-- <app-button [label]=\"'Click me'\" size=\"medium\" (onClick)=\"clickFunction($event)\"></app-button>\n<app-card title=\"Testowy tytuł\" description=\"Testowe description bardzo dlugie\" [svgContent]=\"svg\"></app-card> -->\n<app-header />\n<router-outlet />"
         },
         {
             "name": "ButtonComponent",
@@ -388,6 +373,44 @@
             "templateData": "<div [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    <div class=\"card-image\">\n        <div class=\"svg-container\" [innerHTML]=\"safeSvgContent\"></div>\n    </div>\n    <div class=\"card-text\">\n        <div class=\"card-text-title\">\n            <h3>{{title}}</h3>\n        </div>\n        <div class=\"card-text-description\">\n            <p>{{description}}</p>\n        </div>\n    </div>\n</div>"
         },
         {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-55b2f76ba88d172484079d2eabd13435adc1a2e52295c3f7c2cb1976865b110222f4e1f98694bd129006acd87d512d3552ead98bf05dd1e25e70d24db8b576a5",
+            "file": "src/app/components/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss'\n})\nexport class HeaderComponent {\n\n}\n",
+            "styleUrl": "./header.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<header class=\"header\">\n    <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n    <h1>PRBook</h1>\n</header>"
+        },
+        {
             "name": "InputComponent",
             "id": "component-InputComponent-811b7c8df1dc7eac813c2cd55daae2c461007266474b72ef778a98b4c5248bc53d114a2226bab33020d1afa0cfc0c2b62f6da39b392ce9f35d998b5d8fbd9a55",
             "file": "src/app/components/elements/input/input.component.ts",
@@ -499,6 +522,44 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<input [type]=\"type\" [placeholder]=\"placeholder\" [value]=\"value\" [disabled]=\"disabled\" (input)=\"onInput($event)\"\n    class=\"input\" />"
+        },
+        {
+            "name": "StartingPageComponent",
+            "id": "component-StartingPageComponent-0ecceb448870405bd7ff9695e384bacbd76ef3965631eb0579aefbf606ab7b3707249ef29ba338d23dd9a30e163dc94ebef67ea822751b48a11a25b34cd0b7af",
+            "file": "src/app/pages/starting-page/starting-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-starting-page",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./starting-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-starting-page',\n  standalone: true,\n  imports: [],\n  templateUrl: './starting-page.component.html',\n  styleUrl: './starting-page.component.scss'\n})\nexport class StartingPageComponent {\n\n}\n",
+            "styleUrl": "./starting-page.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>starting-page works!</p>\n"
         }
     ],
     "modules": [],
@@ -547,7 +608,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -585,6 +646,24 @@
                 "name": "InputComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/header/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/starting-page/starting-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StartingPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             }
         ]
