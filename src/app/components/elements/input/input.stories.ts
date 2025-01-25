@@ -15,6 +15,7 @@ const meta: Meta<InputComponent> = {
 };
 
 export default meta;
+
 type Story = StoryObj<InputComponent>;
 
 export const Default: Story = {
@@ -32,5 +33,32 @@ export const Disabled: Story = {
     type: 'text',
     value: 'Read only',
     disabled: true,
+  },
+};
+
+export const WithLongText: Story = {
+  args: {
+    placeholder: 'Enter text with a long placeholder to test responsiveness',
+    type: 'text',
+    value: 'This is a long text to test the responsiveness of the input field.',
+    disabled: false,
+  },
+};
+
+export const PasswordField: Story = {
+  args: {
+    placeholder: 'Enter password',
+    type: 'password',
+    value: '',
+    disabled: false,
+  },
+};
+
+export const SearchField: Story = {
+  args: {
+    placeholder: 'Search...',
+    type: 'search',
+    value: '',
+    disabled: false,
   },
 };
