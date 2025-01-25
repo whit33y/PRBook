@@ -1,0 +1,41 @@
+.starting-page-container {
+  background-color: white;
+}
+
+.starting-page-container-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.starting-page-container h1 {
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 3rem;
+}
+
+.starting-page-container img {
+  height: 15rem;
+}
+
+.starting-page-container-top-title {
+  position: absolute;
+  bottom: 20%;
+}
+
+.starting-page-container-mid {
+  display: flex;
+}
+
+.starting-page-container-mid-left {
+  width: 50%;
+}
+
+.starting-page-container-mid-right {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+}
