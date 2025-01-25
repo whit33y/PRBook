@@ -1,6 +1,9 @@
-.container {
+.main-container {
   display: flex;
   justify-content: center;
+}
+
+.main-container .route-container {
   max-width: 1200px;
   width: 100%;
 }

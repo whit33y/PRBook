@@ -92,11 +92,11 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<!-- <app-button [label]=\"'Click me'\" size=\"medium\" (onClick)=\"clickFunction($event)\"></app-button>\n<app-card title=\"Testowy tytuł\" description=\"Testowe description bardzo dlugie\" [svgContent]=\"svg\"></app-card> -->\n<app-header />\n<router-outlet />"
+            "templateData": "<!-- <app-button [label]=\"'Click me'\" size=\"medium\" (onClick)=\"clickFunction($event)\"></app-button>\n<app-card title=\"Testowy tytuł\" description=\"Testowe description bardzo dlugie\" [svgContent]=\"svg\"></app-card> -->\n\n<app-header />\n<div class=\"main-container\">\n    <div class=\"route-container\">\n        <router-outlet />\n    </div>\n</div>"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-951ccec4549eef2b6f484ab7e50a345822c11cb135c06fabb68096d5b1ee146a42cc3d23d3598af57627e1b705e074a1f7fdf005dc78e9cc199cf5a7ec870734",
+            "id": "component-ButtonComponent-20bd756abfd93660b699b9aa1b1cb334f46169f875d0bcc7a9afc60f005a2ce7647a8ce7926e2d1dfdba00cc473743d1dee2a8e9ac26a7c0e0e1bd7912e382ca",
             "file": "src/app/components/elements/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -117,7 +117,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 18,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -126,7 +126,7 @@
                     "defaultValue": "'Button'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 19,
                     "type": "string",
                     "decorators": []
                 },
@@ -135,7 +135,7 @@
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 20,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 }
@@ -146,16 +146,92 @@
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 21,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onResize",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'window:resize', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "updateButtonSize",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
-            "hostListeners": [],
+            "hostListeners": [
+                {
+                    "name": "window:resize",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24
+                }
+            ],
             "standalone": true,
             "imports": [
                 {
@@ -166,7 +242,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './button.component.html',\n  styleUrl: './button.component.scss',\n})\nexport class ButtonComponent {\n  @Input() disabled: boolean = false;\n  @Input() label: string = 'Button';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Output() onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = !this.disabled ? 'button-active' : 'button-disabled';\n    return ['button', mode, this.size];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  EventEmitter,\n  HostListener,\n  Input,\n  Output,\n} from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './button.component.html',\n  styleUrl: './button.component.scss',\n})\nexport class ButtonComponent {\n  @Input() disabled: boolean = false;\n  @Input() label: string = 'Button';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Output() onClick = new EventEmitter<Event>();\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.updateButtonSize();\n  }\n\n  ngOnInit() {\n    this.updateButtonSize();\n  }\n\n  updateButtonSize() {\n    if (window.innerWidth <= 768) {\n      this.size = 'small';\n    } else if (window.innerWidth <= 1024) {\n      this.size = 'medium';\n    } else {\n      this.size = 'large';\n    }\n  }\n\n  public get classes(): string[] {\n    const mode = !this.disabled ? 'button-active' : 'button-disabled';\n    return ['button', mode, this.size];\n  }\n}\n",
             "styleUrl": "./button.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -179,7 +255,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 17
+                        "line": 42
                     }
                 }
             },
@@ -374,7 +450,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-55b2f76ba88d172484079d2eabd13435adc1a2e52295c3f7c2cb1976865b110222f4e1f98694bd129006acd87d512d3552ead98bf05dd1e25e70d24db8b576a5",
+            "id": "component-HeaderComponent-bea8fb3e0ed5fa6bd696b3f48abc202e9a0bf07371a173baf2939678fb137f59168c9867cd25569dff12d64b53d2cb2c974faee20741eb545791d3610123c864",
             "file": "src/app/components/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -398,17 +474,22 @@
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss'\n})\nexport class HeaderComponent {\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../elements/button/button.component';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {}\n",
             "styleUrl": "./header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<header class=\"header\">\n    <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n    <h1>PRBook</h1>\n</header>"
+            "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n        </div>\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" />\n        </div>\n    </div>\n</header>"
         },
         {
             "name": "InputComponent",
@@ -627,7 +708,7 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
