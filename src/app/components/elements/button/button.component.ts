@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -13,6 +19,25 @@ export class ButtonComponent {
   @Input() label: string = 'Button';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Output() onClick = new EventEmitter<Event>();
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateButtonSize();
+  }
+
+  ngOnInit() {
+    this.updateButtonSize();
+  }
+
+  updateButtonSize() {
+    if (window.innerWidth <= 768) {
+      this.size = 'small';
+    } else if (window.innerWidth <= 1024) {
+      this.size = 'medium';
+    } else {
+      this.size = 'large';
+    }
+  }
 
   public get classes(): string[] {
     const mode = !this.disabled ? 'button-active' : 'button-disabled';
