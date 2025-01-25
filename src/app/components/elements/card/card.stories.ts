@@ -4,7 +4,7 @@ import { fn } from '@storybook/test';
 import { CardComponent } from './card.component';
 
 const meta: Meta<CardComponent> = {
-  title: 'Components/Card',
+  title: 'Components/elements/Card',
   component: CardComponent,
   tags: ['autodocs'],
   argTypes: {

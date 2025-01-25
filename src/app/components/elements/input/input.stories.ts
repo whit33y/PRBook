@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { InputComponent } from './input.component';
 
 const meta: Meta<InputComponent> = {
-  title: 'Components/Input',
+  title: 'Components/elements/Input',
   component: InputComponent,
   tags: ['autodocs'],
   argTypes: {

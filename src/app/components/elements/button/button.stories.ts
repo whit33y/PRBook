@@ -4,7 +4,7 @@ import { fn } from '@storybook/test';
 import { ButtonComponent } from './button.component';
 
 const meta: Meta<ButtonComponent> = {
-  title: 'Components/Button',
+  title: 'Components/elements/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
   argTypes: {
