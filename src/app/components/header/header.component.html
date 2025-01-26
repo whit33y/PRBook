@@ -8,8 +8,10 @@
                 <a href="">About us</a>
             </nav>
         </div>
+        @if(this.route !== '/login'){
         <div class="header-right">
-            <app-button label="Get started" />
+            <app-button label="Get started" (onClick)="navigateToLogin()" />
         </div>
+        }
     </div>
 </header>
