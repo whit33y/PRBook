@@ -14,15 +14,7 @@
   margin-top: 1rem;
   margin-bottom: 0;
   font-size: 3rem;
-}
-
-.starting-page-container img {
-  height: 15rem;
-}
-
-.starting-page-container-top-title {
-  position: absolute;
-  bottom: 20%;
+  text-align: center;
 }
 
 .starting-page-container-mid {
@@ -37,5 +29,39 @@
   width: 50%;
 }
 
+.starting-page-container-mid-right img {
+  width: 40rem;
+}
+
+.starting-page-container-mid-left {
+  margin-top: 10%;
+}
+
+@media (max-width: 1024px) {
+  .starting-page-container-mid-right img {
+    margin-top: 10%;
+    width: 30rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .starting-page-container-mid {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .starting-page-container-mid-left {
+    width: 100%;
+    text-align: center;
+  }
+
+  .starting-page-container-mid-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .starting-page-container-mid-right img {
+    width: 17rem;
+  }
 }
