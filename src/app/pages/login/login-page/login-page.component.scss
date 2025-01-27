@@ -1,0 +1,19 @@
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.login-page-container-form {
+  width: 100%;
+  text-align: center;
+}
+
+.login-page-container-form-input p {
+  margin-bottom: 0px;
+}
+
+.login-page-container-form-button {
+  margin-top: 10px;
+}
