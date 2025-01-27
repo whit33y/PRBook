@@ -5,15 +5,37 @@
   width: 100%;
 }
 
-.login-page-container-form {
+.login-page-container-form-login {
   width: 100%;
   text-align: center;
 }
 
-.login-page-container-form-input p {
+.login-page-container-form-login-input p {
   margin-bottom: 0px;
 }
 
-.login-page-container-form-button {
+.login-page-container-form-login-button {
   margin-top: 10px;
+}
+
+.login-page-container-form-register {
+  width: 100%;
+  text-align: center;
+}
+
+.login-page-container-form-register-input p {
+  margin-bottom: 0px;
+}
+
+.login-page-container-form-register-button {
+  margin-top: 10px;
+}
+
+.login-page-container-switch-span {
+  color: var(--main-purple);
+}
+
+.login-page-container-switch-span:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

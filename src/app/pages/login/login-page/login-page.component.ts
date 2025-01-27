@@ -9,4 +9,6 @@ import { ButtonComponent } from '../../../components/elements/button/button.comp
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
-export class LoginPageComponent {}
+export class LoginPageComponent {
+  register: boolean = false;
+}
