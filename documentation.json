@@ -459,11 +459,11 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<footer>\n    <div class=\"footer-container\">\n        <p>PRBook by Jakub B</p>\n    </div>\n</footer>"
+            "templateData": "<footer>\n    <div class=\"footer-container\">\n        <div>\n            <p>PRBook 2025</p>\n        </div>\n        <div class=\"footer-container-links\">\n            <div class=\"link\">\n                Github\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-github\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path\n                        d=\"M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5\" />\n                </svg>\n            </div>\n            <div class=\"link\">\n                Linkedin\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M8 11v5\" />\n                    <path d=\"M8 8v.01\" />\n                    <path d=\"M12 16v-5\" />\n                    <path d=\"M16 16v-3a2 2 0 1 0 -4 0\" />\n                    <path d=\"M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\" />\n                </svg>\n            </div>\n        </div>\n    </div>\n</footer>"
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-bea8fb3e0ed5fa6bd696b3f48abc202e9a0bf07371a173baf2939678fb137f59168c9867cd25569dff12d64b53d2cb2c974faee20741eb545791d3610123c864",
+            "id": "component-HeaderComponent-f42cf3416c8071cc678ed1a80d3f25d7975e5d8cf78ae357a482af5bcf177f179a360d1b37aeab98039f70e84c39925b1f5ea2bcf015b95cc78a8127fc62d782",
             "file": "src/app/components/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -480,8 +480,31 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "route",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "navigateToLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -496,13 +519,39 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../elements/button/button.component';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../elements/button/button.component';\nimport { NavigationEnd, Router } from '@angular/router';\nimport { filter } from 'rxjs';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  route: string = '';\n  constructor(private router: Router) {\n    router.events\n      .pipe(filter((event) => event instanceof NavigationEnd))\n      .subscribe((event) => {\n        this.route = event.url;\n      });\n  }\n\n  navigateToLogin() {\n    this.router.navigate(['/login']);\n  }\n}\n",
             "styleUrl": "./header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n        </div>\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" />\n        </div>\n    </div>\n</header>"
+            "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n            <nav class=\"header-left-nav\">\n                <a href=\"\">Contact</a>\n                <a href=\"\">About us</a>\n            </nav>\n        </div>\n        @if(this.route !== '/login'){\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" (onClick)=\"navigateToLogin()\" />\n        </div>\n        }\n    </div>\n</header>"
         },
         {
             "name": "InputComponent",
@@ -618,8 +667,67 @@
             "templateData": "<input [type]=\"type\" [placeholder]=\"placeholder\" [value]=\"value\" [disabled]=\"disabled\" (input)=\"onInput($event)\"\n    class=\"input\" />"
         },
         {
+            "name": "LoginPageComponent",
+            "id": "component-LoginPageComponent-0b329ad20ff8afceee2410c619ee55da19a9bdb54a206346a8b9dadc8918b6664542c425f72fd0a01d1ef63655d7af28dbba0777e873882dc77bb71e1b0bb16b",
+            "file": "src/app/pages/login/login-page/login-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login-page",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./login-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "register",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "InputComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { InputComponent } from '../../../components/elements/input/input.component';\nimport { ButtonComponent } from '../../../components/elements/button/button.component';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [InputComponent, ButtonComponent],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n}\n",
+            "styleUrl": "./login-page.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"login-page-container\">\n    @if(!register){\n    <div class=\"login-page-container-form-login\">\n        <h3>Login to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <app-input type=\"text\" placeholder=\"Enter you email\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Password</p>\n            <app-input type=\"password\" placeholder=\"Enter your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            Remember me\n            <input type=\"checkbox\">\n        </div>\n        <div class=\"login-page-container-form-login-lost\">\n            <p>Forgot password? <span class=\"login-page-container-switch-span\">Click here</span></p>\n        </div>\n        <div class=\"login-page-container-form-login-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }@else {\n    <div class=\"login-page-container-form-register\">\n        <h3>Register to PRBook!</h3>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Email</p>\n            <app-input type=\"text\" placeholder=\"Enter you email\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Password</p>\n            <app-input type=\"password\" placeholder=\"Enter your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Confirm password</p>\n            <app-input type=\"password\" placeholder=\"Confirm your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }\n    <div class=\"login-page-container-switch\">\n        @if(!register){\n        <p>You dont have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register\">Register\n                now!</span></p>\n        }@else {\n        <p>You have an account? <span class=\"login-page-container-switch-span\" (click)=\"register = !register\">Login\n                now!</span></p>\n        }\n    </div>\n</div>"
+        },
+        {
             "name": "StartingPageComponent",
-            "id": "component-StartingPageComponent-0ecceb448870405bd7ff9695e384bacbd76ef3965631eb0579aefbf606ab7b3707249ef29ba338d23dd9a30e163dc94ebef67ea822751b48a11a25b34cd0b7af",
+            "id": "component-StartingPageComponent-c5b826cde2d34e12c6d8fba03e607e492af791c777ceb74f9729eb2fa7d42789e0186444ccde1fdf1c3cfed9e1bb940e9431cc36d2533c61c730bc087b306556",
             "file": "src/app/pages/starting-page/starting-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -637,23 +745,65 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "navigateToLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-starting-page',\n  standalone: true,\n  imports: [],\n  templateUrl: './starting-page.component.html',\n  styleUrl: './starting-page.component.scss'\n})\nexport class StartingPageComponent {\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-starting-page',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './starting-page.component.html',\n  styleUrl: './starting-page.component.scss',\n})\nexport class StartingPageComponent {\n  constructor(private router: Router) {}\n\n  navigateToLogin() {\n    this.router.navigate(['/login']);\n  }\n}\n",
             "styleUrl": "./starting-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<div class=\"starting-page-container\">\n    <div class=\"starting-page-container-top\">\n        <div class=\"starting-page-container-top-title\">\n            <h1>Welcome to PRBook!</h1>\n        </div>\n        <div class=\"starting-page-container-top-image\">\n            <img src=\"/assets/images/starting-page.png\" alt=\"\">\n        </div>\n    </div>\n    <div class=\"starting-page-container-mid\">\n        <div class=\"starting-page-container-mid-left\">\n            <p>Your progress, your motivation, your personal bests. 🎯</p>\n            <p>Track your athletic achievements with ease:</p>\n            <ul>\n                <li>🏋️‍♂️ <strong>Strength Records</strong> – Log your gym PRs and monitor your progress.</li>\n                <li>🏃‍♀️ <strong>Endurance Milestones</strong> – Record your best runs, rides, and swims.</li>\n                <li>📊 <strong>Body Metrics</strong> – Keep track of your weight, muscle mass, and more.</li>\n            </ul>\n            <p>Stay motivated, celebrate every success, and push your limits. Let’s achieve your goals together!</p>\n        </div>\n        <div class=\"starting-page-container-mid-right\">\n            <img src=\"/assets/images/starting-page2.png\" alt=\"\">\n        </div>\n    </div>\n</div>"
+            "templateData": "<div class=\"starting-page-container\">\n    <div class=\"starting-page-container-top\">\n        <div class=\"starting-page-container-top-title\">\n            <h1>Welcome to PRBook!</h1>\n        </div>\n    </div>\n    <div class=\"starting-page-container-mid\">\n        <div class=\"starting-page-container-mid-left\">\n            <h2>Your progress, your motivation, your personal bests</h2>\n            <h3>Track your athletic achievements with ease:</h3>\n            <p style=\"display: flex;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"\n                    fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-barbell\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M2 12h1\" />\n                    <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n                    <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n                    <path d=\"M9 12h6\" />\n                    <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n                    <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n                    <path d=\"M22 12h-1\" />\n                </svg><strong>Strength Records</strong> – Log your gym PRs and monitor your progress.</p>\n            <p style=\"display: flex;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"\n                    fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-run\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" />\n                    <path d=\"M4 17l5 1l.75 -1.5\" />\n                    <path d=\"M15 21l0 -4l-4 -3l1 -6\" />\n                    <path d=\"M7 12l0 -3l5 -1l3 3l3 1\" />\n                </svg><strong>Endurance Milestones</strong> – Record your best runs, rides, and swims.</p>\n            <p style=\"display: flex;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"\n                    fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-scale-outline\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M3 3m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\" />\n                    <path\n                        d=\"M12 7c1.956 0 3.724 .802 5 2.095l-2.956 2.904a3 3 0 0 0 -2.038 -.799a3 3 0 0 0 -2.038 .798l-2.956 -2.903a6.979 6.979 0 0 1 5 -2.095z\" />\n                </svg><strong>Body Metrics</strong> – Keep track of your weight, muscle mass, and more.</p>\n            <p>Stay motivated, celebrate every success, and push your limits. Let’s achieve your goals together!\n            </p>\n            <app-button label=\"Get started now!\" size=\"large\" (onClick)=\"navigateToLogin()\"></app-button>\n        </div>\n        <div class=\"starting-page-container-mid-right\">\n            <img src=\"/assets/images/starting-page3.png\" alt=\"Starting page image\">\n        </div>\n    </div>\n</div>"
         }
     ],
     "modules": [],
@@ -757,7 +907,16 @@
                 "linktype": "component",
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/login/login-page/login-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -766,7 +925,7 @@
                 "linktype": "component",
                 "name": "StartingPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
                 "status": "low"
             }
         ]
