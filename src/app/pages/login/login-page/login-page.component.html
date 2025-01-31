@@ -11,14 +11,12 @@
             <app-input type="password" placeholder="Enter your password"></app-input>
         </div>
         <div class="login-page-container-form-login-remember">
-            Remember me
-            <input type="checkbox">
-        </div>
-        <div class="login-page-container-form-login-lost">
+            <div class="remember-me">Remember me <input type="checkbox"></div>
             <p>Forgot password? <span class="login-page-container-switch-span">Click here</span></p>
         </div>
+
         <div class="login-page-container-form-login-button">
-            <app-button size="medium" label="Login" (onClick)="navigateToHome()"></app-button>
+            <app-button size="medium" label="Login"></app-button>
         </div>
     </div>
     }@else {
@@ -37,7 +35,7 @@
             <app-input type="password" placeholder="Confirm your password"></app-input>
         </div>
         <div class="login-page-container-form-register-button">
-            <app-button size="medium" label="Register"></app-button>
+            <app-button size="medium" label="Login"></app-button>
         </div>
     </div>
     }

@@ -19,9 +19,17 @@
 }
 
 .login-page-container-form-login-remember {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 0.8rem;
+  .remember-me {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
 }
 
 .login-page-container-form-login-lost p {
