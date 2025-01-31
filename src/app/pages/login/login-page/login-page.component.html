@@ -1,5 +1,5 @@
 <div class="login-page-container">
-    @if(!register){
+    @if(!register && !forgot){
     <div class="login-page-container-form-login">
         <h3>Login to PRBook!</h3>
         <div class="login-page-container-form-login-input">
@@ -12,14 +12,31 @@
         </div>
         <div class="login-page-container-form-login-remember">
             <div class="remember-me">Remember me <input type="checkbox"></div>
-            <p>Forgot password? <span class="login-page-container-switch-span">Click here</span></p>
+            <p>Forgot password? <span class="login-page-container-switch-span" (click)="forgot = !forgot">Click
+                    here</span></p>
         </div>
 
         <div class="login-page-container-form-login-button">
             <app-button size="medium" label="Login"></app-button>
         </div>
     </div>
-    }@else {
+    }@else if(forgot && !register){
+    <div class="login-page-container-form-login">
+        <h3>Restore password to PRBook!</h3>
+        <div class="login-page-container-form-login-input">
+            <p>Email</p>
+            <app-input type="text" placeholder="Enter you email"></app-input>
+        </div>
+        <div class="login-page-container-form-register-button">
+            <app-button size="medium" label="Restore password"></app-button>
+        </div>
+        <div class="login-page-container-form-login-remember">
+            <p>Or maybe you want go back to login?<span class="login-page-container-switch-span"
+                    (click)="forgot = !forgot">Click here</span></p>
+        </div>
+    </div>
+    }
+    @else {
     <div class="login-page-container-form-register">
         <h3>Register to PRBook!</h3>
         <div class="login-page-container-form-register-input">
@@ -35,17 +52,18 @@
             <app-input type="password" placeholder="Confirm your password"></app-input>
         </div>
         <div class="login-page-container-form-register-button">
-            <app-button size="medium" label="Login"></app-button>
+            <app-button size="medium" label="Register"></app-button>
         </div>
     </div>
     }
     <div class="login-page-container-switch">
-        @if(!register){
+        @if(!register && !forgot){
         <p>You dont have an account? <span class="login-page-container-switch-span"
                 (click)="register = !register">Register
                 now!</span></p>
         }@else {
-        <p>You have an account? <span class="login-page-container-switch-span" (click)="register = !register">Login
+        <p>You have an account? <span class="login-page-container-switch-span"
+                (click)="register = !register && forgot = !forgot">Login
                 now!</span></p>
         }
     </div>

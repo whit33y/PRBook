@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent {
   register: boolean = false;
+  forgot: boolean = false;
 
   constructor(private router: Router) {}
 
