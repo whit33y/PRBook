@@ -42,15 +42,50 @@
         <h3>Register to PRBook!</h3>
         <div class="login-page-container-form-register-input">
             <p>Email</p>
-            <input type="text" placeholder="Enter you email" formControlName="email" class="input" />
+            <input type="email" placeholder="Enter you email" formControlName="email" class="input" />
+            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <p class="red">
+                @if (registerForm.get('email')?.hasError('required')) { Email is required }
+                @if (registerForm.get('email')?.hasError('email')) { Enter a valid email }
+            </p>
+            }
         </div>
         <div class="login-page-container-form-register-input">
             <p>Name</p>
             <input type="text" placeholder="Enter you name" formControlName="name" class="input" />
+            @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+            <p class="red">
+                @if (registerForm.get('name')?.hasError('required')) { Name is required }
+                @if (registerForm.get('name')?.hasError('minlength')) { Name must be at least 3 characters }
+            </p>
+            }
         </div>
         <div class="login-page-container-form-register-input">
             <p>Password</p>
             <input type="password" placeholder="Enter your password" formControlName="password" class="input" />
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <p class="red">
+                @if (registerForm.get('password')?.hasError('required')) { Password is required }
+                @if (registerForm.get('password')?.hasError('minlength')) { Password must be at least 8 characters }
+            </p>
+            }
+        </div>
+        <div class="login-page-container-form-register-input">
+            <p>Confirm password</p>
+            <input type="password" placeholder="Confirm your password" formControlName="confirmPassword"
+                class="input" />
+            @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
+            <p class="red">
+                @if (registerForm.get('confirmPassword')?.hasError('required')) { Confirm Password is required }
+                @if (registerForm.get('confirmPassword')?.hasError('minlength')) { Confirm Password must be at least 8
+                characters }
+            </p>
+            }
+
+            @if (registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value &&
+            registerForm.get('confirmPassword')?.touched) {
+            <p class="red">Passwords do not match</p>
+            }
         </div>
         <div class="login-page-container-form-register-button">
             <app-button size="medium" label="Register" (onClick)="sendRegister()"></app-button>
