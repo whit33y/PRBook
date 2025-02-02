@@ -1,7 +1,204 @@
 {
     "pipes": [],
     "interfaces": [],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "AuthService",
+            "id": "injectable-AuthService-efb2ff2ed3d92f98dc3c1a1770ac1cea1ebab34cc4049fd5b32ce171555501a090c0e73a1c7b9325483f0e992023f7cb5ff5726dd69898fc9d1ca3854e9ce188",
+            "file": "src/app/services/auth-service.ts",
+            "properties": [
+                {
+                    "name": "account",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Account",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "loggedInUser$",
+                    "defaultValue": "this.loggedInUserSubject.asObservable()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "loggedInUserSubject",
+                    "defaultValue": "new BehaviorSubject<any>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "checkCurrentSession",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123,
+                        134
+                    ]
+                },
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ]
+                },
+                {
+                    "name": "register",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "unknown",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\nimport { ID, Account } from 'appwrite';\nimport { client } from '../../lib/appwrite';\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthService {\n  private account: Account;\n  private loggedInUserSubject = new BehaviorSubject<any>(null);\n  loggedInUser$ = this.loggedInUserSubject.asObservable();\n  constructor() {\n    this.account = new Account(client);\n    this.checkCurrentSession();\n  }\n\n  async login(email: string, password: string) {\n    await this.account.createEmailPasswordSession(email, password);\n    const user = await this.account.get();\n    this.loggedInUserSubject.next(user);\n  }\n\n  async register(email: string, password: string, name: string) {\n    try {\n      await this.account.create(ID.unique(), email, password, name);\n      return this.login(email, password);\n    } catch (error) {\n      console.error('Registration failed: ', error);\n      throw error;\n    }\n  }\n\n  async logout() {\n    await this.account.deleteSession('current');\n    this.loggedInUserSubject.next(null);\n  }\n\n  private async checkCurrentSession() {\n    try {\n      const user = await this.account.get();\n      this.loggedInUserSubject.next(user);\n    } catch (error) {\n      this.loggedInUserSubject.next(null);\n    }\n  }\n}\n\nexport type User = {\n  email: string;\n  password: string;\n  name: string;\n};\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
+            },
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -554,101 +751,26 @@
             "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n            <nav class=\"header-left-nav\">\n                <a href=\"\">Contact</a>\n                <a href=\"\">About us</a>\n            </nav>\n        </div>\n        @if(this.route !== '/login'){\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" (onClick)=\"navigateToLogin()\" />\n        </div>\n        }\n    </div>\n</header>"
         },
         {
-            "name": "InputComponent",
-            "id": "component-InputComponent-811b7c8df1dc7eac813c2cd55daae2c461007266474b72ef778a98b4c5248bc53d114a2226bab33020d1afa0cfc0c2b62f6da39b392ce9f35d998b5d8fbd9a55",
-            "file": "src/app/components/elements/input/input.component.ts",
+            "name": "HomePageComponent",
+            "id": "component-HomePageComponent-ea12fae9cd44b9883247b776748b043aba557c6be711519ac4cf3c948895a87ac7190f2710fe792dfc391706f31c0aae487c68c580290bcb8015083b33e5e5dc",
+            "file": "src/app/pages/home-page/home-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-input",
+            "selector": "app-home-page",
             "styleUrls": [],
             "styles": [],
             "templateUrl": [
-                "./input.component.html"
+                "./home-page.component.html"
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "disabled",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 14,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "placeholder",
-                    "defaultValue": "'Enter text'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "type",
-                    "defaultValue": "'text'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "value",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 13,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "valueChange",
-                    "defaultValue": "new EventEmitter<string>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 16,
-                    "type": "EventEmitter"
-                }
-            ],
+            "inputsClass": [],
+            "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "onInput",
-                    "args": [
-                        {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 18,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "event",
-                            "type": "Event",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -658,17 +780,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  standalone: true,\n  imports: [],\n  templateUrl: './input.component.html',\n  styleUrl: './input.component.scss',\n})\nexport class InputComponent {\n  @Input() placeholder: string = 'Enter text';\n  @Input() type: string = 'text';\n  @Input() value: string = '';\n  @Input() disabled: boolean = false;\n\n  @Output() valueChange = new EventEmitter<string>();\n\n  onInput(event: Event): void {\n    const target = event.target as HTMLInputElement;\n    this.value = target.value;\n    this.valueChange.emit(this.value);\n  }\n}\n",
-            "styleUrl": "./input.component.scss",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-home-page',\n  standalone: true,\n  imports: [],\n  templateUrl: './home-page.component.html',\n  styleUrl: './home-page.component.scss'\n})\nexport class HomePageComponent {\n\n}\n",
+            "styleUrl": "./home-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<input [type]=\"type\" [placeholder]=\"placeholder\" [value]=\"value\" [disabled]=\"disabled\" (input)=\"onInput($event)\"\n    class=\"input\" />"
+            "templateData": "<p>home-page works!</p>\n"
         },
         {
             "name": "LoginPageComponent",
-            "id": "component-LoginPageComponent-0b329ad20ff8afceee2410c619ee55da19a9bdb54a206346a8b9dadc8918b6664542c425f72fd0a01d1ef63655d7af28dbba0777e873882dc77bb71e1b0bb16b",
+            "id": "component-LoginPageComponent-2ff72375c5abae90d4a70f6128667e9f5027856a4105e1122729f51634f7c498a6bf786a05d3ebcad49701c522c6a638904d7048477635230157dde16122856e",
             "file": "src/app/pages/login/login-page/login-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -687,6 +809,28 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "forgot",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
                     "name": "register",
                     "defaultValue": "false",
                     "deprecated": false,
@@ -695,10 +839,62 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 13
+                    "line": 15
+                },
+                {
+                    "name": "registerForm",
+                    "defaultValue": "new FormGroup({\n    email: new FormControl(''),\n    password: new FormControl(''),\n    name: new FormControl(''),\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "navigateToHome",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 69,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "sendLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "sendLogout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "sendRegister",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -706,24 +902,65 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "InputComponent",
+                    "name": "ButtonComponent",
                     "type": "component"
                 },
                 {
-                    "name": "ButtonComponent",
-                    "type": "component"
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { InputComponent } from '../../../components/elements/input/input.component';\nimport { ButtonComponent } from '../../../components/elements/button/button.component';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [InputComponent, ButtonComponent],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../../services/auth-service';\nimport { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [ButtonComponent, ReactiveFormsModule],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n  forgot: boolean = false;\n  loading: boolean = false;\n  registerForm = new FormGroup({\n    email: new FormControl(''),\n    password: new FormControl(''),\n    name: new FormControl(''),\n  });\n\n  constructor(private router: Router, private authService: AuthService) {}\n\n  sendLogin() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .login(\n          this.registerForm.value.email!,\n          this.registerForm.value.password!\n        )\n        .then(() => {\n          this.loading = false;\n          console.log('Successfully registered!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          console.error('Something went wrong during registration: ', error);\n        });\n    }, 2000);\n  }\n\n  sendRegister() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .register(\n          this.registerForm.value.email!,\n          this.registerForm.value.password!,\n          this.registerForm.value.name!\n        )\n        .then(() => {\n          this.loading = false;\n          console.log('Successfully registered!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          console.error('Something went wrong during registration: ', error);\n        });\n    }, 2000);\n  }\n\n  sendLogout() {\n    this.authService.logout();\n  }\n\n  navigateToHome() {\n    console.log('home');\n    this.router.navigate(['/home']);\n  }\n}\n",
             "styleUrl": "./login-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 22,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<div class=\"login-page-container\">\n    @if(!register){\n    <div class=\"login-page-container-form-login\">\n        <h3>Login to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <app-input type=\"text\" placeholder=\"Enter you email\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Password</p>\n            <app-input type=\"password\" placeholder=\"Enter your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            Remember me\n            <input type=\"checkbox\">\n        </div>\n        <div class=\"login-page-container-form-login-lost\">\n            <p>Forgot password? <span class=\"login-page-container-switch-span\">Click here</span></p>\n        </div>\n        <div class=\"login-page-container-form-login-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }@else {\n    <div class=\"login-page-container-form-register\">\n        <h3>Register to PRBook!</h3>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Email</p>\n            <app-input type=\"text\" placeholder=\"Enter you email\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Password</p>\n            <app-input type=\"password\" placeholder=\"Enter your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Confirm password</p>\n            <app-input type=\"password\" placeholder=\"Confirm your password\"></app-input>\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }\n    <div class=\"login-page-container-switch\">\n        @if(!register){\n        <p>You dont have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register\">Register\n                now!</span></p>\n        }@else {\n        <p>You have an account? <span class=\"login-page-container-switch-span\" (click)=\"register = !register\">Login\n                now!</span></p>\n        }\n    </div>\n</div>"
+            "templateData": "<div class=\"login-page-container\">\n    @if(!register && !forgot){\n    <div class=\"login-page-container-form-login\">\n        <h3>Login to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            <div class=\"remember-me\">Remember me <input type=\"checkbox\"></div>\n            <p>Forgot password? <span class=\"login-page-container-switch-span\" (click)=\"forgot = !forgot\">Click\n                    here</span></p>\n        </div>\n\n        <div class=\"login-page-container-form-login-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }@else if(forgot && !register){\n    @if(!loading){\n    <div class=\"login-page-container-form-login\">\n        <h3>Restore password to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Restore password\"></app-button>\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            <p>Or maybe you want go back to login?<span class=\"login-page-container-switch-span\"\n                    (click)=\"forgot = !forgot\">Click here</span></p>\n        </div>\n    </div>\n    }@else {\n    <p>Loading...</p>\n    }\n    }\n    @else {\n    <div class=\"login-page-container-form-register\" [formGroup]=\"registerForm\">\n        <h3>Register to PRBook!</h3>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" formControlName=\"email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Name</p>\n            <input type=\"text\" placeholder=\"Enter you name\" formControlName=\"name\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" formControlName=\"password\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Register\" (onClick)=\"sendRegister()\"></app-button>\n        </div>\n    </div>\n    }\n    <div class=\"login-page-container-switch\">\n        @if(!register && !forgot){\n        <p>You dont have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register\">Register\n                now!</span></p>\n        }@else {\n        <p>You have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register && forgot = !forgot\">Login\n                now!</span></p>\n        }\n    </div>\n\n</div>"
         },
         {
             "name": "StartingPageComponent",
@@ -810,6 +1047,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "account",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/appwrite.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new Account(client)"
+            },
+            {
                 "name": "appConfig",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -818,12 +1065,56 @@
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
                 "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]\n}"
+            },
+            {
+                "name": "client",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/lib/appwrite.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new Client()"
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "User",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/services/auth-service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 187
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
+            "src/lib/appwrite.ts": [
+                {
+                    "name": "account",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/appwrite.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new Account(client)"
+                },
+                {
+                    "name": "client",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/lib/appwrite.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new Client()"
+                }
+            ],
             "src/app/app.config.ts": [
                 {
                     "name": "appConfig",
@@ -839,7 +1130,21 @@
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "src/app/services/auth-service.ts": [
+                {
+                    "name": "User",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/services/auth-service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 187
+                }
+            ]
+        }
     },
     "routes": [],
     "coverage": {
@@ -884,15 +1189,6 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/elements/input/input.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "InputComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/7",
-                "status": "low"
-            },
-            {
                 "filePath": "src/app/components/footer/footer.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -911,12 +1207,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/pages/home-page/home-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/login/login-page/login-page.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "LoginPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -926,6 +1231,45 @@
                 "name": "StartingPageComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/auth-service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/auth-service.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/lib/appwrite.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "account",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/lib/appwrite.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "client",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             }
         ]

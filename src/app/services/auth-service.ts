@@ -21,8 +21,13 @@ export class AuthService {
   }
 
   async register(email: string, password: string, name: string) {
-    await this.account.create(ID.unique(), email, password, name);
-    return this.login(email, password);
+    try {
+      await this.account.create(ID.unique(), email, password, name);
+      return this.login(email, password);
+    } catch (error) {
+      console.error('Registration failed: ', error);
+      throw error;
+    }
   }
 
   async logout() {

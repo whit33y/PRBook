@@ -14,7 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class LoginPageComponent {
   register: boolean = false;
   forgot: boolean = false;
-
+  loading: boolean = false;
   registerForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -24,18 +24,42 @@ export class LoginPageComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
   sendLogin() {
-    this.authService.login(
-      this.registerForm.value.email!,
-      this.registerForm.value.password!
-    );
+    this.loading = true;
+    setTimeout(() => {
+      this.authService
+        .login(
+          this.registerForm.value.email!,
+          this.registerForm.value.password!
+        )
+        .then(() => {
+          this.loading = false;
+          console.log('Successfully registered!');
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.error('Something went wrong during registration: ', error);
+        });
+    }, 2000);
   }
 
   sendRegister() {
-    this.authService.register(
-      this.registerForm.value.email!,
-      this.registerForm.value.password!,
-      this.registerForm.value.name!
-    );
+    this.loading = true;
+    setTimeout(() => {
+      this.authService
+        .register(
+          this.registerForm.value.email!,
+          this.registerForm.value.password!,
+          this.registerForm.value.name!
+        )
+        .then(() => {
+          this.loading = false;
+          console.log('Successfully registered!');
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.error('Something went wrong during registration: ', error);
+        });
+    }, 2000);
   }
 
   sendLogout() {
