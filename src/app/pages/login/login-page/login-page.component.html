@@ -4,11 +4,11 @@
         <h3>Login to PRBook!</h3>
         <div class="login-page-container-form-login-input">
             <p>Email</p>
-            <app-input type="text" placeholder="Enter you email"></app-input>
+            <input type="text" placeholder="Enter you email" class="input" />
         </div>
         <div class="login-page-container-form-login-input">
             <p>Password</p>
-            <app-input type="password" placeholder="Enter your password"></app-input>
+            <input type="password" placeholder="Enter your password" class="input" />
         </div>
         <div class="login-page-container-form-login-remember">
             <div class="remember-me">Remember me <input type="checkbox"></div>
@@ -25,7 +25,7 @@
         <h3>Restore password to PRBook!</h3>
         <div class="login-page-container-form-login-input">
             <p>Email</p>
-            <app-input type="text" placeholder="Enter you email"></app-input>
+            <input type="text" placeholder="Enter you email" class="input" />
         </div>
         <div class="login-page-container-form-register-button">
             <app-button size="medium" label="Restore password"></app-button>
@@ -37,26 +37,22 @@
     </div>
     }
     @else {
-    <div class="login-page-container-form-register">
+    <div class="login-page-container-form-register" [formGroup]="registerForm">
         <h3>Register to PRBook!</h3>
         <div class="login-page-container-form-register-input">
             <p>Email</p>
-            <app-input type="text" placeholder="Enter you email"></app-input>
+            <input type="text" placeholder="Enter you email" formControlName="email" class="input" />
         </div>
         <div class="login-page-container-form-register-input">
             <p>Name</p>
-            <app-input type="text" placeholder="Enter you name"></app-input>
+            <input type="text" placeholder="Enter you name" formControlName="name" class="input" />
         </div>
         <div class="login-page-container-form-register-input">
             <p>Password</p>
-            <app-input type="password" placeholder="Enter your password"></app-input>
-        </div>
-        <div class="login-page-container-form-register-input">
-            <p>Confirm password</p>
-            <app-input type="password" placeholder="Confirm your password"></app-input>
+            <input type="password" placeholder="Enter your password" formControlName="password" class="input" />
         </div>
         <div class="login-page-container-form-register-button">
-            <app-button size="medium" label="Register"></app-button>
+            <app-button size="medium" label="Register" (onClick)="sendRegister()"></app-button>
         </div>
     </div>
     }
