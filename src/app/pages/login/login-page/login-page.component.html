@@ -1,24 +1,38 @@
 <div class="login-page-container">
     @if(!loading){
     @if(!register && !forgot){
-    <div class="login-page-container-form-login">
+    <div class="login-page-container-form-login" [formGroup]="loginForm">
         <h3>Login to PRBook!</h3>
         <div class="login-page-container-form-login-input">
             <p>Email</p>
-            <input type="text" placeholder="Enter you email" class="input" />
+            <input type="text" placeholder="Enter you email" class="input" formControlName="email" />
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <p class="red">
+                @if (loginForm.get('email')?.hasError('required')) { Email is required }
+                @if (loginForm.get('email')?.hasError('email')) { Enter a valid email }
+            </p>
+            }
         </div>
         <div class="login-page-container-form-login-input">
             <p>Password</p>
-            <input type="password" placeholder="Enter your password" class="input" />
+            <input type="password" placeholder="Enter your password" class="input" formControlName="password" />
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <p class="red">
+                @if (loginForm.get('password')?.hasError('required')) { Password is required }
+                @if (loginForm.get('password')?.hasError('minlength')) { Password must be at least 8 characters }
+            </p>
+            }
         </div>
         <div class="login-page-container-form-login-remember">
-            <div class="remember-me">Remember me <input type="checkbox"></div>
             <p>Forgot password? <span class="login-page-container-switch-span" (click)="forgot = !forgot">Click
                     here</span></p>
         </div>
 
         <div class="login-page-container-form-login-button">
-            <app-button size="medium" label="Login"></app-button>
+            <app-button size="medium" label="Login" (onClick)="sendLogin()"></app-button>
+            @if(errorMessageLogin){
+            <p class="red">{{errorMessageLogin}}</p>
+            }
         </div>
     </div>
     }@else if(forgot && !register){
@@ -106,4 +120,5 @@
     }@else {
     <p>Loading please wait...</p>
     }
+    <p>{{message}}</p>
 </div>

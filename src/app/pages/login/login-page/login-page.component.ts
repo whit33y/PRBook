@@ -21,6 +21,7 @@ export class LoginPageComponent {
   forgot: boolean = false;
   loading: boolean = false;
   error: string = '';
+  message: string = '';
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -34,8 +35,16 @@ export class LoginPageComponent {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  constructor(private router: Router, private authService: AuthService) {}
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+  });
 
+  constructor(private router: Router, private authService: AuthService) {}
+  errorMessageLogin: string = '';
   sendLogin() {
     this.loading = true;
     setTimeout(() => {
@@ -46,13 +55,14 @@ export class LoginPageComponent {
         )
         .then(() => {
           this.loading = false;
-          console.log('Successfully registered!');
+          console.log('Successfully logged in!');
         })
         .catch((error) => {
           this.loading = false;
-          console.error('Something went wrong during registration: ', error);
+          this.errorMessageLogin = error;
+          console.error('Something went wrong during login: ', error);
         });
-    }, 2000);
+    }, 1000);
   }
 
   sendRegister() {
@@ -71,6 +81,10 @@ export class LoginPageComponent {
           )
           .then(() => {
             this.loading = false;
+            setTimeout(() => {
+              this.message = 'Sucessfully registered!';
+            }, 1000);
+            this.router.navigate(['/home']);
             console.log('Successfully registered!');
           })
           .catch((error) => {
