@@ -35,12 +35,19 @@ export class AuthService {
     this.loggedInUserSubject.next(null);
   }
 
-  private async checkCurrentSession() {
+  private isSessionChecked = false;
+  async checkCurrentSession(): Promise<void> {
+    if (this.isSessionChecked) return; // Avoid duplicate calls
+
     try {
       const user = await this.account.get();
+      console.log('User found:', user);
       this.loggedInUserSubject.next(user);
     } catch (error) {
+      console.warn('No active session');
       this.loggedInUserSubject.next(null);
+    } finally {
+      this.isSessionChecked = true;
     }
   }
 }
