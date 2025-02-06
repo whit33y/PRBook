@@ -49,10 +49,7 @@ export class LoginPageComponent {
     this.loading = true;
     setTimeout(() => {
       this.authService
-        .login(
-          this.registerForm.value.email!,
-          this.registerForm.value.password!
-        )
+        .login(this.loginForm.value.email!, this.loginForm.value.password!)
         .then(() => {
           this.loading = false;
           console.log('Successfully logged in!');
