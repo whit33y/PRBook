@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ID, Account } from 'appwrite';
 import { client } from '../../lib/appwrite';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,7 +10,7 @@ export class AuthService {
   private account: Account;
   private loggedInUserSubject = new BehaviorSubject<any>(null);
   loggedInUser$ = this.loggedInUserSubject.asObservable();
-  constructor() {
+  constructor(private router: Router) {
     this.account = new Account(client);
     this.checkCurrentSession();
   }
@@ -31,14 +32,19 @@ export class AuthService {
   }
 
   async logout() {
-    await this.account.deleteSession('current');
-    this.loggedInUserSubject.next(null);
+    try {
+      await this.account.deleteSession('current');
+      this.loggedInUserSubject.next(null);
+      this.router.navigate(['/welcome']);
+    } catch (error) {
+      console.error('Loggout failed: ', error);
+      throw error;
+    }
   }
 
   private isSessionChecked = false;
   async checkCurrentSession(): Promise<void> {
-    if (this.isSessionChecked) return; // Avoid duplicate calls
-
+    if (this.isSessionChecked) return;
     try {
       const user = await this.account.get();
       console.log('User found:', user);

@@ -52,6 +52,7 @@ export class LoginPageComponent {
         .login(this.loginForm.value.email!, this.loginForm.value.password!)
         .then(() => {
           this.loading = false;
+          this.router.navigate(['/home']);
           console.log('Successfully logged in!');
         })
         .catch((error) => {
