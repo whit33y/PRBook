@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../elements/button/button.component';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,10 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent {
   route: string = '';
-  constructor(private router: Router) {
+  isLoggedIn = false;
+  private authSubscription: Subscription | undefined;
+
+  constructor(private router: Router, private authService: AuthService) {
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
@@ -20,7 +24,21 @@ export class HeaderComponent {
       });
   }
 
+  ngOnInit() {
+    this.authSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.isLoggedIn = !!user;
+    });
+  }
+
+  ngOnDestroy() {
+    this.authSubscription?.unsubscribe();
+  }
+
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
