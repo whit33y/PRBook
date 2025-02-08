@@ -3,6 +3,7 @@ import { StartingPageComponent } from './pages/starting-page/starting-page.compo
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './auth.guard';
+import { NoAuthGuard } from './no-auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
     path: 'login',
     component: LoginPageComponent,
     title: 'PRBook login',
+    canActivate: [NoAuthGuard],
   },
   { path: '**', redirectTo: '/login' },
 ];
