@@ -8,14 +8,15 @@
                 <a href="">About us</a>
             </nav>
         </div>
-        @if(!isLoggedIn){
-        <div class="header-right">
-            <app-button label="Get started" (onClick)="navigateToLogin()" />
-        </div>
-        }@else {
+        @if(isLoggedIn){
         <div class="header-right">
             <app-button label="Logout" (onClick)="logout()" />
         </div>
+        }@else if (this.route !== '/login') {
+        <div class="header-right">
+            <app-button label="Get started" (onClick)="navigateToLogin()" />
+        </div>
         }
+
     </div>
 </header>

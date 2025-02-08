@@ -16,6 +16,7 @@ export const routes: Routes = [
     path: 'welcome',
     component: StartingPageComponent,
     title: 'Welcome to PRBook',
+    canActivate: [NoAuthGuard],
   },
   {
     path: 'login',
