@@ -4,8 +4,12 @@
             <img src="/assets/images/logo.png" alt="PRBook logo" class="header-logo">
             <h1>PRBook</h1>
             <nav class="header-left-nav">
-                <a href="">Contact</a>
-                <a href="">About us</a>
+                @if(isLoggedIn){
+                <p (click)="navigateTo('/home')">Home</p>
+                <p (click)="navigateTo('/history')">PR History</p>
+                }@else {
+                <p (click)="navigateTo('/welcome')">Home</p>
+                }
             </nav>
         </div>
         @if(isLoggedIn){
@@ -14,7 +18,7 @@
         </div>
         }@else if (this.route !== '/login') {
         <div class="header-right">
-            <app-button label="Get started" (onClick)="navigateToLogin()" />
+            <app-button label="Get started" (onClick)="navigateTo('/login')" />
         </div>
         }
 

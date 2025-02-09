@@ -34,8 +34,8 @@ export class HeaderComponent {
     this.authSubscription?.unsubscribe();
   }
 
-  navigateToLogin() {
-    this.router.navigate(['/login']);
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
   logout() {
