@@ -15,17 +15,22 @@ export class AppwriteDbService {
     this.database = new Databases(client);
   }
 
-  async getAllRunningAndCyclingRecords() {
-    try {
-      const response = await this.database.listDocuments(
-        this.databaseId,
-        this.runningAndCyclingRecordsId
-      );
-      console.log(response);
-      return response.documents;
-    } catch (error) {
-      console.error('Failed loading records:', error);
-      return [];
+  async getAllRunningAndCyclingRecords(userId: string) {
+    if (userId) {
+      try {
+        const response = await this.database.listDocuments(
+          this.databaseId,
+          this.runningAndCyclingRecordsId,
+          [Query.equal('user_id', userId)]
+        );
+        console.log(response);
+        return response.documents;
+      } catch (error) {
+        console.error('Failed loading records:', error);
+        return [];
+      }
+    } else {
+      return;
     }
   }
 }
