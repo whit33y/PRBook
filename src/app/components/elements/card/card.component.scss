@@ -1,8 +1,10 @@
 .card {
   display: flex;
+  justify-content: center;
   border: 0.25rem solid var(--main-purple);
   border-radius: 1rem;
-  width: 100%;
+  width: 90%;
+  margin: 0px 20px;
   background-color: var(--background-purple);
   cursor: pointer;
 }
@@ -24,7 +26,7 @@
   height: 6rem;
 }
 
-.card-desktop .card-image .svg-container .icon{
+.card-desktop .card-image .svg-container .icon {
   width: 6rem;
   height: 6rem;
 }
@@ -39,7 +41,7 @@
   height: 4rem;
 }
 
-.card-mobile .card-image .svg-container .icon{
+.card-mobile .card-image .svg-container .icon {
   width: 4rem;
   height: 4rem;
 }

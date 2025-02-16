@@ -45,7 +45,8 @@ export class AppwriteDbService {
   async createRunningAndCyclingRecord(
     user_id: string,
     distance: number,
-    record_time: string
+    record_time: string,
+    is_running: boolean
   ): Promise<RunningAndCyclingRecordsDocuments | null> {
     try {
       const response = await this.database.createDocument(
@@ -53,9 +54,10 @@ export class AppwriteDbService {
         this.runningAndCyclingRecordsId,
         'unique()',
         {
-          user_id: user_id,
-          distance: distance,
-          record_time: record_time,
+          user_id,
+          distance,
+          record_time,
+          is_running,
         }
       );
       console.log('Document created:', response);

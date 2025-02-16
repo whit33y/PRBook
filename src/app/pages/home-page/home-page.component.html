@@ -1,2 +1,32 @@
-<p>home-page works!</p>
-<!-- <button (click)="addRecord()">Add record</button> -->
+<!-- <p>home-page works!</p>
+<button (click)="addRecord()">Add record</button> -->
+<div class="home-page-container">
+    @if(loadedRecords!.total > 0){
+    <div>
+        <h2>Your last recorded PR</h2>
+        @if(loadedRecords!.documents[loadedRecords!.total-1].is_running){
+        <app-card
+            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
+            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time"
+            [svgContent]="runner"></app-card>
+        }@else {
+        <app-card
+            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
+            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time"
+            [svgContent]="bike"></app-card>
+        }
+    </div>
+    }
+    <div class="home-page-add-container">
+        <h2>Add new record</h2>
+        <div class="home-page-add-container-cards">
+            <div class="card-1">
+                <app-card title="New running record!" description="That was pretty fast!"
+                    [svgContent]="runner"></app-card>
+            </div>
+            <div class="card-2">
+                <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"></app-card>
+            </div>
+        </div>
+    </div>
+</div>

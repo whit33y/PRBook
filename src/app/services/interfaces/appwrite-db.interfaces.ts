@@ -1,12 +1,13 @@
 export interface RunningAndCyclingRecords {
   total: number;
-  documents: Array<RunningAndCyclingRecordsDocuments[]>;
+  documents: Array<RunningAndCyclingRecordsDocuments>;
 }
 
 export interface RunningAndCyclingRecordsDocuments {
   user_id: string;
   distance: number;
   record_time: string;
+  is_running: boolean;
   $id: string;
   $createdAt: string;
   $updatedAt: string;
