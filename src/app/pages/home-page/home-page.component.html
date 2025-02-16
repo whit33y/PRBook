@@ -7,13 +7,13 @@
         @if(loadedRecords!.documents[loadedRecords!.total-1].is_running){
         <app-card
             [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
-            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time"
-            [svgContent]="runner"></app-card>
+            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="runner"
+            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }@else {
         <app-card
             [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
-            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time"
-            [svgContent]="bike"></app-card>
+            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="bike"
+            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }
     </div>
     }
@@ -21,11 +21,12 @@
         <h2>Add new record</h2>
         <div class="home-page-add-container-cards">
             <div class="card-1">
-                <app-card title="New running record!" description="That was pretty fast!"
-                    [svgContent]="runner"></app-card>
+                <app-card title="New running record!" description="That was pretty fast!" [svgContent]="runner"
+                    [size]="isMobile ? 'mobile': 'desktop'" color="blue"></app-card>
             </div>
             <div class="card-2">
-                <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"></app-card>
+                <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"
+                    [size]="isMobile ? 'mobile': 'desktop'" color="green"></app-card>
             </div>
         </div>
     </div>
