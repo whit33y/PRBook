@@ -26,4 +26,12 @@ export class HomePageComponent {
   loadRecords(id: string) {
     this.AppwriteDbService.getAllRunningAndCyclingRecords(id);
   }
+
+  addRecord() {
+    this.AppwriteDbService.createRunningAndCyclingRecord(
+      this.user.$id,
+      42,
+      '03:00:05'
+    );
+  }
 }
