@@ -13,6 +13,7 @@ export class CardComponent {
   @Input() size: 'desktop' | 'mobile' = 'desktop';
   @Input() title: string = 'Title';
   @Input() description: string = 'Example description!';
+  @Input() color: string = 'purple';
   @Output() onClick = new EventEmitter<Event>();
   @Input() set svgContent(content: string) {
     this._svgContent = content || this._svgContent;
@@ -31,9 +32,11 @@ export class CardComponent {
             <path d="M22 12h-1" />
         </svg>`;
   safeSvgContent: SafeHtml = '';
-  
+
   constructor(private sanitizer: DomSanitizer) {
-    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(this._svgContent);
+    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(
+      this._svgContent
+    );
   }
 
   get svgContent(): string {
@@ -42,6 +45,6 @@ export class CardComponent {
 
   public get classes(): string[] {
     const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';
-    return ['card', mode];
+    return ['card', mode, `card-${this.color}`];
   }
 }

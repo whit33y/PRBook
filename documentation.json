@@ -1,10 +1,333 @@
 {
     "pipes": [],
-    "interfaces": [],
+    "interfaces": [
+        {
+            "name": "RunningAndCyclingRecords",
+            "id": "interface-RunningAndCyclingRecords-61cbe915843d2ec9719c8bce0e71da3981ba71411874ec122884b1511fa95ab4fda606972897893ee1ded8bf027636457b4cfafc76b285cb3264f706e173a60d",
+            "file": "src/app/services/interfaces/appwrite-db.interfaces.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface RunningAndCyclingRecords {\n  total: number;\n  documents: Array<RunningAndCyclingRecordsDocuments>;\n}\n\nexport interface RunningAndCyclingRecordsDocuments {\n  user_id: string;\n  distance: number;\n  record_time: string;\n  is_running: boolean;\n  $id: string;\n  $createdAt: string;\n  $updatedAt: string;\n  $permissions: any[];\n  $databaseId: string;\n  $collectionId: string;\n}\n",
+            "properties": [
+                {
+                    "name": "documents",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<RunningAndCyclingRecordsDocuments>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "total",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "RunningAndCyclingRecordsDocuments",
+            "id": "interface-RunningAndCyclingRecordsDocuments-61cbe915843d2ec9719c8bce0e71da3981ba71411874ec122884b1511fa95ab4fda606972897893ee1ded8bf027636457b4cfafc76b285cb3264f706e173a60d",
+            "file": "src/app/services/interfaces/appwrite-db.interfaces.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface RunningAndCyclingRecords {\n  total: number;\n  documents: Array<RunningAndCyclingRecordsDocuments>;\n}\n\nexport interface RunningAndCyclingRecordsDocuments {\n  user_id: string;\n  distance: number;\n  record_time: string;\n  is_running: boolean;\n  $id: string;\n  $createdAt: string;\n  $updatedAt: string;\n  $permissions: any[];\n  $databaseId: string;\n  $collectionId: string;\n}\n",
+            "properties": [
+                {
+                    "name": "$collectionId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "$createdAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "$databaseId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "$id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "$permissions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "$updatedAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "distance",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "is_running",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "record_time",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "user_id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        }
+    ],
     "injectables": [
         {
+            "name": "AppwriteDbService",
+            "id": "injectable-AppwriteDbService-7ea7cec482267e15379eef4288f5a8fd0479d2a879e25d611b6acba4ab5b5f5175dd5d2bdf72d4323f64e8fdee65d27f15b081b6138a7d8e7abcbc3314fa77f6",
+            "file": "src/app/services/appwrite-db.service.ts",
+            "properties": [
+                {
+                    "name": "database",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Databases",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "databaseId",
+                    "defaultValue": "environment.databaseId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "runningAndCyclingRecordsId",
+                    "defaultValue": "environment.runningAndCyclingRecordsId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "createRunningAndCyclingRecord",
+                    "args": [
+                        {
+                            "name": "user_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "distance",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "record_time",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "is_running",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<RunningAndCyclingRecordsDocuments | null>",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "user_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "distance",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "record_time",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "is_running",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getAllRunningAndCyclingRecords",
+                    "args": [
+                        {
+                            "name": "userId",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<RunningAndCyclingRecordsDocuments[]>",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "userId",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Databases, Query } from 'appwrite';\nimport { client } from '../../lib/appwrite';\nimport { environment } from '../../../environment';\nimport { RunningAndCyclingRecordsDocuments } from './interfaces/appwrite-db.interfaces';\n@Injectable({\n  providedIn: 'root',\n})\nexport class AppwriteDbService {\n  private database: Databases;\n  private databaseId = environment.databaseId;\n  private runningAndCyclingRecordsId = environment.runningAndCyclingRecordsId;\n\n  constructor() {\n    this.database = new Databases(client);\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  async getAllRunningAndCyclingRecords(\n    userId: string\n  ): Promise<RunningAndCyclingRecordsDocuments[]> {\n    if (userId) {\n      try {\n        const response = await this.database.listDocuments(\n          this.databaseId,\n          this.runningAndCyclingRecordsId,\n          [Query.equal('user_id', userId)]\n        );\n        console.log(response);\n        return response.documents as RunningAndCyclingRecordsDocuments[];\n      } catch (error) {\n        console.error('Failed loading records:', error);\n        return [];\n      }\n    } else {\n      return [];\n    }\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  //create create create create create create create create create\n\n  async createRunningAndCyclingRecord(\n    user_id: string,\n    distance: number,\n    record_time: string,\n    is_running: boolean\n  ): Promise<RunningAndCyclingRecordsDocuments | null> {\n    try {\n      const response = await this.database.createDocument(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        'unique()',\n        {\n          user_id,\n          distance,\n          record_time,\n          is_running,\n        }\n      );\n      console.log('Document created:', response);\n      return response as RunningAndCyclingRecordsDocuments;\n    } catch (error) {\n      console.error('Failed to create record:', error);\n      return null;\n    }\n  }\n\n  //create create create create create create create create create\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
             "name": "AuthService",
-            "id": "injectable-AuthService-efb2ff2ed3d92f98dc3c1a1770ac1cea1ebab34cc4049fd5b32ce171555501a090c0e73a1c7b9325483f0e992023f7cb5ff5726dd69898fc9d1ca3854e9ce188",
+            "id": "injectable-AuthService-c7c1dfa05f1bda5c49edbbaf91a2b8174227db980e21f00c15b9aad438a27a19ba7094f7337e76b5688778792c5842f0ea198cf3921d66f80a722b9f554766f8",
             "file": "src/app/services/auth-service.ts",
             "properties": [
                 {
@@ -15,7 +338,21 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 9,
+                    "line": 10,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "isSessionChecked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45,
                     "modifierKind": [
                         123
                     ]
@@ -29,7 +366,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 12
                 },
                 {
                     "name": "loggedInUserSubject",
@@ -40,7 +377,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 10,
+                    "line": 11,
                     "modifierKind": [
                         123
                     ]
@@ -51,13 +388,12 @@
                     "name": "checkCurrentSession",
                     "args": [],
                     "optional": false,
-                    "returnType": "any",
+                    "returnType": "Promise<void>",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123,
                         134
                     ]
                 },
@@ -80,7 +416,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 18,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -113,7 +449,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -145,7 +481,7 @@
                     "optional": false,
                     "returnType": "unknown",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 24,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -186,20 +522,171 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\nimport { ID, Account } from 'appwrite';\nimport { client } from '../../lib/appwrite';\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthService {\n  private account: Account;\n  private loggedInUserSubject = new BehaviorSubject<any>(null);\n  loggedInUser$ = this.loggedInUserSubject.asObservable();\n  constructor() {\n    this.account = new Account(client);\n    this.checkCurrentSession();\n  }\n\n  async login(email: string, password: string) {\n    await this.account.createEmailPasswordSession(email, password);\n    const user = await this.account.get();\n    this.loggedInUserSubject.next(user);\n  }\n\n  async register(email: string, password: string, name: string) {\n    try {\n      await this.account.create(ID.unique(), email, password, name);\n      return this.login(email, password);\n    } catch (error) {\n      console.error('Registration failed: ', error);\n      throw error;\n    }\n  }\n\n  async logout() {\n    await this.account.deleteSession('current');\n    this.loggedInUserSubject.next(null);\n  }\n\n  private async checkCurrentSession() {\n    try {\n      const user = await this.account.get();\n      this.loggedInUserSubject.next(user);\n    } catch (error) {\n      this.loggedInUserSubject.next(null);\n    }\n  }\n}\n\nexport type User = {\n  email: string;\n  password: string;\n  name: string;\n};\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\nimport { ID, Account } from 'appwrite';\nimport { client } from '../../lib/appwrite';\nimport { Router } from '@angular/router';\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthService {\n  private account: Account;\n  private loggedInUserSubject = new BehaviorSubject<any>(null);\n  loggedInUser$ = this.loggedInUserSubject.asObservable();\n  constructor(private router: Router) {\n    this.account = new Account(client);\n    this.checkCurrentSession();\n  }\n\n  async login(email: string, password: string) {\n    await this.account.createEmailPasswordSession(email, password);\n    const user = await this.account.get();\n    this.loggedInUserSubject.next(user);\n  }\n\n  async register(email: string, password: string, name: string) {\n    try {\n      await this.account.create(ID.unique(), email, password, name);\n      return this.login(email, password);\n    } catch (error) {\n      console.error('Registration failed: ', error);\n      throw error;\n    }\n  }\n\n  async logout() {\n    try {\n      await this.account.deleteSession('current');\n      this.loggedInUserSubject.next(null);\n      this.router.navigate(['/welcome']);\n    } catch (error) {\n      console.error('Loggout failed: ', error);\n      throw error;\n    }\n  }\n\n  private isSessionChecked = false;\n  async checkCurrentSession(): Promise<void> {\n    if (this.isSessionChecked) return;\n    try {\n      const user = await this.account.get();\n      // console.log('User found:', user);\n      this.loggedInUserSubject.next(user);\n    } catch (error) {\n      console.warn('No active session');\n      this.loggedInUserSubject.next(null);\n    } finally {\n      this.isSessionChecked = true;\n    }\n  }\n}\n\nexport type User = {\n  email: string;\n  password: string;\n  name: string;\n};\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 11
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "extends": [],
             "type": "injectable"
         }
     ],
-    "guards": [],
+    "guards": [
+        {
+            "name": "AuthGuard",
+            "id": "injectable-AuthGuard-5a16b91c1adae468f9da34cecb92a790b5fe4c8c1ee4d1e6c7dffb6b9b323bd076a52c35010be426331314e35f852c06d0c8e160ca0333927b4150b397b58025",
+            "file": "src/app/auth.guard.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "canActivate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { CanActivate, Router } from '@angular/router';\nimport { Observable, from } from 'rxjs';\nimport { map, switchMap } from 'rxjs/operators';\nimport { AuthService } from './services/auth-service';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AuthGuard implements CanActivate {\n  constructor(private authService: AuthService, private router: Router) {}\n\n  canActivate(): Observable<boolean> {\n    return from(this.authService.checkCurrentSession()).pipe(\n      switchMap(() => this.authService.loggedInUser$),\n      map((user) => {\n        if (user) {\n          return true;\n        } else {\n          this.router.navigate(['/login']);\n          return false;\n        }\n      })\n    );\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "guard"
+        },
+        {
+            "name": "NoAuthGuard",
+            "id": "injectable-NoAuthGuard-f86f1274466355b7d5afb0cd2d18b65600c7b720da5d43cccc5d43ea7ab3b5b044a8b3e4d265a231bad493771bcfe960853e82270bcc35c027ba9d6992684391",
+            "file": "src/app/no-auth.guard.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "canActivate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { CanActivate, Router } from '@angular/router';\nimport { Observable, from } from 'rxjs';\nimport { map, switchMap } from 'rxjs/operators';\nimport { AuthService } from './services/auth-service';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class NoAuthGuard implements CanActivate {\n  constructor(private authService: AuthService, private router: Router) {}\n\n  canActivate(): Observable<boolean> {\n    return from(this.authService.checkCurrentSession()).pipe(\n      switchMap(() => this.authService.loggedInUser$),\n      map((user) => {\n        if (user) {\n          this.router.navigate(['/home']);\n          return false;\n        } else {\n          return true;\n        }\n      })\n    );\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "guard"
+        }
+    ],
     "interceptors": [],
     "classes": [],
     "directives": [],
@@ -660,7 +1147,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-f42cf3416c8071cc678ed1a80d3f25d7975e5d8cf78ae357a482af5bcf177f179a360d1b37aeab98039f70e84c39925b1f5ea2bcf015b95cc78a8127fc62d782",
+            "id": "component-HeaderComponent-70835de299e98286bc4f1c66dec9ed28379cfd90df2f9ebe5f45900bcd6b763466446242a40dbeeb6d1d5232473e57d7ae603f810a6b72ab585d7643a144feda",
             "file": "src/app/components/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -679,6 +1166,30 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "authSubscription",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "isLoggedIn",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
                     "name": "route",
                     "defaultValue": "''",
                     "deprecated": false,
@@ -687,17 +1198,65 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 15
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "navigateToLogin",
+                    "name": "logout",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "navigateTo",
+                    "args": [
+                        {
+                            "name": "route",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 37,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "route",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -716,7 +1275,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../elements/button/button.component';\nimport { NavigationEnd, Router } from '@angular/router';\nimport { filter } from 'rxjs';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  route: string = '';\n  constructor(private router: Router) {\n    router.events\n      .pipe(filter((event) => event instanceof NavigationEnd))\n      .subscribe((event) => {\n        this.route = event.url;\n      });\n  }\n\n  navigateToLogin() {\n    this.router.navigate(['/login']);\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../elements/button/button.component';\nimport { NavigationEnd, Router } from '@angular/router';\nimport { filter, Subscription } from 'rxjs';\nimport { AuthService } from '../../services/auth-service';\n\n@Component({\n  selector: 'app-header',\n  standalone: true,\n  imports: [ButtonComponent],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  route: string = '';\n  isLoggedIn = false;\n  private authSubscription: Subscription | undefined;\n\n  constructor(private router: Router, private authService: AuthService) {\n    router.events\n      .pipe(filter((event) => event instanceof NavigationEnd))\n      .subscribe((event) => {\n        this.route = event.url;\n      });\n  }\n\n  ngOnInit() {\n    this.authSubscription = this.authService.loggedInUser$.subscribe((user) => {\n      this.isLoggedIn = !!user;\n    });\n  }\n\n  ngOnDestroy() {\n    this.authSubscription?.unsubscribe();\n  }\n\n  navigateTo(route: string) {\n    this.router.navigate([route]);\n  }\n\n  logout() {\n    this.authService.logout();\n  }\n}\n",
             "styleUrl": "./header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -732,9 +1291,15 @@
                         "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 14,
+                "line": 17,
                 "jsdoctags": [
                     {
                         "name": "router",
@@ -744,15 +1309,24 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
             "extends": [],
-            "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n            <nav class=\"header-left-nav\">\n                <a href=\"\">Contact</a>\n                <a href=\"\">About us</a>\n            </nav>\n        </div>\n        @if(this.route !== '/login'){\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" (onClick)=\"navigateToLogin()\" />\n        </div>\n        }\n    </div>\n</header>"
+            "templateData": "<header>\n    <div class=\"header-container\">\n        <div class=\"header-left\">\n            <img src=\"/assets/images/logo.png\" alt=\"PRBook logo\" class=\"header-logo\">\n            <h1>PRBook</h1>\n            <nav class=\"header-left-nav\">\n                @if(isLoggedIn){\n                <p (click)=\"navigateTo('/home')\">Home</p>\n                <p (click)=\"navigateTo('/history')\">PR History</p>\n                }@else {\n                <p (click)=\"navigateTo('/welcome')\">Home</p>\n                }\n            </nav>\n        </div>\n        @if(isLoggedIn){\n        <div class=\"header-right\">\n            <app-button label=\"Logout\" (onClick)=\"logout()\" />\n        </div>\n        }@else if (this.route !== '/login') {\n        <div class=\"header-right\">\n            <app-button label=\"Get started\" (onClick)=\"navigateTo('/login')\" />\n        </div>\n        }\n\n    </div>\n</header>"
         },
         {
             "name": "HomePageComponent",
-            "id": "component-HomePageComponent-ea12fae9cd44b9883247b776748b043aba557c6be711519ac4cf3c948895a87ac7190f2710fe792dfc391706f31c0aae487c68c580290bcb8015083b33e5e5dc",
+            "id": "component-HomePageComponent-a7ea6bc63c9fc0860ec3f892f1fe4bf197486a3e10130f1ddb7972242d339ab3330de18a2710a4c87031b9b577cb4eadeec42c783d28e296085877209af5acd3",
             "file": "src/app/pages/home-page/home-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -769,29 +1343,208 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "bike",
+                    "defaultValue": "'<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-bike\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M19 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M12 19l0 -4l-3 -3l5 -4l2 3l3 0\" /><path d=\"M17 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /></svg>'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "isMobile",
+                    "defaultValue": "window.innerWidth <= 768",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "loadedRecords",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RunningAndCyclingRecords | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "runner",
+                    "defaultValue": "'<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-run\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M4 17l5 1l.75 -1.5\" /><path d=\"M15 21l0 -4l-4 -3l1 -6\" /><path d=\"M7 12l0 -3l5 -1l3 3l3 1\" /></svg>'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "user",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "addRecord",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "loadRecords",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onResize",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'window:resize', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
-            "hostListeners": [],
+            "hostListeners": [
+                {
+                    "name": "window:resize",
+                    "args": [],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23
+                }
+            ],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "CardComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-home-page',\n  standalone: true,\n  imports: [],\n  templateUrl: './home-page.component.html',\n  styleUrl: './home-page.component.scss'\n})\nexport class HomePageComponent {\n\n}\n",
+            "sourceCode": "import { Component, HostListener } from '@angular/core';\nimport { AppwriteDbService } from '../../services/appwrite-db.service';\nimport { AuthService } from '../../services/auth-service';\nimport { CardComponent } from '../../components/elements/card/card.component';\nimport { RunningAndCyclingRecords } from '../../services/interfaces/appwrite-db.interfaces';\n\n@Component({\n  selector: 'app-home-page',\n  standalone: true,\n  imports: [CardComponent],\n  templateUrl: './home-page.component.html',\n  styleUrl: './home-page.component.scss',\n})\nexport class HomePageComponent {\n  constructor(\n    private AppwriteDbService: AppwriteDbService,\n    private authService: AuthService\n  ) {}\n\n  isMobile: boolean = window.innerWidth <= 768;\n\n  @HostListener('window:resize', ['$event'])\n  onResize() {\n    this.isMobile = window.innerWidth <= 768;\n  }\n\n  runner =\n    '<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-run\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M4 17l5 1l.75 -1.5\" /><path d=\"M15 21l0 -4l-4 -3l1 -6\" /><path d=\"M7 12l0 -3l5 -1l3 3l3 1\" /></svg>';\n  bike =\n    '<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-bike\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M19 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M12 19l0 -4l-3 -3l5 -4l2 3l3 0\" /><path d=\"M17 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /></svg>';\n  user: any;\n  ngOnInit() {\n    this.authService.loggedInUser$.subscribe((user) => {\n      this.user = user;\n      this.loadRecords(this.user.$id);\n    });\n  }\n\n  loadedRecords: RunningAndCyclingRecords | undefined;\n  loadRecords(id: string) {\n    this.AppwriteDbService.getAllRunningAndCyclingRecords(id)\n      .then((documents) => {\n        this.loadedRecords = {\n          total: documents.length,\n          documents: documents,\n        };\n      })\n      .catch((error) => {\n        console.error('Failed to load records:', error);\n      });\n  }\n\n  addRecord() {\n    this.AppwriteDbService.createRunningAndCyclingRecord(\n      this.user.$id,\n      40,\n      '00:01:05',\n      false\n    );\n  }\n}\n",
             "styleUrl": "./home-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "AppwriteDbService",
+                        "type": "AppwriteDbService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "AppwriteDbService",
+                        "type": "AppwriteDbService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<p>home-page works!</p>\n"
+            "templateData": "<!-- <p>home-page works!</p>\n<button (click)=\"addRecord()\">Add record</button> -->\n<div class=\"home-page-container\">\n    @if(loadedRecords!.total > 0){\n    <div>\n        <h2>Your last recorded PR</h2>\n        @if(loadedRecords!.documents[loadedRecords!.total-1].is_running){\n        <app-card\n            [title]=\"'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'\"\n            [description]=\"loadedRecords!.documents[loadedRecords!.total - 1]!.record_time\" [svgContent]=\"runner\"\n            [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n        }@else {\n        <app-card\n            [title]=\"'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'\"\n            [description]=\"loadedRecords!.documents[loadedRecords!.total - 1]!.record_time\" [svgContent]=\"bike\"\n            [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n        }\n    </div>\n    }\n    <div class=\"home-page-add-container\">\n        <h2>Add new record</h2>\n        <div class=\"home-page-add-container-cards\">\n            <div class=\"card-1\">\n                <app-card title=\"New running record!\" description=\"That was pretty fast!\" [svgContent]=\"runner\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n            </div>\n            <div class=\"card-2\">\n                <app-card title=\"New bikeing record!\" description=\"Great job!\" [svgContent]=\"bike\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n            </div>\n        </div>\n    </div>\n</div>"
         },
         {
             "name": "LoginPageComponent",
-            "id": "component-LoginPageComponent-2ff72375c5abae90d4a70f6128667e9f5027856a4105e1122729f51634f7c498a6bf786a05d3ebcad49701c522c6a638904d7048477635230157dde16122856e",
-            "file": "src/app/pages/login/login-page/login-page.component.ts",
+            "id": "component-LoginPageComponent-ca33ccdb9508807d44ed0501d405a03406a4ee622e9eb41b4060864d73b5bc08a179042d8cf41a38cdab23bd4b766c58a3f7833511ed3d3ecbbb892b7df9eb38",
+            "file": "src/app/pages/login-page/login-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -809,6 +1562,28 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "error",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "errorMessageLogin",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 47
+                },
+                {
                     "name": "forgot",
                     "defaultValue": "false",
                     "deprecated": false,
@@ -817,7 +1592,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 21
                 },
                 {
                     "name": "loading",
@@ -828,7 +1603,29 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 22
+                },
+                {
+                    "name": "loginForm",
+                    "defaultValue": "new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
                 },
                 {
                     "name": "register",
@@ -839,18 +1636,18 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 20
                 },
                 {
                     "name": "registerForm",
-                    "defaultValue": "new FormGroup({\n    email: new FormControl(''),\n    password: new FormControl(''),\n    name: new FormControl(''),\n  })",
+                    "defaultValue": "new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    name: new FormControl('', [Validators.required, Validators.minLength(3)]),\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 18
+                    "line": 25
                 }
             ],
             "methodsClass": [
@@ -860,7 +1657,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 104,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -870,7 +1667,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -880,7 +1677,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 100,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -890,7 +1687,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 66,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -913,7 +1710,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../../services/auth-service';\nimport { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [ButtonComponent, ReactiveFormsModule],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n  forgot: boolean = false;\n  loading: boolean = false;\n  registerForm = new FormGroup({\n    email: new FormControl(''),\n    password: new FormControl(''),\n    name: new FormControl(''),\n  });\n\n  constructor(private router: Router, private authService: AuthService) {}\n\n  sendLogin() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .login(\n          this.registerForm.value.email!,\n          this.registerForm.value.password!\n        )\n        .then(() => {\n          this.loading = false;\n          console.log('Successfully registered!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          console.error('Something went wrong during registration: ', error);\n        });\n    }, 2000);\n  }\n\n  sendRegister() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .register(\n          this.registerForm.value.email!,\n          this.registerForm.value.password!,\n          this.registerForm.value.name!\n        )\n        .then(() => {\n          this.loading = false;\n          console.log('Successfully registered!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          console.error('Something went wrong during registration: ', error);\n        });\n    }, 2000);\n  }\n\n  sendLogout() {\n    this.authService.logout();\n  }\n\n  navigateToHome() {\n    console.log('home');\n    this.router.navigate(['/home']);\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../services/auth-service';\nimport {\n  FormControl,\n  FormGroup,\n  ReactiveFormsModule,\n  Validators,\n} from '@angular/forms';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [ButtonComponent, ReactiveFormsModule],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n  forgot: boolean = false;\n  loading: boolean = false;\n  error: string = '';\n  message: string = '';\n  registerForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    name: new FormControl('', [Validators.required, Validators.minLength(3)]),\n  });\n\n  loginForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n  });\n\n  constructor(private router: Router, private authService: AuthService) {}\n  errorMessageLogin: string = '';\n  sendLogin() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .login(this.loginForm.value.email!, this.loginForm.value.password!)\n        .then(() => {\n          this.loading = false;\n          this.router.navigate(['/home']);\n          console.log('Successfully logged in!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          this.errorMessageLogin = error;\n          console.error('Something went wrong during login: ', error);\n        });\n    }, 1000);\n  }\n\n  sendRegister() {\n    this.loading = true;\n    if (\n      this.registerForm.value.password ===\n        this.registerForm.value.confirmPassword &&\n      this.registerForm.valid\n    ) {\n      setTimeout(() => {\n        this.authService\n          .register(\n            this.registerForm.value.email!,\n            this.registerForm.value.password!,\n            this.registerForm.value.name!\n          )\n          .then(() => {\n            this.loading = false;\n            setTimeout(() => {\n              this.message = 'Sucessfully registered!';\n            }, 1000);\n            this.router.navigate(['/home']);\n            console.log('Successfully registered!');\n          })\n          .catch((error) => {\n            this.loading = false;\n            console.error('Something went wrong during registration: ', error);\n          });\n      }, 2000);\n    } else {\n      this.loading = false;\n      this.error = 'Please fix the errors before submitting.';\n      return;\n    }\n  }\n\n  sendLogout() {\n    this.authService.logout();\n  }\n\n  navigateToHome() {\n    console.log('home');\n    this.router.navigate(['/home']);\n  }\n}\n",
             "styleUrl": "./login-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -937,7 +1734,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 22,
+                "line": 44,
                 "jsdoctags": [
                     {
                         "name": "router",
@@ -960,7 +1757,45 @@
                 ]
             },
             "extends": [],
-            "templateData": "<div class=\"login-page-container\">\n    @if(!register && !forgot){\n    <div class=\"login-page-container-form-login\">\n        <h3>Login to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            <div class=\"remember-me\">Remember me <input type=\"checkbox\"></div>\n            <p>Forgot password? <span class=\"login-page-container-switch-span\" (click)=\"forgot = !forgot\">Click\n                    here</span></p>\n        </div>\n\n        <div class=\"login-page-container-form-login-button\">\n            <app-button size=\"medium\" label=\"Login\"></app-button>\n        </div>\n    </div>\n    }@else if(forgot && !register){\n    @if(!loading){\n    <div class=\"login-page-container-form-login\">\n        <h3>Restore password to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Restore password\"></app-button>\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            <p>Or maybe you want go back to login?<span class=\"login-page-container-switch-span\"\n                    (click)=\"forgot = !forgot\">Click here</span></p>\n        </div>\n    </div>\n    }@else {\n    <p>Loading...</p>\n    }\n    }\n    @else {\n    <div class=\"login-page-container-form-register\" [formGroup]=\"registerForm\">\n        <h3>Register to PRBook!</h3>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" formControlName=\"email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Name</p>\n            <input type=\"text\" placeholder=\"Enter you name\" formControlName=\"name\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" formControlName=\"password\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Register\" (onClick)=\"sendRegister()\"></app-button>\n        </div>\n    </div>\n    }\n    <div class=\"login-page-container-switch\">\n        @if(!register && !forgot){\n        <p>You dont have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register\">Register\n                now!</span></p>\n        }@else {\n        <p>You have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register && forgot = !forgot\">Login\n                now!</span></p>\n        }\n    </div>\n\n</div>"
+            "templateData": "<div class=\"login-page-container\">\n    @if(!loading){\n    @if(!register && !forgot){\n    <div class=\"login-page-container-form-login\" [formGroup]=\"loginForm\">\n        <h3>Login to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" formControlName=\"email\" />\n            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {\n            <p class=\"red\">\n                @if (loginForm.get('email')?.hasError('required')) { Email is required }\n                @if (loginForm.get('email')?.hasError('email')) { Enter a valid email }\n            </p>\n            }\n        </div>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" class=\"input\" formControlName=\"password\" />\n            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {\n            <p class=\"red\">\n                @if (loginForm.get('password')?.hasError('required')) { Password is required }\n                @if (loginForm.get('password')?.hasError('minlength')) { Password must be at least 8 characters }\n            </p>\n            }\n        </div>\n        <!-- <div class=\"login-page-container-form-login-remember\">\n            <p>Forgot password? <span class=\"login-page-container-switch-span\" (click)=\"forgot = !forgot\">Click\n                    here</span></p>\n        </div> -->\n        <div class=\"login-page-container-form-login-button\">\n            <app-button size=\"medium\" label=\"Login\" (onClick)=\"sendLogin()\"></app-button>\n            @if(errorMessageLogin){\n            <p class=\"red\">{{errorMessageLogin}}</p>\n            }\n        </div>\n    </div>\n    }@else if(forgot && !register){\n    <div class=\"login-page-container-form-login\">\n        <h3>Restore password to PRBook!</h3>\n        <div class=\"login-page-container-form-login-input\">\n            <p>Email</p>\n            <input type=\"text\" placeholder=\"Enter you email\" class=\"input\" />\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Restore password\"></app-button>\n        </div>\n        <div class=\"login-page-container-form-login-remember\">\n            <p>Or maybe you want go back to login?<span class=\"login-page-container-switch-span\"\n                    (click)=\"forgot = !forgot\">Click here</span></p>\n        </div>\n    </div>\n    }\n    @else {\n    <div class=\"login-page-container-form-register\" [formGroup]=\"registerForm\">\n        <h3>Register to PRBook!</h3>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Email</p>\n            <input type=\"email\" placeholder=\"Enter you email\" formControlName=\"email\" class=\"input\" />\n            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {\n            <p class=\"red\">\n                @if (registerForm.get('email')?.hasError('required')) { Email is required }\n                @if (registerForm.get('email')?.hasError('email')) { Enter a valid email }\n            </p>\n            }\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Name</p>\n            <input type=\"text\" placeholder=\"Enter you name\" formControlName=\"name\" class=\"input\" />\n            @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {\n            <p class=\"red\">\n                @if (registerForm.get('name')?.hasError('required')) { Name is required }\n                @if (registerForm.get('name')?.hasError('minlength')) { Name must be at least 3 characters }\n            </p>\n            }\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Password</p>\n            <input type=\"password\" placeholder=\"Enter your password\" formControlName=\"password\" class=\"input\" />\n            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {\n            <p class=\"red\">\n                @if (registerForm.get('password')?.hasError('required')) { Password is required }\n                @if (registerForm.get('password')?.hasError('minlength')) { Password must be at least 8 characters }\n            </p>\n            }\n        </div>\n        <div class=\"login-page-container-form-register-input\">\n            <p>Confirm password</p>\n            <input type=\"password\" placeholder=\"Confirm your password\" formControlName=\"confirmPassword\"\n                class=\"input\" />\n            @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {\n            <p class=\"red\">\n                @if (registerForm.get('confirmPassword')?.hasError('required')) { Confirm Password is required }\n                @if (registerForm.get('confirmPassword')?.hasError('minlength')) { Confirm Password must be at least 8\n                characters }\n            </p>\n            }\n\n            @if (registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value &&\n            registerForm.get('confirmPassword')?.touched) {\n            <p class=\"red\">Passwords do not match</p>\n            }\n        </div>\n        <div class=\"login-page-container-form-register-button\">\n            <app-button size=\"medium\" label=\"Register\" (onClick)=\"sendRegister()\"></app-button>\n        </div>\n    </div>\n    }\n    <div class=\"login-page-container-switch\">\n        @if(!register && !forgot){\n        <p>You dont have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register\">Register\n                now!</span></p>\n        }@else {\n        <p>You have an account? <span class=\"login-page-container-switch-span\"\n                (click)=\"register = !register && forgot = !forgot\">Login\n                now!</span></p>\n        }\n    </div>\n    }@else {\n    <p>Loading please wait...</p>\n    }\n    <p>{{message}}</p>\n</div>"
+        },
+        {
+            "name": "PrHistoryPageComponent",
+            "id": "component-PrHistoryPageComponent-d9a1b9ca2848db0b049d7792bcd40f8198d3be882e3336fb75e10d86e1b7eeadcef4f7cd57eebd652e6cbd3c122ccf8b43b327325543bff241edd20549d2908c",
+            "file": "src/app/pages/pr-history-page/pr-history-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-pr-history-page",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./pr-history-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-pr-history-page',\n  standalone: true,\n  imports: [],\n  templateUrl: './pr-history-page.component.html',\n  styleUrl: './pr-history-page.component.scss'\n})\nexport class PrHistoryPageComponent {\n\n}\n",
+            "styleUrl": "./pr-history-page.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>pr-history-page works!</p>\n"
         },
         {
             "name": "StartingPageComponent",
@@ -1171,6 +2006,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "AuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/elements/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1203,7 +2047,16 @@
                 "linktype": "component",
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/no-auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "NoAuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -1212,16 +2065,25 @@
                 "linktype": "component",
                 "name": "HomePageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/login/login-page/login-page.component.ts",
+                "filePath": "src/app/pages/login-page/login-page.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "LoginPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/pr-history-page/pr-history-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PrHistoryPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1234,12 +2096,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/services/appwrite-db.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AppwriteDbService",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/services/auth-service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "AuthService",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -1250,6 +2121,24 @@
                 "name": "User",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/interfaces/appwrite-db.interfaces.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "RunningAndCyclingRecords",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/interfaces/appwrite-db.interfaces.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "RunningAndCyclingRecordsDocuments",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {

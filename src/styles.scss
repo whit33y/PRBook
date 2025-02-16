@@ -26,18 +26,24 @@ p {
 :root {
   --main-purple: rgb(145, 6, 233);
   --background-purple: rgb(144, 6, 233, 0.2);
+  --main-blue: #007bff;
+  --background-blue: #e6f0f664;
+  --main-green: #28a745;
+  --background-green: #e6ffe664;
+  --main-red: #dc3545;
+  --background-red: #ffe6e664;
 }
 
 @keyframes animate {
-  0%{
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-      border-radius: 0;
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
   }
-  100%{
-      transform: translateY(-1000px) rotate(720deg);
-      opacity: 0;
-      border-radius: 50%;
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
   }
 }
 
@@ -62,9 +68,6 @@ p {
   background: rgba(255, 255, 255, 0.2);
   animation: animate 19s linear infinite;
 }
-
-
-
 
 .background li:nth-child(0) {
   left: 17%;

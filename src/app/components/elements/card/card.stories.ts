@@ -12,6 +12,10 @@ const meta: Meta<CardComponent> = {
       control: { type: 'select' },
       options: ['desktop', 'mobile'],
     },
+    color: {
+      control: { type: 'select' },
+      options: ['purple', 'blue', 'green', 'red'],
+    },
     title: { control: 'text' },
     description: { control: 'text' },
   },
