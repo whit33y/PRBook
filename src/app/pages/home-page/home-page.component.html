@@ -22,11 +22,13 @@
         <div class="home-page-add-container-cards">
             <div class="card-1">
                 <app-card title="New running record!" description="That was pretty fast!" [svgContent]="runner"
-                    [size]="isMobile ? 'mobile': 'desktop'" color="blue"></app-card>
+                    [size]="isMobile ? 'mobile': 'desktop'" color="blue"
+                    (onClick)="navigateTo('/new-record')"></app-card>
             </div>
             <div class="card-2">
                 <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"
-                    [size]="isMobile ? 'mobile': 'desktop'" color="green"></app-card>
+                    [size]="isMobile ? 'mobile': 'desktop'" color="green"
+                    (onClick)="navigateTo('/new-record')"></app-card>
             </div>
         </div>
     </div>

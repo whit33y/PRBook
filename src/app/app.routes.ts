@@ -5,12 +5,19 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './auth.guard';
 import { NoAuthGuard } from './no-auth.guard';
 import { PrHistoryPageComponent } from './pages/pr-history-page/pr-history-page.component';
+import { NewRecordPageComponent } from './pages/new-record-page/new-record-page.component';
 
 export const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
     title: 'PRBook- home',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-record',
+    component: NewRecordPageComponent,
+    title: 'PRBook- new record',
     canActivate: [AuthGuard],
   },
   {

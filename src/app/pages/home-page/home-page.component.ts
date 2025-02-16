@@ -3,6 +3,7 @@ import { AppwriteDbService } from '../../services/appwrite-db.service';
 import { AuthService } from '../../services/auth-service';
 import { CardComponent } from '../../components/elements/card/card.component';
 import { RunningAndCyclingRecords } from '../../services/interfaces/appwrite-db.interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,8 @@ import { RunningAndCyclingRecords } from '../../services/interfaces/appwrite-db.
 export class HomePageComponent {
   constructor(
     private AppwriteDbService: AppwriteDbService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   isMobile: boolean = window.innerWidth <= 768;
@@ -57,5 +59,10 @@ export class HomePageComponent {
       '00:01:05',
       false
     );
+  }
+
+  navigateTo(route: string) {
+    console.log(route);
+    this.router.navigate([route]);
   }
 }
