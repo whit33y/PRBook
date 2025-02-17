@@ -1,4 +1,4 @@
-.card-1 {
+.card {
   margin: 10px 0px;
 }
 
@@ -6,4 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.home-page-add-container-cards .card:last-child {
+  margin-bottom: 40px;
 }

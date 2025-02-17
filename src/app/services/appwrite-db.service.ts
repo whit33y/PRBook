@@ -46,7 +46,7 @@ export class AppwriteDbService {
     user_id: string,
     distance: number,
     record_time: string,
-    is_running: boolean
+    type: number
   ): Promise<RunningAndCyclingRecordsDocuments | null> {
     try {
       const response = await this.database.createDocument(
@@ -57,7 +57,7 @@ export class AppwriteDbService {
           user_id,
           distance,
           record_time,
-          is_running,
+          type,
         }
       );
       console.log('Document created:', response);

@@ -7,7 +7,7 @@ export interface RunningAndCyclingRecordsDocuments {
   user_id: string;
   distance: number;
   record_time: string;
-  is_running: boolean;
+  type: number;
   $id: string;
   $createdAt: string;
   $updatedAt: string;

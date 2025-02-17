@@ -1,23 +1,28 @@
-<!-- <p>home-page works!</p>
-<button (click)="addRecord()">Add record</button> -->
+<!-- <button (click)="addRecord()">Add record</button> -->
 <div class="home-page-container">
     @if(!loading){
     @if(loadedRecords!.total > 0){
     <div>
         <h2>Your last recorded PR</h2>
-        @if(loadedRecords!.documents[loadedRecords!.total-1].is_running){
+        @if(loadedRecords!.documents[loadedRecords!.total-1].type === 1){
         <app-card
             [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
             [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="runner"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
-        }@else {
+        }@else if(loadedRecords!.documents[loadedRecords!.total-1].type === 2) {
         <app-card
             [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
             [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="bike"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+        }@else {
+        <app-card
+            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
+            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="swim"
+            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }
     </div>
     }@else {
+    <h2>Your last recorded PR</h2>
     <app-card title="Nothing to see here!" description="Dont be shy, add your record!" [svgContent]="runner"
         [size]="isMobile ? 'mobile': 'desktop'"></app-card>
     }
@@ -27,17 +32,29 @@
     </div>
     }
     <div class="home-page-add-container">
-        <h2>Add new record</h2>
+        <h2>Add new endurance sport record</h2>
         <div class="home-page-add-container-cards">
-            <div class="card-1">
+            <div class="card">
                 <app-card title="New running record!" description="That was pretty fast!" [svgContent]="runner"
                     [size]="isMobile ? 'mobile': 'desktop'" color="blue"
                     (onClick)="navigateTo('/new-record')"></app-card>
             </div>
-            <div class="card-2">
+            <div class="card">
                 <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"
                     [size]="isMobile ? 'mobile': 'desktop'" color="green"
                     (onClick)="navigateTo('/new-record')"></app-card>
+            </div>
+            <div class="card">
+                <app-card title="New swiming record!" description="Like a fish!" [svgContent]="swim"
+                    [size]="isMobile ? 'mobile': 'desktop'" color="red"
+                    (onClick)="navigateTo('/new-record')"></app-card>
+            </div>
+        </div>
+        <h2>Add new strength record</h2>
+        <div class="home-page-add-container-cards">
+            <div class="card">
+                <app-card title="Chest, biceps, triceps" description="Getting stronger huh?"
+                    [size]="isMobile ? 'mobile': 'desktop'" (onClick)="navigateTo('/new-record')"></app-card>
             </div>
         </div>
     </div>
