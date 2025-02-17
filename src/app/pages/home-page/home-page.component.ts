@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth-service';
 import { CardComponent } from '../../components/elements/card/card.component';
 import { RunningAndCyclingRecords } from '../../services/interfaces/appwrite-db.interfaces';
 import { Router } from '@angular/router';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, SpinnerComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -38,17 +39,21 @@ export class HomePageComponent {
     });
   }
 
+  loading: boolean = false;
   loadedRecords: RunningAndCyclingRecords | undefined;
   loadRecords(id: string) {
+    this.loading = true;
     this.AppwriteDbService.getAllRunningAndCyclingRecords(id)
       .then((documents) => {
         this.loadedRecords = {
           total: documents.length,
           documents: documents,
         };
+        this.loading = false;
       })
       .catch((error) => {
         console.error('Failed to load records:', error);
+        this.loading = false;
       });
   }
 

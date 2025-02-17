@@ -1,6 +1,7 @@
 <!-- <p>home-page works!</p>
 <button (click)="addRecord()">Add record</button> -->
 <div class="home-page-container">
+    @if(!loading){
     @if(loadedRecords!.total > 0){
     <div>
         <h2>Your last recorded PR</h2>
@@ -15,6 +16,14 @@
             [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="bike"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }
+    </div>
+    }@else {
+    <app-card title="Nothing to see here!" description="Dont be shy, add your record!" [svgContent]="runner"
+        [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+    }
+    }@else {
+    <div class="home-page-container-loading">
+        <app-spinner></app-spinner>
     </div>
     }
     <div class="home-page-add-container">
