@@ -3,7 +3,7 @@
     @if(!loading){
     @if(loadedRecords!.total > 0){
     <div>
-        <h2>Your last recorded PR</h2>
+        <h2>Your last recorded endurance PR</h2>
         @if(loadedRecords!.documents[loadedRecords!.total-1].type === 1){
         <app-card
             [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
@@ -37,24 +37,25 @@
             <div class="card">
                 <app-card title="New running record!" description="That was pretty fast!" [svgContent]="runner"
                     [size]="isMobile ? 'mobile': 'desktop'" color="blue"
-                    (onClick)="navigateTo('/new-record')"></app-card>
+                    (onClick)="navigateTo('/new-record', {type: 'run'})"></app-card>
             </div>
             <div class="card">
                 <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"
                     [size]="isMobile ? 'mobile': 'desktop'" color="green"
-                    (onClick)="navigateTo('/new-record')"></app-card>
+                    (onClick)="navigateTo('/new-record', {type: 'bike'})"></app-card>
             </div>
             <div class="card">
                 <app-card title="New swiming record!" description="Like a fish!" [svgContent]="swim"
                     [size]="isMobile ? 'mobile': 'desktop'" color="red"
-                    (onClick)="navigateTo('/new-record')"></app-card>
+                    (onClick)="navigateTo('/new-record', {type: 'swim'})"></app-card>
             </div>
         </div>
         <h2>Add new strength record</h2>
         <div class="home-page-add-container-cards">
             <div class="card">
                 <app-card title="Chest, biceps, triceps" description="Getting stronger huh?"
-                    [size]="isMobile ? 'mobile': 'desktop'" (onClick)="navigateTo('/new-record')"></app-card>
+                    [size]="isMobile ? 'mobile': 'desktop'"
+                    (onClick)="navigateTo('/new-record', {type: 'gym'})"></app-card>
             </div>
         </div>
     </div>

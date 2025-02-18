@@ -68,8 +68,12 @@ export class HomePageComponent {
     );
   }
 
-  navigateTo(route: string) {
+  navigateTo(route: string, params?: { [key: string]: any }) {
     console.log(route);
-    this.router.navigate([route]);
+    if (params) {
+      this.router.navigate([route], { queryParams: params });
+    } else {
+      this.router.navigate([route]);
+    }
   }
 }
