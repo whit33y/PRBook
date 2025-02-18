@@ -14,6 +14,7 @@ export class CardComponent {
   @Input() title: string = 'Title';
   @Input() description: string = 'Example description!';
   @Input() color: string = 'purple';
+  @Input() pointer: boolean = false;
   @Output() onClick = new EventEmitter<Event>();
   @Input() set svgContent(content: string) {
     this._svgContent = content || this._svgContent;
@@ -45,6 +46,7 @@ export class CardComponent {
 
   public get classes(): string[] {
     const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';
-    return ['card', mode, `card-${this.color}`];
+    const pointer = this.pointer ? 'pointer' : 'no-pointer';
+    return ['card', mode, `card-${this.color}`, pointer];
   }
 }

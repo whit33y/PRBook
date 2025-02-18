@@ -18,6 +18,7 @@ const meta: Meta<CardComponent> = {
     },
     title: { control: 'text' },
     description: { control: 'text' },
+    pointer: { control: 'boolean' },
   },
   args: { onClick: fn() },
 };
