@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { AppwriteDbService } from '../../services/appwrite-db.service';
 import { AuthService } from '../../services/auth-service';
 import { CardComponent } from '../../components/elements/card/card.component';
-import { RunningAndCyclingRecords } from '../../services/interfaces/appwrite-db.interfaces';
+import { RunningAndCyclingRecordsDocuments } from '../../services/interfaces/appwrite-db.interfaces';
 import { Router } from '@angular/router';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
@@ -37,35 +37,26 @@ export class HomePageComponent {
   ngOnInit() {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
-      this.loadRecords(this.user.$id);
     });
+    this.loadUserRecords(this.user.$id);
   }
 
   loading: boolean = false;
-  loadedRecords: RunningAndCyclingRecords | undefined;
-  loadRecords(id: string) {
+  loadedRecords: RunningAndCyclingRecordsDocuments[] | undefined;
+  loadUserRecords(id: string) {
     this.loading = true;
-    this.AppwriteDbService.getAllRunningAndCyclingRecords(id)
-      .then((documents) => {
-        this.loadedRecords = {
-          total: documents.length,
-          documents: documents,
-        };
+    this.AppwriteDbService.getUserRecords(id).subscribe({
+      next: (response) => {
+        this.loadedRecords = response;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
         this.loading = false;
-      })
-      .catch((error) => {
-        console.error('Failed to load records:', error);
-        this.loading = false;
-      });
-  }
-
-  addRecord() {
-    this.AppwriteDbService.createRunningAndCyclingRecord(
-      this.user.$id,
-      40,
-      '00:01:05',
-      3
-    );
+        console.log('Completed!');
+      },
+    });
   }
 
   navigateTo(route: string, params?: { [key: string]: any }) {
