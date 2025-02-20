@@ -46,32 +46,6 @@ export class AppwriteDbService {
 
   //create create create create create create create create create
 
-  async createRunningAndCyclingRecord(
-    user_id: string,
-    distance: number,
-    record_time: string,
-    type: number
-  ): Promise<RunningAndCyclingRecordsDocuments | null> {
-    try {
-      const response = await this.database.createDocument(
-        this.databaseId,
-        this.runningAndCyclingRecordsId,
-        'unique()',
-        {
-          user_id,
-          distance,
-          record_time,
-          type,
-        }
-      );
-      console.log('Document created:', response);
-      return response as RunningAndCyclingRecordsDocuments;
-    } catch (error) {
-      console.error('Failed to create record:', error);
-      return null;
-    }
-  }
-
   createNewRecord(
     user_id: string,
     distance: number,
