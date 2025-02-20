@@ -1,23 +1,19 @@
-<!-- <button (click)="addRecord()">Add record</button> -->
 <div class="home-page-container">
     @if(!loading){
-    @if(loadedRecords!.total > 0){
+    @if(loadedRecords!.length > 0){
     <div>
         <h2>Your last recorded endurance PR</h2>
-        @if(loadedRecords!.documents[loadedRecords!.total-1].type === 1){
-        <app-card
-            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
-            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="runner"
+        @if(loadedRecords![loadedRecords!.length-1].type === 1){
+        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="runner"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
-        }@else if(loadedRecords!.documents[loadedRecords!.total-1].type === 2) {
-        <app-card
-            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
-            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="bike"
+        }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {
+        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="bike"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }@else {
-        <app-card
-            [title]="'Congratulation ' + loadedRecords!.documents[loadedRecords!.total - 1]!.distance + 'km' + ' record'"
-            [description]="loadedRecords!.documents[loadedRecords!.total - 1]!.record_time" [svgContent]="swim"
+        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="swim"
             [size]="isMobile ? 'mobile': 'desktop'"></app-card>
         }
     </div>
