@@ -3,36 +3,42 @@
         <h2>Add your new record</h2>
     </div>
     <div class="new-record-page-form-container" [formGroup]="newRecord">
-        <label for="discipline">Select type:</label>
-        <select name="discipline" id="discipline" formControlName="type">
-            <option value="run">Running</option>
-            <option value="bike">Cycling</option>
-            <option value="swim">Swimming</option>
-        </select>
-        <label for="distance">Select distance:</label>
-        <select name="distance" id="distance" formControlName="distance">
-            @if(newRecord.value.type === 'run'){
-            @for(value of runningDistances; track $index){
-            <option [value]="value">{{value}} kilometers</option>
+        <div class="new-record-page-form-container-element">
+            <label for="discipline">Select type:</label>
+            <select name="discipline" id="discipline" formControlName="type">
+                <option value="run">Running</option>
+                <option value="bike">Cycling</option>
+                <option value="swim">Swimming</option>
+            </select>
+        </div>
+        <div class="new-record-page-form-container-element">
+            <label for="distance">Select distance:</label>
+            <select name="distance" id="distance" formControlName="distance">
+                @if(newRecord.value.type === 'run'){
+                @for(value of runningDistances; track $index){
+                <option [value]="value">{{value}} kilometers</option>
+                }
+                }
+                @if(newRecord.value.type === 'bike'){
+                @for(value of cyclingDistances; track $index){
+                <option [value]="value">{{value}} kilometers</option>
+                }
+                }
+                @if(newRecord.value.type === 'swim'){
+                @for(value of swimmingDistances; track $index){
+                <option [value]="value">{{value}} kilometers</option>
+                }
+                }
+            </select>
+        </div>
+        <div class="new-record-page-form-container-element">
+            <label for="time">Enter time (hh:mm:ss):</label>
+            <input type="text" id="time" formControlName="time" placeholder="hh:mm:ss"
+                pattern="^([0-9]{2}):([0-5][0-9]):([0-5][0-9])$" required (input)="validateTimeInput($event)">
+            @if (newRecord.get('time')?.invalid && newRecord.get('time')?.touched) {
+            <div class="error">Please enter time in hh:mm:ss format.</div>
             }
-            }
-            @if(newRecord.value.type === 'bike'){
-            @for(value of cyclingDistances; track $index){
-            <option [value]="value">{{value}} kilometers</option>
-            }
-            }
-            @if(newRecord.value.type === 'swim'){
-            @for(value of swimmingDistances; track $index){
-            <option [value]="value">{{value}} kilometers</option>
-            }
-            }
-        </select>
-        <label for="time">Enter time (hh:mm:ss):</label>
-        <input type="text" id="time" formControlName="time" placeholder="hh:mm:ss"
-            pattern="^([0-9]{2}):([0-5][0-9]):([0-5][0-9])$" required (input)="validateTimeInput($event)">
-        @if (newRecord.get('time')?.invalid && newRecord.get('time')?.touched) {
-        <div class="error">Please enter time in hh:mm:ss format.</div>
-        }
-        <button (click)="testForm()">Add new record</button>
+        </div>
+        <app-button (click)="testForm()" label="Add new record" />
     </div>
 </div>

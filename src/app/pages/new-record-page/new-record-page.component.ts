@@ -8,11 +8,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ButtonComponent } from '../../components/elements/button/button.component';
 
 @Component({
   selector: 'app-new-record-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './new-record-page.component.html',
   styleUrl: './new-record-page.component.scss',
 })
