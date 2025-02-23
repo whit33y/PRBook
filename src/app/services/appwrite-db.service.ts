@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Databases, Query } from 'appwrite';
 import { client } from '../../lib/appwrite';
 import { environment } from '../../../environment';
-import { RunningAndCyclingRecordsDocuments } from './interfaces/appwrite-db.interfaces';
+import {
+  GymRecordsDocuments,
+  RunningAndCyclingRecordsDocuments,
+} from './interfaces/appwrite-db.interfaces';
 import { catchError, from, map, Observable, of } from 'rxjs';
 
 @Injectable({
@@ -12,6 +15,7 @@ export class AppwriteDbService {
   private database: Databases;
   private databaseId = environment.databaseId;
   private runningAndCyclingRecordsId = environment.runningAndCyclingRecordsId;
+  private gymRecordsId = environment.gymRecordsId;
 
   constructor() {
     this.database = new Databases(client);
@@ -35,6 +39,23 @@ export class AppwriteDbService {
       map(
         (response) => response.documents as RunningAndCyclingRecordsDocuments[]
       ),
+      catchError((error) => {
+        console.error('Failed loading records:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getUserGymRecords(userId: string): Observable<GymRecordsDocuments[]> {
+    if (!userId) {
+      return of([]);
+    }
+    return from(
+      this.database.listDocuments(this.databaseId, this.gymRecordsId, [
+        Query.equal('user_id', userId),
+      ])
+    ).pipe(
+      map((response) => response.documents as GymRecordsDocuments[]),
       catchError((error) => {
         console.error('Failed loading records:', error);
         return of([]);
@@ -66,6 +87,35 @@ export class AppwriteDbService {
       )
     ).pipe(
       map((response) => response as RunningAndCyclingRecordsDocuments),
+      catchError((error) => {
+        console.error(error);
+        return of(null);
+      })
+    );
+  }
+
+  createNewGymRecord(
+    user_id: string,
+    weight: number,
+    body_part: string,
+    excercise: string,
+    reps: number
+  ): Observable<GymRecordsDocuments | null> {
+    return from(
+      this.database.createDocument(
+        this.databaseId,
+        this.gymRecordsId,
+        'unique()',
+        {
+          user_id,
+          weight,
+          body_part,
+          excercise,
+          reps,
+        }
+      )
+    ).pipe(
+      map((response) => response as GymRecordsDocuments),
       catchError((error) => {
         console.error(error);
         return of(null);
