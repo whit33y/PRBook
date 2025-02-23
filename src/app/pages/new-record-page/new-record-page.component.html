@@ -5,7 +5,8 @@
     <div class="new-record-page-form-container" [formGroup]="newRecord">
         <div class="new-record-page-form-container-element">
             <label for="discipline">Select type:</label>
-            <select name="discipline" id="discipline" formControlName="type">
+            <select name="discipline" id="discipline" formControlName="type"
+                (change)="onTypeChange(this.newRecord.value.type!)">
                 <option value="run">Running</option>
                 <option value="bike">Cycling</option>
                 <option value="swim">Swimming</option>

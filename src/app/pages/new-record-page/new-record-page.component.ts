@@ -93,4 +93,14 @@ export class NewRecordPageComponent {
       this.newRecord.value.time
     );
   }
+
+  onTypeChange(type: string) {
+    let defaultDistance = 0.1;
+    if (type === 'bike') {
+      defaultDistance = 10;
+    } else if (type === 'swim') {
+      defaultDistance = 0.1;
+    }
+    this.newRecord.patchValue({ distance: defaultDistance });
+  }
 }
