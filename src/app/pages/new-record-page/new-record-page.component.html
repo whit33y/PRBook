@@ -8,6 +8,7 @@
             <app-button label="Gym record" (onClick)="changeType('gym')" [disabled]="isGym"></app-button>
         </div>
     </div>
+    @if(isEndurance){
     <div class="new-record-page-form-container" [formGroup]="newRecord">
         <div class="new-record-page-form-container-element">
             <label for="discipline">Select type:</label>
@@ -48,4 +49,9 @@
         </div>
         <app-button (click)="testForm()" label="Add new record" />
     </div>
+    }@else {
+    <div class="new-record-page-form-container-gym">
+
+    </div>
+    }
 </div>
