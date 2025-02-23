@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.new-record-page-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .new-record-page-form-container-element {
   display: flex;
   flex-direction: column;

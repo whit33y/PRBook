@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppwriteDbService } from '../../services/appwrite-db.service';
 import { AuthService } from '../../services/auth-service';
 import {
@@ -22,7 +22,8 @@ export class NewRecordPageComponent {
   constructor(
     private route: ActivatedRoute,
     private AppwriteDbService: AppwriteDbService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   params?: Params;
@@ -33,10 +34,22 @@ export class NewRecordPageComponent {
       this.type = this.params['type'];
       if (this.type === 'run') {
         this.newRecord.setValue({ type: 'run', distance: 0.1, time: '' });
+        this.isEndurance = true;
+        this.isGym = false;
       } else if (this.type === 'bike') {
         this.newRecord.setValue({ type: 'bike', distance: 10, time: '' });
+        this.isEndurance = true;
+        this.isGym = false;
       } else if (this.type === 'swim') {
         this.newRecord.setValue({ type: 'swim', distance: 0.1, time: '' });
+        this.isEndurance = true;
+        this.isGym = false;
+      } else if (this.type === 'gym') {
+        this.isEndurance = false;
+        this.isGym = true;
+      } else {
+        this.isEndurance = true;
+        this.isGym = false;
       }
     });
     this.authService.loggedInUser$.subscribe((user) => {
@@ -94,7 +107,30 @@ export class NewRecordPageComponent {
     );
   }
 
+  isGym: boolean = false;
+  isEndurance: boolean = false;
+  changeType(type: string) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { type: type },
+      queryParamsHandling: 'merge',
+    });
+    if (type === 'gym') {
+      this.isGym = true;
+      this.isEndurance = false;
+    } else {
+      this.isGym = false;
+      this.isEndurance = true;
+    }
+  }
+
   onTypeChange(type: string) {
+    this.type = type;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { type: type },
+      queryParamsHandling: 'merge',
+    });
     let defaultDistance = 0.1;
     if (type === 'bike') {
       defaultDistance = 10;
