@@ -50,8 +50,59 @@
         <app-button (click)="testForm()" label="Add new record" />
     </div>
     }@else {
-    <div class="new-record-page-form-container-gym">
-
+    <div class="new-record-page-form-container-gym" [formGroup]="newGymRecord">
+        <div class="new-record-page-form-container-gym-element">
+            <label for="body-part">Body part:</label>
+            <select name="body-part" id="body-part" formControlName="bodyPart"
+                (change)="onBodyPartChange(newGymRecord.value.bodyPart!)">
+                @for(part of bodyPart; track $index){
+                <option [value]="part">{{part}}</option>
+                }
+            </select>
+        </div>
+        <div class="new-record-page-form-container-gym-element">
+            <label for="excercise">Excercise:</label>
+            <select name="excercise" id="excercise" formControlName="excercise">
+                @if(newGymRecord.value.bodyPart === 'Chest'){
+                @for(excercise of bodyPartExercises.Chest; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+                @if(newGymRecord.value.bodyPart === 'Back'){
+                @for(excercise of bodyPartExercises.Back; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+                @if(newGymRecord.value.bodyPart === 'Legs'){
+                @for(excercise of bodyPartExercises.Legs; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+                @if(newGymRecord.value.bodyPart === 'Shoulders'){
+                @for(excercise of bodyPartExercises.Shoulders; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+                @if(newGymRecord.value.bodyPart === 'Arms'){
+                @for(excercise of bodyPartExercises.Arms; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+                @if(newGymRecord.value.bodyPart === 'Core'){
+                @for(excercise of bodyPartExercises.Core; track $index){
+                <option [value]="excercise">{{excercise}}</option>
+                }
+                }
+            </select>
+        </div>
+        <div class="new-record-page-form-container-gym-element">
+            <label for="weight">Weight:</label>
+            <input type="text" id="weight" formControlName="weight">
+        </div>
+        <div class="new-record-page-form-container-gym-element">
+            <label for="reps">Reps:</label>
+            <input type="text" id="reps" formControlName="reps">
+        </div>
     </div>
     }
 </div>

@@ -70,6 +70,78 @@ export class NewRecordPageComponent {
     ]),
   });
 
+  newGymRecord = new FormGroup({
+    weight: new FormControl(0),
+    bodyPart: new FormControl('Chest'),
+    excercise: new FormControl('Bench Press'),
+    reps: new FormControl(1),
+  });
+
+  bodyPart = ['Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core'];
+
+  bodyPartExercises = {
+    Chest: [
+      'Bench Press',
+      'Incline Bench Press',
+      'Decline Bench Press',
+      'Dumbbell Fly',
+      'Chest Dips',
+      'Push-ups',
+      'Cable Crossover',
+      'Pec Deck Machine',
+    ],
+    Back: [
+      'Pull-ups',
+      'Lat Pulldown',
+      'Barbell Row',
+      'Dumbbell Row',
+      'Deadlift',
+      'Face Pulls',
+      'T-Bar Row',
+      'Seated Cable Row',
+    ],
+    Legs: [
+      'Squat',
+      'Leg Press',
+      'Lunges',
+      'Romanian Deadlift',
+      'Leg Curl',
+      'Leg Extension',
+      'Calf Raise',
+      'Bulgarian Split Squat',
+    ],
+    Shoulders: [
+      'Overhead Press',
+      'Dumbbell Shoulder Press',
+      'Arnold Press',
+      'Lateral Raises',
+      'Front Raises',
+      'Face Pulls',
+      'Reverse Fly',
+      'Shrugs',
+    ],
+    Arms: [
+      'Bicep Curl',
+      'Hammer Curl',
+      'Preacher Curl',
+      'Tricep Dips',
+      'Tricep Pushdown',
+      'Overhead Tricep Extension',
+      'Close-Grip Bench Press',
+      'Reverse Curl',
+    ],
+    Core: [
+      'Plank',
+      'Crunches',
+      'Russian Twists',
+      'Leg Raises',
+      'Hanging Leg Raises',
+      'Ab Rollout',
+      'Bicycle Crunches',
+      'Dead Bug',
+    ],
+  };
+
   validateTimeInput(event: any): void {
     let input = event.target.value;
     event.target.value = input.replace(/[^0-9:]/g, '');
@@ -138,5 +210,56 @@ export class NewRecordPageComponent {
       defaultDistance = 0.1;
     }
     this.newRecord.patchValue({ distance: defaultDistance });
+  }
+
+  onBodyPartChange(bodyPart: string) {
+    if (bodyPart === 'Chest') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Chest[0],
+        reps: 1,
+      });
+    }
+    if (bodyPart === 'Back') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Back[0],
+        reps: 1,
+      });
+    }
+    if (bodyPart === 'Legs') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Legs[0],
+        reps: 1,
+      });
+    }
+    if (bodyPart === 'Shoulders') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Shoulders[0],
+        reps: 1,
+      });
+    }
+    if (bodyPart === 'Arms') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Arms[0],
+        reps: 1,
+      });
+    }
+    if (bodyPart === 'Core') {
+      this.newGymRecord.setValue({
+        weight: 0,
+        bodyPart: bodyPart,
+        excercise: this.bodyPartExercises.Core[0],
+        reps: 1,
+      });
+    }
   }
 }
