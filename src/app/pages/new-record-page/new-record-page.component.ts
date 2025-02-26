@@ -71,7 +71,7 @@ export class NewRecordPageComponent {
   }
 
   newRecord = new FormGroup({
-    type: new FormControl('run'),
+    type: new FormControl('run', [Validators.required]),
     distance: new FormControl(0.1),
     time: new FormControl('', [
       Validators.required,
@@ -80,10 +80,10 @@ export class NewRecordPageComponent {
   });
 
   newGymRecord = new FormGroup({
-    weight: new FormControl(0),
+    weight: new FormControl(1, [Validators.required, Validators.min(1)]),
     bodyPart: new FormControl('Chest'),
     excercise: new FormControl('Bench Press'),
-    reps: new FormControl(1),
+    reps: new FormControl(1, [Validators.required, Validators.min(1)]),
   });
 
   validateTimeInput(event: any): void {

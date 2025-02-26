@@ -47,7 +47,7 @@
             <div class="error">Please enter time in hh:mm:ss format.</div>
             }
         </div>
-        <app-button (click)="testForm()" label="Add new record" />
+        <app-button (click)="testForm()" label="Add new record" [disabled]="newRecord.invalid" />
     </div>
     }@else {
     <div class="new-record-page-form-container-gym" [formGroup]="newGymRecord">
@@ -98,12 +98,19 @@
         <div class="new-record-page-form-container-gym-element">
             <label for="weight">Weight:</label>
             <input type="text" id="weight" formControlName="weight">
+            @if (newGymRecord.get('weight')?.invalid && newGymRecord.get('weight')?.touched) {
+            <div class="error">Weight must be at least 1.</div>
+            }
         </div>
         <div class="new-record-page-form-container-gym-element">
             <label for="reps">Reps:</label>
             <input type="number" id="reps" formControlName="reps" min="1">
+            @if (newGymRecord.get('reps')?.invalid && newGymRecord.get('reps')?.touched) {
+            <div class="error">Reps must be at least 1.</div>
+            }
+
         </div>
-        <app-button (click)="testFormGym()" label="Add new record" />
+        <app-button (click)="testFormGym()" label="Add new record" [disabled]="newGymRecord.invalid" />
     </div>
     }
 </div>
