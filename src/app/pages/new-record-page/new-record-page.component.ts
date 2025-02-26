@@ -171,11 +171,46 @@ export class NewRecordPageComponent {
     });
   }
 
+  addRecordGym(
+    userId: string,
+    bodyPart: string,
+    excercise: string,
+    reps: number,
+    weight: number
+  ) {
+    this.AppwriteDbService.createNewGymRecord(
+      userId,
+      weight,
+      bodyPart,
+      excercise,
+      reps
+    ).subscribe({
+      next: (respoonse) => {
+        console.log('Succesfully added new gym record: ', respoonse);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Completed adding gym record!');
+      },
+    });
+  }
+
   testForm() {
     console.log(
       this.newRecord.value.distance,
       this.newRecord.value.type,
       this.newRecord.value.time
+    );
+  }
+
+  testFormGym() {
+    console.log(
+      this.newGymRecord.value.bodyPart,
+      this.newGymRecord.value.excercise,
+      this.newGymRecord.value.reps,
+      this.newGymRecord.value.weight
     );
   }
 
