@@ -101,9 +101,9 @@
         </div>
         <div class="new-record-page-form-container-gym-element">
             <label for="reps">Reps:</label>
-            <input type="text" id="reps" formControlName="reps">
+            <input type="number" id="reps" formControlName="reps" min="1">
         </div>
-        <app-button (click)="testForm()" label="Add new record" />
+        <app-button (click)="testFormGym()" label="Add new record" />
     </div>
     }
 </div>

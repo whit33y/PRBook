@@ -35,6 +35,17 @@ input[type="text"] {
   border-radius: 5px;
 }
 
+select,
+input[type="number"] {
+  width: 100%;
+  padding: var(--padding);
+  font-size: 1.2rem;
+  border: 2px solid var(--main-purple);
+  background-color: var(--background-purple);
+  outline: none;
+  border-radius: 5px;
+}
+
 input[type="text"]::placeholder {
   color: rgba(145, 6, 233, 0.5);
   font-style: italic;
