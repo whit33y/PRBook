@@ -91,20 +91,28 @@ export class NewRecordPageComponent {
     event.target.value = input.replace(/[^0-9:]/g, '');
   }
 
-  addRecord(
-    userId: string,
-    distance: number,
-    time: string,
-    discipline: number
-  ) {
+  successMessage: boolean = false;
+  addRecord() {
+    let discipline = 1;
+    if (this.newRecord.value.type === 'run') {
+      discipline = 1;
+    } else if (this.newRecord.value.type === 'bike') {
+      discipline = 2;
+    } else {
+      discipline = 3;
+    }
     this.AppwriteDbService.createNewRecord(
-      userId,
-      distance,
-      time,
+      this.user.$id,
+      Number(this.newRecord.value.distance!),
+      this.newRecord.value.time!,
       discipline
     ).subscribe({
       next: (response) => {
         console.log('Succesfully added new record: ', response);
+        this.successMessage = true;
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
       },
       error: (error) => {
         console.error('Error: ', error);
@@ -115,22 +123,21 @@ export class NewRecordPageComponent {
     });
   }
 
-  addRecordGym(
-    userId: string,
-    bodyPart: string,
-    excercise: string,
-    reps: number,
-    weight: number
-  ) {
+  addRecordGym() {
+    this.testFormGym()
     this.AppwriteDbService.createNewGymRecord(
-      userId,
-      weight,
-      bodyPart,
-      excercise,
-      reps
+      this.user.$id,
+      this.newGymRecord.value.weight!,
+      this.newGymRecord.value.bodyPart!,
+      this.newGymRecord.value.excercise!,
+      this.newGymRecord.value.reps!
     ).subscribe({
       next: (respoonse) => {
         console.log('Succesfully added new gym record: ', respoonse);
+        this.successMessage = true;
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
       },
       error: (error) => {
         console.error(error);
