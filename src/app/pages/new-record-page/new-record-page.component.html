@@ -4,8 +4,8 @@
             <h2>Add your new record</h2>
         </div>
         <div class="new-record-page-header-container-buttons">
-            <app-button label="Endurance" (onClick)="changeType('run')" [disabled]="isEndurance"></app-button>
-            <app-button label="Gym record" (onClick)="changeType('gym')" [disabled]="isGym"></app-button>
+            <app-button label="Endurance" (onClick)="changeType('run')" [disabled]="isEndurance" [cutCornerRight]="true"></app-button>
+            <app-button label="Gym record" (onClick)="changeType('gym')" [disabled]="isGym" [cutCornerLeft]="true"></app-button>
         </div>
     </div>
     @if(isEndurance){

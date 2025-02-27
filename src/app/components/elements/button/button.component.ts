@@ -18,6 +18,8 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
   @Input() label: string = 'Button';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() cutCornerLeft: boolean = false;
+  @Input() cutCornerRight: boolean = false;
   @Output() onClick = new EventEmitter<Event>();
 
   @HostListener('window:resize', ['$event'])
@@ -41,6 +43,8 @@ export class ButtonComponent {
 
   public get classes(): string[] {
     const mode = !this.disabled ? 'button-active' : 'button-disabled';
-    return ['button', mode, this.size];
+    const cutCornerLeft = this.cutCornerLeft ? 'cut-left' : '';
+    const cutCornerRight = this.cutCornerRight ? 'cut-right' : '';
+    return ['button', mode, this.size, cutCornerLeft, cutCornerRight];
   }
 }
