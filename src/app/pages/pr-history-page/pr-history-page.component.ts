@@ -22,13 +22,16 @@ export class PrHistoryPageComponent {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
     });
+    this.getUserEnduranceRecords(this.user.$id);
+    this.getUserGymRecords(this.user.$id);
   }
 
   enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];
   getUserEnduranceRecords(user_id: string) {
     this.appWriteDbService.getUserRecords(user_id).subscribe({
       next: (response) => {
-        console.log(response);
+        this.enduranceRecords = response;
+        console.log(this.enduranceRecords);
       },
       error: (error) => {
         console.error(error);
@@ -43,7 +46,8 @@ export class PrHistoryPageComponent {
   getUserGymRecords(user_id: string) {
     this.appWriteDbService.getUserGymRecords(user_id).subscribe({
       next: (response) => {
-        console.log(response);
+        this.gymRecords = response;
+        console.log(this.gymRecords);
       },
       error: (error) => {
         console.error(error);
@@ -53,4 +57,11 @@ export class PrHistoryPageComponent {
       },
     });
   }
+
+  activityTypes: Record<number, string> = {
+    1: 'Run',
+    2: 'Bike',
+    3: 'Swim'
+  };
+
 }
