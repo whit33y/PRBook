@@ -16,6 +16,7 @@ import {
   runningDistances,
   swimmingDistances,
 } from '../../data/record-data';
+import { User } from '../../services/interfaces/appwrite-db.interfaces';
 
 @Component({
   selector: 'app-new-record-page',
@@ -25,7 +26,7 @@ import {
   styleUrl: './new-record-page.component.scss',
 })
 export class NewRecordPageComponent {
-  user: any;
+  user?: User;
   runningDistances = runningDistances;
   cyclingDistances = cyclingDistances;
   swimmingDistances = swimmingDistances;
@@ -102,7 +103,7 @@ export class NewRecordPageComponent {
       discipline = 3;
     }
     this.AppwriteDbService.createNewRecord(
-      this.user.$id,
+      this.user!.$id,
       Number(this.newRecord.value.distance!),
       this.newRecord.value.time!,
       discipline
@@ -124,9 +125,9 @@ export class NewRecordPageComponent {
   }
 
   addRecordGym() {
-    this.testFormGym()
+    this.testFormGym();
     this.AppwriteDbService.createNewGymRecord(
-      this.user.$id,
+      this.user!.$id,
       Number(this.newGymRecord.value.weight!),
       this.newGymRecord.value.bodyPart!,
       this.newGymRecord.value.excercise!,
