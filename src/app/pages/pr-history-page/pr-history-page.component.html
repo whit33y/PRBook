@@ -1,25 +1,33 @@
 <div class="history-page-container">
-    <div class="history-page-container-header">
-        <div class="history-page-container-header-title">
-            <h2>Your pr history</h2>
-        </div>
+  <div class="history-page-container-header">
+    <div class="history-page-container-header-title">
+      <h2>Your pr history</h2>
     </div>
-    <div class="history-page-container-content">
-        <div class="history-page-container-content-records">
-        <h2>Endurance records</h2>
-        @for(record of enduranceRecords; track $index){
-        <div>
-            <p>{{ activityTypes[record.type] || '' }}</p>
-        </div>
-        }
-        </div>
-        <div class="history-page-container-content-records">
-        <h2>Gym records</h2>
-        @for(record of gymRecords; track $index){
-        <div>
-            <p>{{record.body_part}}</p>
-        </div>
-        }
-        </div>
+  </div>
+  <div class="history-page-container-content">
+      <h2>Endurance records</h2>
+      <div class="history-page-container-content-records">
+      @for(record of enduranceRecords; track $index){
+      <div class="card-margin">
+        <app-card
+          [title]="activityTypes[record.type] || ''"
+          size="mobile"
+          [description]="
+            'You recorded ' + record.distance + 'kms in ' + record.record_time
+          "
+          [svgContent]="activityTypesSvg[record.type]"
+          [color]="activityTypesColors[record.type] || ''"
+        />
+      </div>
+      }
     </div>
+      <h2>Gym records</h2>
+      <div class="history-page-container-content-records">
+      @for(record of gymRecords; track $index){
+      <div class="card-margin">
+        <app-card [title]="record.body_part" size="mobile"></app-card>
+      </div>
+      }
+    </div>
+  </div>
 </div>

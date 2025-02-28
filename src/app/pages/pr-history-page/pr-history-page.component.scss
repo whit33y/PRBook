@@ -1,3 +1,39 @@
 .history-page-container-header-title{
     text-align: center;
 }
+
+.history-page-container-content-records{
+    overflow-y: scroll;
+    height: 20rem;
+}
+
+.card-margin{
+    margin: 5px 0px;
+}
+
+.history-page-container-content-records {
+    overflow-y: scroll;
+    height: 20rem;
+    
+    /* Custom Scrollbar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: grey transparent; /* Firefox */
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.history-page-container-content-records::-webkit-scrollbar {
+    width: 6px; /* Small scrollbar width */
+}
+
+.history-page-container-content-records::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track */
+}
+
+.history-page-container-content-records::-webkit-scrollbar-thumb {
+    background: grey; /* Grey scrollbar */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.history-page-container-content-records::-webkit-scrollbar-thumb:hover {
+    background: darkgrey; /* Slightly darker on hover */
+}
