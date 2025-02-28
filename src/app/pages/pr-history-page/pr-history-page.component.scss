@@ -2,18 +2,13 @@
   text-align: center;
 }
 
-.history-page-container-content-records {
-  overflow-y: scroll;
-  height: 19.5rem;
-}
-
 .card-margin {
   margin: 5px 0px;
 }
 
 .history-page-container-content-records {
   overflow-y: scroll;
-  height: 20rem;
+  max-height: 37.5vh;
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
 }
@@ -35,6 +30,6 @@
   background: darkgrey;
 }
 
-.no-margin{
+h2{
     margin: 0;
 }
