@@ -25,7 +25,8 @@
       <div class="history-page-container-content-records">
       @for(record of gymRecords; track $index){
       <div class="card-margin">
-        <app-card [title]="record.body_part" size="mobile" [description]="'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' rep/reps'"></app-card>
+        <app-card [title]="record.body_part" size="mobile" [description]="'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' rep/reps'"
+        [color]="gymExcercisesColors[record.body_part] || ''"></app-card>
       </div>
       }
     </div>
