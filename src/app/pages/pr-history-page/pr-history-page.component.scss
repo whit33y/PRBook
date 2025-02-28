@@ -1,3 +1,35 @@
-.history-page-container-header-title{
-    text-align: center;
+.history-page-container-header-title {
+  text-align: center;
+}
+
+.card-margin {
+  margin: 5px 0px;
+}
+
+.history-page-container-content-records {
+  overflow-y: scroll;
+  max-height: 37.5vh;
+  scrollbar-width: thin;
+  scrollbar-color: grey transparent;
+}
+
+.history-page-container-content-records::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-page-container-content-records::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-page-container-content-records::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+.history-page-container-content-records::-webkit-scrollbar-thumb:hover {
+  background: darkgrey;
+}
+
+h2{
+    margin: 0;
 }

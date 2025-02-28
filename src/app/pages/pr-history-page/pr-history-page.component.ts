@@ -4,17 +4,25 @@ import { AuthService } from '../../services/auth-service';
 import {
   GymRecordsDocuments,
   RunningAndCyclingRecordsDocuments,
+  User,
 } from '../../services/interfaces/appwrite-db.interfaces';
+import { CardComponent } from '../../components/elements/card/card.component';
+import { activityTypes, activityTypesColors, activityTypesSvg, gymExcercisesColors } from '../../data/record-data';
 
 @Component({
   selector: 'app-pr-history-page',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './pr-history-page.component.html',
   styleUrl: './pr-history-page.component.scss',
 })
 export class PrHistoryPageComponent {
-  user: any;
+  user?: User;
+  activityTypes = activityTypes;
+  activityTypesSvg = activityTypesSvg;
+  activityTypesColors = activityTypesColors;
+  gymExcercisesColors = gymExcercisesColors;
+
   constructor(
     private appWriteDbService: AppwriteDbService,
     private authService: AuthService
@@ -22,8 +30,9 @@ export class PrHistoryPageComponent {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
     });
-    this.getUserEnduranceRecords(this.user.$id);
-    this.getUserGymRecords(this.user.$id);
+    this.getUserEnduranceRecords(this.user!.$id);
+    this.getUserGymRecords(this.user!.$id);
+    console.log(this.user);
   }
 
   enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];
@@ -31,7 +40,6 @@ export class PrHistoryPageComponent {
     this.appWriteDbService.getUserRecords(user_id).subscribe({
       next: (response) => {
         this.enduranceRecords = response;
-        console.log(this.enduranceRecords);
       },
       error: (error) => {
         console.error(error);
