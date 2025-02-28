@@ -1,39 +1,40 @@
-.history-page-container-header-title{
-    text-align: center;
-}
-
-.history-page-container-content-records{
-    overflow-y: scroll;
-    height: 20rem;
-}
-
-.card-margin{
-    margin: 5px 0px;
+.history-page-container-header-title {
+  text-align: center;
 }
 
 .history-page-container-content-records {
-    overflow-y: scroll;
-    height: 20rem;
-    
-    /* Custom Scrollbar */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: grey transparent; /* Firefox */
+  overflow-y: scroll;
+  height: 19.5rem;
 }
 
-/* Webkit (Chrome, Edge, Safari) */
+.card-margin {
+  margin: 5px 0px;
+}
+
+.history-page-container-content-records {
+  overflow-y: scroll;
+  height: 20rem;
+  scrollbar-width: thin;
+  scrollbar-color: grey transparent;
+}
+
 .history-page-container-content-records::-webkit-scrollbar {
-    width: 6px; /* Small scrollbar width */
+  width: 6px;
 }
 
 .history-page-container-content-records::-webkit-scrollbar-track {
-    background: transparent; /* Transparent track */
+  background: transparent;
 }
 
 .history-page-container-content-records::-webkit-scrollbar-thumb {
-    background: grey; /* Grey scrollbar */
-    border-radius: 10px; /* Rounded corners */
+  background: grey;
+  border-radius: 10px;
 }
 
 .history-page-container-content-records::-webkit-scrollbar-thumb:hover {
-    background: darkgrey; /* Slightly darker on hover */
+  background: darkgrey;
+}
+
+.no-margin{
+    margin: 0;
 }
