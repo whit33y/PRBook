@@ -80,7 +80,7 @@ export class NewRecordPageComponent {
   });
 
   newGymRecord = new FormGroup({
-    weight: new FormControl(1, [Validators.required, Validators.min(1)]),
+    weight: new FormControl(1, [Validators.required, Validators.min(0)]),
     bodyPart: new FormControl('Chest'),
     excercise: new FormControl('Bench Press'),
     reps: new FormControl(1, [Validators.required, Validators.min(1)]),
@@ -127,7 +127,7 @@ export class NewRecordPageComponent {
     this.testFormGym()
     this.AppwriteDbService.createNewGymRecord(
       this.user.$id,
-      this.newGymRecord.value.weight!,
+      Number(this.newGymRecord.value.weight!),
       this.newGymRecord.value.bodyPart!,
       this.newGymRecord.value.excercise!,
       this.newGymRecord.value.reps!
