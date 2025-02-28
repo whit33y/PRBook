@@ -1,7 +1,7 @@
 <div class="history-page-container">
   <div class="history-page-container-header">
     <div class="history-page-container-header-title">
-      <h2>Your pr history</h2>
+      <h2 class="no-margin">Your pr history</h2>
     </div>
   </div>
   <div class="history-page-container-content">
@@ -25,7 +25,7 @@
       <div class="history-page-container-content-records">
       @for(record of gymRecords; track $index){
       <div class="card-margin">
-        <app-card [title]="record.body_part" size="mobile"></app-card>
+        <app-card [title]="record.body_part" size="mobile" [description]="'You recorded ' + record.weight + ' kgs in ' + record.excercise"></app-card>
       </div>
       }
     </div>
