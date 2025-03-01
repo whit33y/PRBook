@@ -1,10 +1,11 @@
 <header>
     <div class="header-container">
         <div class="header-left">
-            <h1>PRBook</h1>
+            <h1 (click)="navigateTo('/home')">PRBook</h1>
             <nav class="header-left-nav">
                 @if(isLoggedIn){
-                <p (click)="navigateTo('/home')">Home</p>
+                <p (click)="navigateTo('/home')" class="none">Home</p>
+                <p (click)="navigateTo('/records')">Records</p>
                 <p (click)="navigateTo('/history')">PR History</p>
                 }@else {
                 <p (click)="navigateTo('/welcome')">Home</p>

@@ -3,11 +3,12 @@ import { ButtonComponent } from '../elements/button/button.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [CommonModule ,ButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
