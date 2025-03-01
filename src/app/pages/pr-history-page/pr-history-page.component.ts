@@ -66,10 +66,4 @@ export class PrHistoryPageComponent {
     });
   }
 
-  activityTypes: Record<number, string> = {
-    1: 'Run',
-    2: 'Bike',
-    3: 'Swim'
-  };
-
 }
