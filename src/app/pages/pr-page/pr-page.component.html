@@ -1,5 +1,6 @@
 <p>pr-page works!</p>
 <h2>Endurance records</h2>
+@if(!loadingEndurance){
 <h3>Running</h3>
 @for(record of runningDistancesArray; track $index){
 @if(record !== null){
@@ -18,7 +19,11 @@
 <p>{{record.distance}}-{{record.record_time}}</p>
 }
 }
+}@else {
+<app-spinner />
+}
 <h2>Gym records</h2>
+@if(!loadingGym){
 <h3>Chest</h3>
 @for(record of chestExcercisesArray; track $index){
 @if(record !== null){
@@ -54,4 +59,7 @@
 @if(record !== null){
 <p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
 }
+}
+}@else {
+<app-spinner />
 }

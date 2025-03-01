@@ -13,11 +13,12 @@ import {
   runningDistances,
   swimmingDistances,
 } from '../../data/record-data';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-pr-page',
   standalone: true,
-  imports: [],
+  imports: [SpinnerComponent],
   templateUrl: './pr-page.component.html',
   styleUrl: './pr-page.component.scss',
 })
@@ -107,7 +108,9 @@ export class PrPageComponent {
   armsExcercisesArray: GymRecordsDocuments[] = [];
   coreExcercisesArray: GymRecordsDocuments[] = [];
 
+  loadingGym = false;
   getUserBestGymRecord(excercise: string, array: GymRecordsDocuments[]) {
+    this.loadingGym = true;
     this.appWriteDbService
       .getBestGymRecord(this.user!.$id, excercise)
       .subscribe({
@@ -120,16 +123,19 @@ export class PrPageComponent {
           console.error(error);
         },
         complete: () => {
+          this.loadingGym = false;
           console.log('Finded record');
         },
       });
   }
 
+  loadingEndurance = false;
   getUserBestEnduranceRecord(
     type: number,
     distance: number,
     array: RunningAndCyclingRecordsDocuments[]
   ) {
+    this.loadingEndurance = true;
     this.appWriteDbService
       .getBestTimeRecord(this.user!.$id, type, distance)
       .subscribe({
@@ -143,6 +149,7 @@ export class PrPageComponent {
           console.error(error);
         },
         complete: () => {
+          this.loadingEndurance = false;
           console.log('Finded record');
         },
       });
