@@ -1,19 +1,57 @@
 <p>pr-page works!</p>
-<h2>Running</h2>
+<h2>Endurance records</h2>
+<h3>Running</h3>
 @for(record of runningDistancesArray; track $index){
-    @if(record !== null){
-        <p>{{record.distance}}-{{record.record_time}}</p>
-    }
+@if(record !== null){
+<p>{{record.distance}}-{{record.record_time}}</p>
 }
-<h2>Cycling</h2>
+}
+<h3>Cycling</h3>
 @for(record of cyclingDistancesArray; track $index){
-    @if(record !== null){
-        <p>{{record.distance}}-{{record.record_time}}</p>
-    }
+@if(record !== null){
+<p>{{record.distance}}-{{record.record_time}}</p>
 }
-<h2>Swimming</h2>
+}
+<h3>Swimming</h3>
 @for(record of swimmingDistancesArray; track $index){
-    @if(record !== null){
-        <p>{{record.distance}}-{{record.record_time}}</p>
-    }
+@if(record !== null){
+<p>{{record.distance}}-{{record.record_time}}</p>
+}
+}
+<h2>Gym records</h2>
+<h3>Chest</h3>
+@for(record of chestExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
+}
+<h3>Back</h3>
+@for(record of backExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
+}
+<h3>Legs</h3>
+@for(record of legsExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
+}
+<h3>Shoulders</h3>
+@for(record of shouldersExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
+}
+<h3>Arms</h3>
+@for(record of armsExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
+}
+<h3>Core</h3>
+@for(record of coreExcercisesArray; track $index){
+@if(record !== null){
+<p>{{record.excercise}}-{{record.weight}}-{{record.reps}}</p>
+}
 }
