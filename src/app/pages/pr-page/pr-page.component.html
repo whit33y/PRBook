@@ -1,1 +1,19 @@
 <p>pr-page works!</p>
+<h2>Running</h2>
+@for(record of runningDistancesArray; track $index){
+    @if(record !== null){
+        <p>{{record.distance}}-{{record.record_time}}</p>
+    }
+}
+<h2>Cycling</h2>
+@for(record of cyclingDistancesArray; track $index){
+    @if(record !== null){
+        <p>{{record.distance}}-{{record.record_time}}</p>
+    }
+}
+<h2>Swimming</h2>
+@for(record of swimmingDistancesArray; track $index){
+    @if(record !== null){
+        <p>{{record.distance}}-{{record.record_time}}</p>
+    }
+}
