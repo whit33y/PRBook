@@ -7,6 +7,7 @@
   <div class="history-page-container-content">
     <h2>Endurance records</h2>
     <div class="history-page-container-content-records">
+      @if(!loadingEndurance){
       @for(record of enduranceRecords; track $index){
       <div class="card-margin">
         <app-card [title]="activityTypes[record.type] || ''" size="mobile" [description]="
@@ -14,9 +15,19 @@
           " [svgContent]="activityTypesSvg[record.type]" [color]="activityTypesColors[record.type] || ''" />
       </div>
       }
+      }@else {
+      <app-spinner />
+      }
+    </div>
+    <div class="history-page-pagination">
+      <app-button size="small" (click)="prevPageEndurance()" label="<" [disabled]="currentPage === 1">
+      </app-button>
+      <app-button size="small" (click)="nextPageEndurance()" label=">" [disabled]="maxPage === currentPage">
+      </app-button>
     </div>
     <h2>Gym records</h2>
     <div class="history-page-container-content-records">
+      @if(!loadingGym){
       @for(record of gymRecords; track $index){
       <div class="card-margin">
         <app-card [title]="record.body_part" size="mobile"
@@ -24,18 +35,15 @@
           [color]="gymExcercisesColors[record.body_part] || ''"></app-card>
       </div>
       }
+      }@else {
+      <app-spinner />
+      }
     </div>
   </div>
+  <div class="history-page-pagination">
+    <app-button size="small" (click)="prevPageGym()" label="<" [disabled]="currentPageGym === 1">
+    </app-button>
+    <app-button size="small" (click)="nextPageGym()" label=">" [disabled]="maxPageGym === currentPageGym">
+    </app-button>
+  </div>
 </div>
-<button (click)="nextPageEndurance()">
-  Next page
-</button>
-<button (click)="prevPageEndurance()">
-  Prev page
-</button>
-<button (click)="nextPageGym()">
-  Next page
-</button>
-<button (click)="prevPageGym()">
-  Prev page
-</button>

@@ -13,11 +13,13 @@ import {
   activityTypesSvg,
   gymExcercisesColors,
 } from '../../data/record-data';
+import { ButtonComponent } from '../../components/elements/button/button.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-pr-history-page',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, ButtonComponent, SpinnerComponent],
   templateUrl: './pr-history-page.component.html',
   styleUrl: './pr-history-page.component.scss',
 })
@@ -42,6 +44,7 @@ export class PrHistoryPageComponent {
   }
 
   //endurance
+  loadingEndurance = false;
   limitPagination = 5;
   offset = 0;
   total = 0;
@@ -59,13 +62,12 @@ export class PrHistoryPageComponent {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {
-        console.log('Completed');
-      },
+      complete: () => {},
     });
   }
 
   getUserEnduranceRecordsPagination(limit: number, offset: number) {
+    this.loadingEndurance = true;
     this.appWriteDbService
       .getUserRecordsPagination(this.user!.$id, limit, offset)
       .subscribe({
@@ -76,7 +78,7 @@ export class PrHistoryPageComponent {
           console.error(error);
         },
         complete: () => {
-          console.log('Completed');
+          this.loadingEndurance = false;
         },
       });
   }
@@ -89,43 +91,27 @@ export class PrHistoryPageComponent {
       this.currentPage += 1;
       this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
     }
-    console.log(this.currentPage);
   }
 
   prevPageEndurance() {
     if (this.currentPage === 1) {
-      console.log('block');
     } else {
       this.offset -= this.limitPagination;
       this.currentPage -= 1;
       this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
     }
-    console.log(this.currentPage);
   }
 
   //endurance
 
   //gym
+  loadingGym = false;
   limitPaginationGym = 5;
   offsetGym = 0;
   totalGym = 0;
   maxPageGym = 0;
   currentPageGym = 1;
   gymRecords: GymRecordsDocuments[] = [];
-  getUserGymRecords(user_id: string) {
-    this.appWriteDbService.getUserGymRecords(user_id).subscribe({
-      next: (response) => {
-        this.gymRecords = response;
-        console.log(this.gymRecords);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        console.log('Completed.');
-      },
-    });
-  }
 
   getGymMaxPagination() {
     this.appWriteDbService.getUserGymRecordsLength(this.user!.$id).subscribe({
@@ -138,13 +124,12 @@ export class PrHistoryPageComponent {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {
-        console.log('Completed.');
-      },
+      complete: () => {},
     });
   }
 
   getUserGymRecordsPagination(limit: number, offset: number) {
+    this.loadingGym = true;
     this.appWriteDbService
       .getUserGymRecordsPagination(this.user!.$id, limit, offset)
       .subscribe({
@@ -155,31 +140,27 @@ export class PrHistoryPageComponent {
           console.error(error);
         },
         complete: () => {
-          console.log('Completed');
+          this.loadingGym = false;
         },
       });
   }
 
   nextPageGym() {
     if (this.currentPageGym === this.maxPageGym) {
-      console.log('block');
     } else {
       this.offsetGym += this.limitPaginationGym;
       this.currentPageGym += 1;
       this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
     }
-    console.log(this.currentPageGym);
   }
 
   prevPageGym() {
     if (this.currentPageGym === 1) {
-      console.log('block');
     } else {
       this.offsetGym -= this.limitPaginationGym;
       this.currentPageGym -= 1;
       this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
     }
-    console.log(this.currentPageGym);
   }
   //gym
 }
