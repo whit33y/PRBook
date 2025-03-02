@@ -77,6 +77,7 @@ export class NewRecordPageComponent {
     time: new FormControl('', [
       Validators.required,
       Validators.pattern(/^([0-9]{2}):([0-5][0-9]):([0-5][0-9])$/),
+      Validators.maxLength(8),
     ]),
   });
 
@@ -88,8 +89,22 @@ export class NewRecordPageComponent {
   });
 
   validateTimeInput(event: any): void {
-    let input = event.target.value;
-    event.target.value = input.replace(/[^0-9:]/g, '');
+    let input = event.target.value.replace(/[^0-9]/g, '');
+    if (input.length > 6) {
+      input = input.substring(0, 6);
+    }
+    let formatted = '';
+    if (input.length > 0) {
+      formatted += input.substring(0, 2);
+    }
+    if (input.length > 2) {
+      formatted += ':' + input.substring(2, 4);
+    }
+    if (input.length > 4) {
+      formatted += ':' + input.substring(4, 6);
+    }
+    event.target.value = formatted;
+    this.newRecord.get('time')?.setValue(formatted, { emitEvent: false });
   }
 
   successMessage: boolean = false;
