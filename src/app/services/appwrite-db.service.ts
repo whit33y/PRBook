@@ -3,6 +3,7 @@ import { Databases, Query } from 'appwrite';
 import { client } from '../../lib/appwrite';
 import { environment } from '../../../environment';
 import {
+  GymRecords,
   GymRecordsDocuments,
   RunningAndCyclingRecords,
   RunningAndCyclingRecordsDocuments,
@@ -104,6 +105,47 @@ export class AppwriteDbService {
       this.database.listDocuments(this.databaseId, this.gymRecordsId, [
         Query.equal('user_id', userId),
         Query.orderDesc('$createdAt'),
+      ])
+    ).pipe(
+      map((response) => response.documents as GymRecordsDocuments[]),
+      catchError((error) => {
+        console.error('Failed loading records:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getUserGymRecordsLength(userId: string): Observable<GymRecords> {
+    if (!userId) {
+      return of();
+    }
+    return from(
+      this.database.listDocuments(this.databaseId, this.gymRecordsId, [
+        Query.equal('user_id', userId),
+      ])
+    ).pipe(
+      map((response) => response as GymRecords),
+      catchError((error) => {
+        console.error('Failed loading records:', error);
+        return of();
+      })
+    );
+  }
+
+  getUserGymRecordsPagination(
+    userId: string,
+    limit: number,
+    offset: number
+  ): Observable<GymRecordsDocuments[]> {
+    if (!userId) {
+      return of([]);
+    }
+    return from(
+      this.database.listDocuments(this.databaseId, this.gymRecordsId, [
+        Query.equal('user_id', userId),
+        Query.orderDesc('$createdAt'),
+        Query.limit(limit),
+        Query.offset(offset),
       ])
     ).pipe(
       map((response) => response.documents as GymRecordsDocuments[]),
