@@ -67,7 +67,6 @@ export const bodyPartExercises = {
   ],
 };
 
-
 export const activityTypes: Record<number, string> = {
   1: 'Run',
   2: 'Bike',
@@ -86,11 +85,11 @@ export const activityTypesColors: Record<number, string> = {
   3: 'red',
 };
 
-export const gymExcercisesColors: Record<string , string> = {
-  'Chest': 'blue',
-  'Back': 'green',
-  'Legs': 'red',
-  'Shoulders': 'purple',
-  'Arms': 'yellow',
-  'Core': 'white'
-}
+export const gymExcercisesColors: Record<string, string> = {
+  Chest: 'blue',
+  Back: 'green',
+  Legs: 'red',
+  Shoulders: 'purple',
+  Arms: 'yellow',
+  Core: 'white',
+};
