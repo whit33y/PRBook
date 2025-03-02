@@ -7,7 +7,12 @@ import {
   User,
 } from '../../services/interfaces/appwrite-db.interfaces';
 import { CardComponent } from '../../components/elements/card/card.component';
-import { activityTypes, activityTypesColors, activityTypesSvg, gymExcercisesColors } from '../../data/record-data';
+import {
+  activityTypes,
+  activityTypesColors,
+  activityTypesSvg,
+  gymExcercisesColors,
+} from '../../data/record-data';
 
 @Component({
   selector: 'app-pr-history-page',
@@ -30,24 +35,9 @@ export class PrHistoryPageComponent {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
     });
-    this.getUserEnduranceRecords(this.user!.$id);
     this.getUserGymRecords(this.user!.$id);
-    console.log(this.user);
-  }
-
-  enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];
-  getUserEnduranceRecords(user_id: string) {
-    this.appWriteDbService.getUserRecords(user_id).subscribe({
-      next: (response) => {
-        this.enduranceRecords = response;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        console.log('Completed.');
-      },
-    });
+    this.getEnduranceMaxPagination();
+    this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
   }
 
   gymRecords: GymRecordsDocuments[] = [];
@@ -66,4 +56,64 @@ export class PrHistoryPageComponent {
     });
   }
 
+  limitPagination = 5;
+  offset = 0;
+  total = 0;
+  maxPage = 0;
+  currentPage = 1;
+  enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];
+  getEnduranceMaxPagination() {
+    this.appWriteDbService.getUserRecordsLength(this.user!.$id).subscribe({
+      next: (response) => {
+        if (response) {
+          this.total = response.total;
+          this.maxPage = Math.ceil(this.total / this.limitPagination);
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Completed');
+      },
+    });
+  }
+
+  getUserEnduranceRecordsPagination(limit: number, offset: number) {
+    this.appWriteDbService
+      .getUserRecordsPagination(this.user!.$id, limit, offset)
+      .subscribe({
+        next: (response) => {
+          this.enduranceRecords = response;
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          console.log('Completed');
+        },
+      });
+  }
+
+  nextPageEndurance() {
+    if (this.currentPage === this.maxPage) {
+      console.log('block');
+    } else {
+      this.offset += this.limitPagination;
+      this.currentPage += 1;
+      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
+    }
+    console.log(this.currentPage);
+  }
+
+  prevPageEndurance() {
+    if (this.currentPage === 1) {
+      console.log('block');
+    } else {
+      this.offset -= this.limitPagination;
+      this.currentPage -= 1;
+      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
+    }
+    console.log(this.currentPage);
+  }
 }
