@@ -4,7 +4,7 @@
 @for(record of runningDistancesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
+    <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
         [svgContent]="activityTypesSvg[record.type]"
         [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
 </div>
@@ -14,7 +14,7 @@
 @for(record of cyclingDistancesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
+    <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
         [svgContent]="activityTypesSvg[record.type]"
         [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
 </div>
@@ -24,7 +24,7 @@
 @for(record of swimmingDistancesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
+    <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
         [svgContent]="activityTypesSvg[record.type]"
         [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
 </div>
@@ -39,7 +39,7 @@
 @for(record of chestExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
@@ -48,7 +48,7 @@
 @for(record of backExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
@@ -57,7 +57,7 @@
 @for(record of legsExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
@@ -66,7 +66,7 @@
 @for(record of shouldersExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
@@ -75,7 +75,7 @@
 @for(record of armsExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
@@ -84,7 +84,7 @@
 @for(record of coreExcercisesArray; track $index){
 @if(record !== null){
 <div class="card">
-    <app-card [title]="'Your PR for' + record.excercise" [description]="record.weight + 'kgs for ' + record.reps"
+    <app-card [title]="'Your PR in ' + record.excercise" [description]="record.weight + ' kgs for ' + record.reps"
         [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
 </div>
 }
