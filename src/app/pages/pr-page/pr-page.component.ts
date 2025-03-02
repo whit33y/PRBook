@@ -12,13 +12,17 @@ import {
   cyclingDistances,
   runningDistances,
   swimmingDistances,
+  activityTypesSvg,
+  activityTypesColors,
+  gymExcercisesColors,
 } from '../../data/record-data';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { CardComponent } from '../../components/elements/card/card.component';
 
 @Component({
   selector: 'app-pr-page',
   standalone: true,
-  imports: [SpinnerComponent],
+  imports: [SpinnerComponent, CardComponent],
   templateUrl: './pr-page.component.html',
   styleUrl: './pr-page.component.scss',
 })
@@ -29,7 +33,9 @@ export class PrPageComponent {
   swimmingDistances = swimmingDistances;
   bodyPart = bodyPart;
   bodyPartExcercises = bodyPartExercises;
-
+  activityTypesSvg = activityTypesSvg;
+  activityTypesColors = activityTypesColors;
+  gymExcercisesColors = gymExcercisesColors;
   constructor(
     private authService: AuthService,
     private appWriteDbService: AppwriteDbService
