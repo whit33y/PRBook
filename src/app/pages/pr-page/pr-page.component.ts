@@ -45,79 +45,48 @@ export class PrPageComponent {
     });
     if (this.user) {
       //endurance
-      this.enduranceRecordsPushArray(
-        1,
-        this.runningDistances,
-        this.runningDistancesArray
-      );
-      this.enduranceRecordsPushArray(
-        2,
-        this.cyclingDistances,
-        this.cyclingDistancesArray
-      );
-      this.enduranceRecordsPushArray(
-        3,
-        this.swimmingDistances,
-        this.swimmingDistancesArray
-      );
+      for (let group of this.enduranceGroupsFor) {
+        this.enduranceRecordsPushArray(
+          group.type,
+          group.distances,
+          group.array
+        );
+      }
       //gym
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Chest,
-        this.chestExcercisesArray
-      );
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Back,
-        this.backExcercisesArray
-      );
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Legs,
-        this.legsExcercisesArray
-      );
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Shoulders,
-        this.shouldersExcercisesArray
-      );
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Arms,
-        this.armsExcercisesArray
-      );
-      this.gymRecordsPushArray(
-        this.bodyPartExcercises.Core,
-        this.coreExcercisesArray
-      );
+      for (let group of this.gymExcerciseGroupFor) {
+        this.gymRecordsPushArray(group.part, group.array);
+      }
     }
   }
 
-  chestExcercisesArray: GymRecordsDocuments[] = [];
-  backExcercisesArray: GymRecordsDocuments[] = [];
-  legsExcercisesArray: GymRecordsDocuments[] = [];
-  shouldersExcercisesArray: GymRecordsDocuments[] = [];
-  armsExcercisesArray: GymRecordsDocuments[] = [];
-  coreExcercisesArray: GymRecordsDocuments[] = [];
-  loadingGym = false;
-  getUserBestGymRecord(excercise: string, array: GymRecordsDocuments[]) {
-    this.loadingGym = true;
-    this.appWriteDbService
-      .getBestGymRecord(this.user!.$id, excercise)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            array.push(response);
-          }
-        },
-        error: (error) => {
-          console.error(error);
-        },
-        complete: () => {
-          this.loadingGym = false;
-        },
-      });
-  }
-
+  //endurance endurance endurance endurance endurance endurance
   runningDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
   cyclingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
   swimmingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
+  enduranceGroups = [
+    { title: 'Running', data: this.runningDistancesArray },
+    { title: 'Cycling', data: this.cyclingDistancesArray },
+    { title: 'Swimming', data: this.swimmingDistancesArray },
+  ];
+  enduranceGroupsFor = [
+    {
+      type: 1,
+      distances: this.runningDistances,
+      array: this.runningDistancesArray,
+    },
+    {
+      type: 2,
+      distances: this.cyclingDistances,
+      array: this.cyclingDistancesArray,
+    },
+    {
+      type: 3,
+      distances: this.swimmingDistances,
+      array: this.swimmingDistancesArray,
+    },
+  ];
   loadingEndurance = false;
+
   getUserBestEnduranceRecord(
     type: number,
     distance: number,
@@ -150,10 +119,59 @@ export class PrPageComponent {
       this.getUserBestEnduranceRecord(type, distances[i], pushArray);
     }
   }
+  //endurance endurance endurance endurance endurance endurance
+
+  //gym gym gym gym gym gym gym gym gym gym gym gym gym gym gym
+  chestExcercisesArray: GymRecordsDocuments[] = [];
+  backExcercisesArray: GymRecordsDocuments[] = [];
+  legsExcercisesArray: GymRecordsDocuments[] = [];
+  shouldersExcercisesArray: GymRecordsDocuments[] = [];
+  armsExcercisesArray: GymRecordsDocuments[] = [];
+  coreExcercisesArray: GymRecordsDocuments[] = [];
+  gymExerciseGroups = [
+    { title: 'Chest', data: this.chestExcercisesArray },
+    { title: 'Back', data: this.backExcercisesArray },
+    { title: 'Legs', data: this.legsExcercisesArray },
+    { title: 'Arms', data: this.armsExcercisesArray },
+    { title: 'Shoulders', data: this.shouldersExcercisesArray },
+    { title: 'Core', data: this.coreExcercisesArray },
+  ];
+  gymExcerciseGroupFor = [
+    { part: this.bodyPartExcercises.Chest, array: this.chestExcercisesArray },
+    { part: this.bodyPartExcercises.Back, array: this.backExcercisesArray },
+    { part: this.bodyPartExcercises.Legs, array: this.legsExcercisesArray },
+    { part: this.bodyPartExcercises.Arms, array: this.armsExcercisesArray },
+    {
+      part: this.bodyPartExcercises.Shoulders,
+      array: this.shouldersExcercisesArray,
+    },
+    { part: this.bodyPartExcercises.Core, array: this.coreExcercisesArray },
+  ];
+  loadingGym = false;
+
+  getUserBestGymRecord(excercise: string, array: GymRecordsDocuments[]) {
+    this.loadingGym = true;
+    this.appWriteDbService
+      .getBestGymRecord(this.user!.$id, excercise)
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            array.push(response);
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          this.loadingGym = false;
+        },
+      });
+  }
 
   gymRecordsPushArray(bodyPart: string[], pushArray: GymRecordsDocuments[]) {
     for (let i = 0; i < bodyPart.length; i++) {
       this.getUserBestGymRecord(bodyPart[i], pushArray);
     }
   }
+  //gym gym gym gym gym gym gym gym gym gym gym gym gym gym gym
 }

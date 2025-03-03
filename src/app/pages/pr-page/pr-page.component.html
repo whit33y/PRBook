@@ -1,51 +1,25 @@
-<h2 style="text-align: center">Endurance records</h2>
-@if(!loadingEndurance){
-<h3>Running</h3>
-@for(record of runningDistancesArray; track $index){
-@if(record !== null){
+@if(!loadingEndurance && !loadingGym){
+<h2>Endurance records</h2>
+@for(group of enduranceGroups; track $index){
+<h3>{{group.title}}</h3>
+@if(group.data.length === 0){
+<p>No records to show!</p>
+}
+@for(record of group.data; track $index){
 <div class="card">
     <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
         [svgContent]="activityTypesSvg[record.type]"
         [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
 </div>
 }
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Cycling</h3>
-@for(record of cyclingDistancesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
-        [svgContent]="activityTypesSvg[record.type]"
-        [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Swimming</h3>
-@for(record of swimmingDistancesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in  ' + record.distance + 'km'" [description]="record.record_time" size="mobile"
-        [svgContent]="activityTypesSvg[record.type]"
-        [color]="activityTypesColors[record.type]">{{record.distance}}-{{record.record_time}}</app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-}@else {
-<app-spinner />
 }
 <h2>Gym records</h2>
-@if(!loadingGym){
-<h3>Chest</h3>
-@for(record of chestExcercisesArray; track $index){
+@for(group of gymExerciseGroups; track $index){
+<h3>{{ group.title }}</h3>
+@if(group.data.length === 0){
+<p>No records to show!</p>
+}
+@for(record of group.data; track $index){
 @if(record !== null){
 <div class="card">
     <app-card [title]="'Your PR in ' + record.excercise"
@@ -54,73 +28,6 @@
 </div>
 }
 }
-@empty{
-<p>No records to show.</p>
-}
-<h3>Back</h3>
-@for(record of backExcercisesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in ' + record.excercise"
-        [description]="record.weight + ' kgs for ' + record.reps + ' reps/seconds.'"
-        [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Legs</h3>
-@for(record of legsExcercisesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in ' + record.excercise"
-        [description]="record.weight + ' kgs for ' + record.reps + ' reps/seconds.'"
-        [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Shoulders</h3>
-@for(record of shouldersExcercisesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in ' + record.excercise"
-        [description]="record.weight + ' kgs for ' + record.reps + ' reps/seconds.'"
-        [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Arms</h3>
-@for(record of armsExcercisesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in ' + record.excercise"
-        [description]="record.weight + ' kgs for ' + record.reps + ' reps/seconds.'"
-        [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
-}
-<h3>Core</h3>
-@for(record of coreExcercisesArray; track $index){
-@if(record !== null){
-<div class="card">
-    <app-card [title]="'Your PR in ' + record.excercise"
-        [description]="record.weight + 'kgs for ' + record.reps + ' reps/seconds.'"
-        [color]="gymExcercisesColors[record.body_part] || ''" size="mobile"></app-card>
-</div>
-}
-}
-@empty{
-<p>No records to show.</p>
 }
 }@else {
 <app-spinner />
