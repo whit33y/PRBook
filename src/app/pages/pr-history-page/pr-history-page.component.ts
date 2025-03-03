@@ -85,7 +85,6 @@ export class PrHistoryPageComponent {
 
   nextPageEndurance() {
     if (this.currentPage === this.maxPage) {
-      console.log('block');
     } else {
       this.offset += this.limitPagination;
       this.currentPage += 1;

@@ -47,7 +47,6 @@ export class AuthService {
     if (this.isSessionChecked) return;
     try {
       const user = await this.account.get();
-      // console.log('User found:', user);
       this.loggedInUserSubject.next(user);
     } catch (error) {
       console.warn('No active session');

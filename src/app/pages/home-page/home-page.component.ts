@@ -57,13 +57,11 @@ export class HomePageComponent {
       },
       complete: () => {
         this.loading = false;
-        console.log('Completed!');
       },
     });
   }
 
   navigateTo(route: string, params?: { [key: string]: any }) {
-    console.log(route);
     if (params) {
       this.router.navigate([route], { queryParams: params });
     } else {

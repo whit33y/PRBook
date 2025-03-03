@@ -44,7 +44,6 @@ export class PrPageComponent {
       this.user = user;
     });
     if (this.user) {
-      //endurance
       for (let group of this.enduranceGroupsFor) {
         this.enduranceRecordsPushArray(
           group.type,
@@ -52,7 +51,6 @@ export class PrPageComponent {
           group.array
         );
       }
-      //gym
       for (let group of this.gymExcerciseGroupFor) {
         this.gymRecordsPushArray(group.part, group.array);
       }
@@ -60,6 +58,7 @@ export class PrPageComponent {
   }
 
   //endurance endurance endurance endurance endurance endurance
+  loadingEndurance = false;
   runningDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
   cyclingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
   swimmingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
@@ -85,7 +84,6 @@ export class PrPageComponent {
       array: this.swimmingDistancesArray,
     },
   ];
-  loadingEndurance = false;
 
   getUserBestEnduranceRecord(
     type: number,
@@ -100,12 +98,10 @@ export class PrPageComponent {
           if (response) {
             array.push(response);
           }
+          this.loadingEndurance = false;
         },
         error: (error) => {
           console.error(error);
-        },
-        complete: () => {
-          this.loadingEndurance = false;
         },
       });
   }
@@ -122,6 +118,7 @@ export class PrPageComponent {
   //endurance endurance endurance endurance endurance endurance
 
   //gym gym gym gym gym gym gym gym gym gym gym gym gym gym gym
+  loadingGym = false;
   chestExcercisesArray: GymRecordsDocuments[] = [];
   backExcercisesArray: GymRecordsDocuments[] = [];
   legsExcercisesArray: GymRecordsDocuments[] = [];
@@ -147,7 +144,6 @@ export class PrPageComponent {
     },
     { part: this.bodyPartExcercises.Core, array: this.coreExcercisesArray },
   ];
-  loadingGym = false;
 
   getUserBestGymRecord(excercise: string, array: GymRecordsDocuments[]) {
     this.loadingGym = true;
@@ -158,12 +154,10 @@ export class PrPageComponent {
           if (response) {
             array.push(response);
           }
+          this.loadingGym = false;
         },
         error: (error) => {
           console.error(error);
-        },
-        complete: () => {
-          this.loadingGym = false;
         },
       });
   }

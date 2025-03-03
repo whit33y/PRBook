@@ -124,7 +124,6 @@ export class NewRecordPageComponent {
       discipline
     ).subscribe({
       next: (response) => {
-        console.log('Succesfully added new record: ', response);
         this.successMessage = true;
         setTimeout(() => {
           this.router.navigate(['/']);
@@ -133,14 +132,11 @@ export class NewRecordPageComponent {
       error: (error) => {
         console.error('Error: ', error);
       },
-      complete: () => {
-        console.log('Completed adding');
-      },
+      complete: () => {},
     });
   }
 
   addRecordGym() {
-    this.testFormGym();
     this.AppwriteDbService.createNewGymRecord(
       this.user!.$id,
       Number(this.newGymRecord.value.weight!),
@@ -149,7 +145,6 @@ export class NewRecordPageComponent {
       this.newGymRecord.value.reps!
     ).subscribe({
       next: (respoonse) => {
-        console.log('Succesfully added new gym record: ', respoonse);
         this.successMessage = true;
         setTimeout(() => {
           this.router.navigate(['/']);
@@ -158,27 +153,8 @@ export class NewRecordPageComponent {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {
-        console.log('Completed adding gym record!');
-      },
+      complete: () => {},
     });
-  }
-
-  testForm() {
-    console.log(
-      this.newRecord.value.distance,
-      this.newRecord.value.type,
-      this.newRecord.value.time
-    );
-  }
-
-  testFormGym() {
-    console.log(
-      this.newGymRecord.value.bodyPart,
-      this.newGymRecord.value.excercise,
-      this.newGymRecord.value.reps,
-      this.newGymRecord.value.weight
-    );
   }
 
   isGym: boolean = false;

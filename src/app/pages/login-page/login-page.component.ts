@@ -53,7 +53,6 @@ export class LoginPageComponent {
         .then(() => {
           this.loading = false;
           this.router.navigate(['/home']);
-          console.log('Successfully logged in!');
         })
         .catch((error) => {
           this.loading = false;
@@ -83,7 +82,6 @@ export class LoginPageComponent {
               this.message = 'Sucessfully registered!';
             }, 1000);
             this.router.navigate(['/home']);
-            console.log('Successfully registered!');
           })
           .catch((error) => {
             this.loading = false;
@@ -102,7 +100,6 @@ export class LoginPageComponent {
   }
 
   navigateToHome() {
-    console.log('home');
     this.router.navigate(['/home']);
   }
 }
