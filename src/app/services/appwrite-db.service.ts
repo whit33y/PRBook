@@ -35,7 +35,7 @@ export class AppwriteDbService {
       this.database.listDocuments(
         this.databaseId,
         this.runningAndCyclingRecordsId,
-        [Query.equal('user_id', userId), Query.orderDesc('$createdAt')]
+        [Query.equal('user_id', userId), Query.orderDesc('$createdAt'), Query.limit(1)]
       )
     ).pipe(
       map(
@@ -105,6 +105,7 @@ export class AppwriteDbService {
       this.database.listDocuments(this.databaseId, this.gymRecordsId, [
         Query.equal('user_id', userId),
         Query.orderDesc('$createdAt'),
+        Query.limit(1)
       ])
     ).pipe(
       map((response) => response.documents as GymRecordsDocuments[]),

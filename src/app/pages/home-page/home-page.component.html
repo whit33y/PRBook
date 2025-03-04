@@ -2,24 +2,31 @@
     @if(!loading){
     @if(loadedRecords!.length > 0){
     <div>
-        <h2>Your last recorded endurance PR</h2>
+        <h2>Your last records</h2>
         @if(loadedRecords![loadedRecords!.length-1].type === 1){
-        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="runner"
-            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[1]"
+            size='mobile'></app-card>
         }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {
-        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="bike"
-            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[2]"
+            size='mobile'></app-card>
         }@else {
-        <app-card [title]="'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="swim"
-            [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[3]"
+            size='mobile'></app-card>
+        }
+        @if(loadedGymRecords){
+        <div class="gym-record">
+            <app-card [title]="'Congratulations, you lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise"
+                description="Keep it up!"
+                size='mobile'></app-card>
+        </div>
         }
     </div>
     }@else {
     <h2>Your last recorded PR</h2>
-    <app-card title="Nothing to see here!" description="Dont be shy, add your record!" [svgContent]="runner"
+    <app-card title="Nothing to see here!" description="Dont be shy, add your record!" [svgContent]="activityTypesSvg[1]"
         [size]="isMobile ? 'mobile': 'desktop'"></app-card>
     }
     }@else {
@@ -31,17 +38,17 @@
         <h2>Add new endurance sport record</h2>
         <div class="home-page-add-container-cards">
             <div class="card">
-                <app-card title="New running record!" description="That was pretty fast!" [svgContent]="runner"
+                <app-card title="New running record!" description="That was pretty fast!" [svgContent]="activityTypesSvg[1]"
                     [size]="isMobile ? 'mobile': 'desktop'" color="blue" [pointer]='true'
                     (onClick)="navigateTo('/new-record', {type: 'run'})"></app-card>
             </div>
             <div class="card">
-                <app-card title="New bikeing record!" description="Great job!" [svgContent]="bike"
+                <app-card title="New bikeing record!" description="Great job!" [svgContent]="activityTypesSvg[2]"
                     [size]="isMobile ? 'mobile': 'desktop'" color="green" [pointer]='true'
                     (onClick)="navigateTo('/new-record', {type: 'bike'})"></app-card>
             </div>
             <div class="card">
-                <app-card title="New swiming record!" description="Like a fish!" [svgContent]="swim"
+                <app-card title="New swiming record!" description="Like a fish!" [svgContent]="activityTypesSvg[3]"
                     [size]="isMobile ? 'mobile': 'desktop'" color="red" [pointer]='true'
                     (onClick)="navigateTo('/new-record', {type: 'swim'})"></app-card>
             </div>
