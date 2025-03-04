@@ -35,7 +35,11 @@ export class AppwriteDbService {
       this.database.listDocuments(
         this.databaseId,
         this.runningAndCyclingRecordsId,
-        [Query.equal('user_id', userId), Query.orderDesc('$createdAt'), Query.limit(1)]
+        [
+          Query.equal('user_id', userId),
+          Query.orderDesc('$createdAt'),
+          Query.limit(1),
+        ]
       )
     ).pipe(
       map(
@@ -105,7 +109,7 @@ export class AppwriteDbService {
       this.database.listDocuments(this.databaseId, this.gymRecordsId, [
         Query.equal('user_id', userId),
         Query.orderDesc('$createdAt'),
-        Query.limit(1)
+        Query.limit(1),
       ])
     ).pipe(
       map((response) => response.documents as GymRecordsDocuments[]),
@@ -278,4 +282,40 @@ export class AppwriteDbService {
   }
 
   //create create create create create create create create create
+
+  //delete delete delete delete delete delete delete delete delete
+
+  deleteEnduranceRecord(record_id: string): Observable<any> {
+    return from(
+      this.database.deleteDocument(
+        this.databaseId,
+        this.runningAndCyclingRecordsId,
+        record_id
+      )
+    ).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of(null);
+      })
+    );
+  }
+
+  deleteGymRecord(record_id: string): Observable<any> {
+    return from(
+      this.database.deleteDocument(
+        this.databaseId,
+        this.gymRecordsId,
+        record_id
+      )
+    ).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of(null);
+      })
+    );
+  }
+
+  //delete delete delete delete delete delete delete delete delete
 }
