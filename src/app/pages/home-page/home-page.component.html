@@ -18,16 +18,16 @@
         }
         @if(loadedGymRecords){
         <div class="gym-record">
-            <app-card [title]="'Congratulations, you lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise"
-                description="Keep it up!"
-                size='mobile'></app-card>
+            <app-card [title]="'Congratulations, new ' + loadedGymRecords[0].excercise + ' record'"
+                [description]="'You lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise + ' for ' + loadedGymRecords[0].reps + ' reps/seconds.'"
+                size='mobile' color="white"></app-card>
         </div>
         }
     </div>
     }@else {
     <h2>Your last recorded PR</h2>
-    <app-card title="Nothing to see here!" description="Dont be shy, add your record!" [svgContent]="activityTypesSvg[1]"
-        [size]="isMobile ? 'mobile': 'desktop'"></app-card>
+    <app-card title="Nothing to see here!" description="Dont be shy, add your record!"
+        [svgContent]="activityTypesSvg[1]" [size]="isMobile ? 'mobile': 'desktop'"></app-card>
     }
     }@else {
     <div class="home-page-container-loading">
@@ -38,9 +38,9 @@
         <h2>Add new endurance sport record</h2>
         <div class="home-page-add-container-cards">
             <div class="card">
-                <app-card title="New running record!" description="That was pretty fast!" [svgContent]="activityTypesSvg[1]"
-                    [size]="isMobile ? 'mobile': 'desktop'" color="blue" [pointer]='true'
-                    (onClick)="navigateTo('/new-record', {type: 'run'})"></app-card>
+                <app-card title="New running record!" description="That was pretty fast!"
+                    [svgContent]="activityTypesSvg[1]" [size]="isMobile ? 'mobile': 'desktop'" color="blue"
+                    [pointer]='true' (onClick)="navigateTo('/new-record', {type: 'run'})"></app-card>
             </div>
             <div class="card">
                 <app-card title="New bikeing record!" description="Great job!" [svgContent]="activityTypesSvg[2]"
