@@ -13,13 +13,17 @@ import {
   activityTypesSvg,
   gymExcercisesColors,
 } from '../../data/record-data';
-import { ButtonComponent } from '../../components/elements/button/button.component';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { PaginationComponent } from '../../components/elements/pagination/pagination.component';
 
 @Component({
   selector: 'app-pr-history-page',
   standalone: true,
-  imports: [CardComponent, ButtonComponent, SpinnerComponent],
+  imports: [
+    CardComponent,
+    SpinnerComponent,
+    PaginationComponent,
+  ],
   templateUrl: './pr-history-page.component.html',
   styleUrl: './pr-history-page.component.scss',
 })
@@ -162,4 +166,5 @@ export class PrHistoryPageComponent {
     }
   }
   //gym
+
 }

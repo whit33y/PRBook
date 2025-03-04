@@ -1,0 +1,17 @@
+<div class="pagination-component">
+  <div (click)="prevPage.emit(true)" class="pagination-component-button" [ngClass]="{'disabled': currentPage === 1}"><</div>
+  @if(currentPage === maxPage && maxPage >= 3){
+    <div (click)="prevPage.emit(true)" class="pagination-component-number">{{currentPage - 2}}</div>
+      }
+  @if(currentPage > 1){
+    <div (click)="prevPage.emit(true)" class="pagination-component-number" [ngClass]="{'active': currentPage === 1}">{{currentPage - 1}}</div>
+  }
+  <div class="pagination-component-number" [ngClass]="{'active': currentPage}">{{currentPage}}</div>
+  @if(currentPage < maxPage){
+  <div (click)="nextPage.emit(true)" class="pagination-component-number" [ngClass]="{'active': currentPage === maxPage}">{{currentPage + 1}}</div>
+    }
+  @if(currentPage === 1 && maxPage >= 3){
+  <div (click)="nextPage.emit(true)" class="pagination-component-number" [ngClass]="{'active': currentPage === maxPage}">{{currentPage + 2}}</div>
+    }
+  <div (click)="nextPage.emit(true)" class="pagination-component-button" [ngClass]="{'disabled': currentPage === maxPage}">></div>
+</div>

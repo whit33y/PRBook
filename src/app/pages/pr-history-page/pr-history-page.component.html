@@ -20,10 +20,8 @@
       }
     </div>
     <div class="history-page-pagination">
-      <app-button size="small" (click)="prevPageEndurance()" label="<" [disabled]="currentPage === 1">
-      </app-button>
-      <app-button size="small" (click)="nextPageEndurance()" label=">" [disabled]="maxPage === currentPage">
-      </app-button>
+      <app-pagination (nextPage)="nextPageEndurance()" (prevPage)="prevPageEndurance()" [currentPage]="currentPage"
+        [maxPage]="maxPage" />
     </div>
     <h2>Gym records</h2>
     <div class="history-page-container-content-records">
@@ -41,9 +39,7 @@
     </div>
   </div>
   <div class="history-page-pagination">
-    <app-button size="small" (click)="prevPageGym()" label="<" [disabled]="currentPageGym === 1">
-    </app-button>
-    <app-button size="small" (click)="nextPageGym()" label=">" [disabled]="maxPageGym === currentPageGym">
-    </app-button>
+    <app-pagination (nextPage)="nextPageGym()" (prevPage)="prevPageGym()" [currentPage]="currentPageGym"
+      [maxPage]="maxPageGym" />
   </div>
 </div>
