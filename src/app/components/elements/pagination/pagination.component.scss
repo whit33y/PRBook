@@ -5,7 +5,6 @@
 
 .pagination-component-button {
   display: flex;
-  background-color: var(--main-purple);
   color: white;
   border-radius: 1.5rem;
   padding: 0.25rem 1.5rem;
@@ -13,9 +12,9 @@
 }
 
 .pagination-component-number{
-  background-color: var(--background-purple);
+  color: white;
   padding: 0.25rem;
-  width: 25px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +28,18 @@
   color: black;
 }
 
-.active{
-  border: 2px solid var(--background-purple);
+.button-purple{
+  background-color: var(--main-purple);
+}
+
+.button-blue{
+  background-color: var(--main-blue);
+}
+
+.number-purple{
+  background-color: var(--background-purple);
+}
+
+.number-blue{
+  background-color: var(--background-blue);
 }

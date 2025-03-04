@@ -2496,7 +2496,7 @@
         },
         {
             "name": "LoginPageComponent",
-            "id": "component-LoginPageComponent-ca33ccdb9508807d44ed0501d405a03406a4ee622e9eb41b4060864d73b5bc08a179042d8cf41a38cdab23bd4b766c58a3f7833511ed3d3ecbbb892b7df9eb38",
+            "id": "component-LoginPageComponent-40f030ba70bebfe2a6cddb6fe7ad71970365f12559a20873c7236e182ade196ab5236168b6e328ec27fd78dac3595496dd4b4163289ace035f73da29f8f9675c",
             "file": "src/app/pages/login-page/login-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2610,7 +2610,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 104,
+                    "line": 102,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2630,7 +2630,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 98,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2640,7 +2640,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 66,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2663,7 +2663,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../services/auth-service';\nimport {\n  FormControl,\n  FormGroup,\n  ReactiveFormsModule,\n  Validators,\n} from '@angular/forms';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [ButtonComponent, ReactiveFormsModule],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n  forgot: boolean = false;\n  loading: boolean = false;\n  error: string = '';\n  message: string = '';\n  registerForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    name: new FormControl('', [Validators.required, Validators.minLength(3)]),\n  });\n\n  loginForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n  });\n\n  constructor(private router: Router, private authService: AuthService) {}\n  errorMessageLogin: string = '';\n  sendLogin() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .login(this.loginForm.value.email!, this.loginForm.value.password!)\n        .then(() => {\n          this.loading = false;\n          this.router.navigate(['/home']);\n          console.log('Successfully logged in!');\n        })\n        .catch((error) => {\n          this.loading = false;\n          this.errorMessageLogin = error;\n          console.error('Something went wrong during login: ', error);\n        });\n    }, 1000);\n  }\n\n  sendRegister() {\n    this.loading = true;\n    if (\n      this.registerForm.value.password ===\n        this.registerForm.value.confirmPassword &&\n      this.registerForm.valid\n    ) {\n      setTimeout(() => {\n        this.authService\n          .register(\n            this.registerForm.value.email!,\n            this.registerForm.value.password!,\n            this.registerForm.value.name!\n          )\n          .then(() => {\n            this.loading = false;\n            setTimeout(() => {\n              this.message = 'Sucessfully registered!';\n            }, 1000);\n            this.router.navigate(['/home']);\n            console.log('Successfully registered!');\n          })\n          .catch((error) => {\n            this.loading = false;\n            console.error('Something went wrong during registration: ', error);\n          });\n      }, 2000);\n    } else {\n      this.loading = false;\n      this.error = 'Please fix the errors before submitting.';\n      return;\n    }\n  }\n\n  sendLogout() {\n    this.authService.logout();\n  }\n\n  navigateToHome() {\n    console.log('home');\n    this.router.navigate(['/home']);\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from '../../components/elements/button/button.component';\nimport { Router } from '@angular/router';\nimport { AuthService } from '../../services/auth-service';\nimport {\n  FormControl,\n  FormGroup,\n  ReactiveFormsModule,\n  Validators,\n} from '@angular/forms';\n\n@Component({\n  selector: 'app-login-page',\n  standalone: true,\n  imports: [ButtonComponent, ReactiveFormsModule],\n  templateUrl: './login-page.component.html',\n  styleUrl: './login-page.component.scss',\n})\nexport class LoginPageComponent {\n  register: boolean = false;\n  forgot: boolean = false;\n  loading: boolean = false;\n  error: string = '';\n  message: string = '';\n  registerForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n    name: new FormControl('', [Validators.required, Validators.minLength(3)]),\n  });\n\n  loginForm = new FormGroup({\n    email: new FormControl('', [Validators.required, Validators.email]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.minLength(8),\n    ]),\n  });\n\n  constructor(private router: Router, private authService: AuthService) {}\n  errorMessageLogin: string = '';\n  sendLogin() {\n    this.loading = true;\n    setTimeout(() => {\n      this.authService\n        .login(this.loginForm.value.email!, this.loginForm.value.password!)\n        .then(() => {\n          this.loading = false;\n          this.router.navigate(['/home']);\n        })\n        .catch((error) => {\n          this.loading = false;\n          this.errorMessageLogin = error;\n          console.error('Something went wrong during login: ', error);\n        });\n    }, 1000);\n  }\n\n  sendRegister() {\n    this.loading = true;\n    if (\n      this.registerForm.value.password ===\n        this.registerForm.value.confirmPassword &&\n      this.registerForm.valid\n    ) {\n      setTimeout(() => {\n        this.authService\n          .register(\n            this.registerForm.value.email!,\n            this.registerForm.value.password!,\n            this.registerForm.value.name!\n          )\n          .then(() => {\n            this.loading = false;\n            setTimeout(() => {\n              this.message = 'Sucessfully registered!';\n            }, 1000);\n            this.router.navigate(['/home']);\n          })\n          .catch((error) => {\n            this.loading = false;\n            console.error('Something went wrong during registration: ', error);\n          });\n      }, 2000);\n    } else {\n      this.loading = false;\n      this.error = 'Please fix the errors before submitting.';\n      return;\n    }\n  }\n\n  sendLogout() {\n    this.authService.logout();\n  }\n\n  navigateToHome() {\n    this.router.navigate(['/home']);\n  }\n}\n",
             "styleUrl": "./login-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -3115,8 +3115,107 @@
             "templateData": "<div class=\"new-record-page-container\">\n  <div class=\"new-record-page-header-container\">\n    <div class=\"new-record-page-header-container-title\">\n      <h2>Add your new record</h2>\n    </div>\n    @if(!successMessage){\n    <div class=\"new-record-page-header-container-buttons\">\n      <app-button label=\"Endurance\" (onClick)=\"changeType('run')\" [disabled]=\"isEndurance\"\n        [cutCornerRight]=\"true\"></app-button>\n      <app-button label=\"Gym record\" (onClick)=\"changeType('gym')\" [disabled]=\"isGym\"\n        [cutCornerLeft]=\"true\"></app-button>\n    </div>\n    } @if(successMessage){\n    <p class=\"green\">Successfully added new record!</p>\n    }\n  </div>\n  @if(!successMessage){ @if(isEndurance){\n  <div class=\"new-record-page-form-container\" [formGroup]=\"newRecord\">\n    <div class=\"new-record-page-form-container-element\">\n      <label for=\"discipline\">Select type:</label>\n      <select name=\"discipline\" id=\"discipline\" formControlName=\"type\"\n        (change)=\"onTypeChange(this.newRecord.value.type!)\">\n        <option value=\"run\">Running</option>\n        <option value=\"bike\">Cycling</option>\n        <option value=\"swim\">Swimming</option>\n      </select>\n    </div>\n    <div class=\"new-record-page-form-container-element\">\n      <label for=\"distance\">Select distance:</label>\n      <select name=\"distance\" id=\"distance\" formControlName=\"distance\">\n        @if(newRecord.value.type === 'run'){ @for(value of runningDistances;\n        track $index){\n        <option [value]=\"value\">{{ value }} kilometers</option>\n        } } @if(newRecord.value.type === 'bike'){ @for(value of\n        cyclingDistances; track $index){\n        <option [value]=\"value\">{{ value }} kilometers</option>\n        } } @if(newRecord.value.type === 'swim'){ @for(value of\n        swimmingDistances; track $index){\n        <option [value]=\"value\">{{ value }} kilometers</option>\n        } }\n      </select>\n    </div>\n    <div class=\"new-record-page-form-container-element\">\n      <label for=\"time\">Enter time (hh:mm:ss):</label>\n      <input type=\"text\" id=\"time\" formControlName=\"time\" placeholder=\"hh:mm:ss\"\n        pattern=\"^([0-9]{2}):([0-5][0-9]):([0-5][0-9])$\" maxlength=\"8\" required (input)=\"validateTimeInput($event)\" />\n      @if (newRecord.get('time')?.invalid && newRecord.get('time')?.touched) {\n      <div class=\"error\">Please enter time in hh:mm:ss format.</div>\n      }\n    </div>\n    <app-button (click)=\"addRecord()\" label=\"Add new record\" [disabled]=\"newRecord.invalid\" />\n  </div>\n  }@else {\n  <div class=\"new-record-page-form-container-gym\" [formGroup]=\"newGymRecord\">\n    <div class=\"new-record-page-form-container-gym-element\">\n      <label for=\"body-part\">Body part:</label>\n      <select name=\"body-part\" id=\"body-part\" formControlName=\"bodyPart\"\n        (change)=\"onBodyPartChange(newGymRecord.value.bodyPart!)\">\n        @for(part of bodyPart; track $index){\n        <option [value]=\"part\">{{ part }}</option>\n        }\n      </select>\n    </div>\n    <div class=\"new-record-page-form-container-gym-element\">\n      <label for=\"excercise\">Excercise:</label>\n      <select name=\"excercise\" id=\"excercise\" formControlName=\"excercise\">\n        @if(newGymRecord.value.bodyPart === 'Chest'){ @for(excercise of\n        bodyPartExercises.Chest; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } } @if(newGymRecord.value.bodyPart === 'Back'){ @for(excercise of\n        bodyPartExercises.Back; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } } @if(newGymRecord.value.bodyPart === 'Legs'){ @for(excercise of\n        bodyPartExercises.Legs; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } } @if(newGymRecord.value.bodyPart === 'Shoulders'){ @for(excercise of\n        bodyPartExercises.Shoulders; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } } @if(newGymRecord.value.bodyPart === 'Arms'){ @for(excercise of\n        bodyPartExercises.Arms; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } } @if(newGymRecord.value.bodyPart === 'Core'){ @for(excercise of\n        bodyPartExercises.Core; track $index){\n        <option [value]=\"excercise\">{{ excercise }}</option>\n        } }\n      </select>\n    </div>\n    <div class=\"new-record-page-form-container-gym-element\">\n      <label for=\"weight\">Weight:</label>\n      <input type=\"text\" id=\"weight\" formControlName=\"weight\" min=\"0\" />\n      @if (newGymRecord.get('weight')?.invalid &&\n      newGymRecord.get('weight')?.touched) {\n      <div class=\"error\">Weight must be at least 0.</div>\n      }\n    </div>\n    <div class=\"new-record-page-form-container-gym-element\">\n      <label for=\"reps\">Reps:</label>\n      <input type=\"number\" id=\"reps\" formControlName=\"reps\" min=\"1\" />\n      @if (newGymRecord.get('reps')?.invalid &&\n      newGymRecord.get('reps')?.touched) {\n      <div class=\"error\">Reps must be at least 1.</div>\n      }\n    </div>\n    <app-button (click)=\"addRecordGym()\" label=\"Add new record\" [disabled]=\"newGymRecord.invalid\" />\n  </div>\n  } }\n</div>"
         },
         {
+            "name": "PaginationComponent",
+            "id": "component-PaginationComponent-0af806fd2f72236b76357c262f59ea94a5a6a6a1564b2e50b93c651529f61177365a3356d3875c1c74598c8d4894dc88613de65abf73d8292fe43e1b5864ac92",
+            "file": "src/app/components/elements/pagination/pagination.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-pagination",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./pagination.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "'purple'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "currentPage",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "maxPage",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "nextPage",
+                    "defaultValue": "new EventEmitter<boolean>(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "prevPage",
+                    "defaultValue": "new EventEmitter<boolean>(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-pagination',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './pagination.component.html',\n  styleUrl: './pagination.component.scss',\n})\nexport class PaginationComponent {\n  @Input() currentPage = 0;\n  @Input() maxPage = 0;\n  @Input() color = 'purple';\n  @Output() nextPage = new EventEmitter<boolean>(true);\n  @Output() prevPage = new EventEmitter<boolean>(true);\n\n  public get classes(): string[] {\n    return [`pagination-${this.color}`];\n  }\n}\n",
+            "styleUrl": "./pagination.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 18
+                    }
+                }
+            },
+            "templateData": "<div class=\"pagination-component\">\n  <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"{'disabled': currentPage === 1, classes}\"><</div>\n  @if(currentPage === maxPage && maxPage >= 3){\n    <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-number\">{{currentPage - 2}}</div>\n      }\n  @if(currentPage > 1){\n    <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === 1, classes}\">{{currentPage - 1}}</div>\n  }\n  <div class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage}\">{{currentPage}}</div>\n  @if(currentPage < maxPage){\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === maxPage, classes}\">{{currentPage + 1}}</div>\n    }\n  @if(currentPage === 1 && maxPage >= 3){\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === maxPage, classes}\">{{currentPage + 2}}</div>\n    }\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"{'disabled': currentPage === maxPage, classes}\">></div>\n</div>\n"
+        },
+        {
             "name": "PrHistoryPageComponent",
-            "id": "component-PrHistoryPageComponent-91b9bf9fcd31ae5a66ba73fd148d7b51c9b1496822ae840a683ab8e25387a29fb883cf77901e263fe207b9016e5d82821723ed4c2835280c6466c5680e879ced",
+            "id": "component-PrHistoryPageComponent-6085219b64dc40b9cf394231d24f4605091ad5b45dfdf6da86aeae3b688d0c6f32c850618b79dcd8ab21b9122cf9dc38e0448170b528fd5b5542d2bd11591308",
             "file": "src/app/pages/pr-history-page/pr-history-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3143,7 +3242,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 32
                 },
                 {
                     "name": "activityTypesColors",
@@ -3154,7 +3253,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 30
+                    "line": 34
                 },
                 {
                     "name": "activityTypesSvg",
@@ -3165,7 +3264,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 33
                 },
                 {
                     "name": "currentPage",
@@ -3176,7 +3275,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 52
+                    "line": 56
                 },
                 {
                     "name": "currentPageGym",
@@ -3187,7 +3286,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 112
+                    "line": 116
                 },
                 {
                     "name": "enduranceRecords",
@@ -3198,7 +3297,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 53
+                    "line": 57
                 },
                 {
                     "name": "gymExcercisesColors",
@@ -3209,7 +3308,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 31
+                    "line": 35
                 },
                 {
                     "name": "gymRecords",
@@ -3220,7 +3319,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 113
+                    "line": 117
                 },
                 {
                     "name": "limitPagination",
@@ -3231,7 +3330,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 48
+                    "line": 52
                 },
                 {
                     "name": "limitPaginationGym",
@@ -3242,7 +3341,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 108
+                    "line": 112
                 },
                 {
                     "name": "loadingEndurance",
@@ -3253,7 +3352,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 47
+                    "line": 51
                 },
                 {
                     "name": "loadingGym",
@@ -3264,7 +3363,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 107
+                    "line": 111
                 },
                 {
                     "name": "maxPage",
@@ -3275,7 +3374,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 51
+                    "line": 55
                 },
                 {
                     "name": "maxPageGym",
@@ -3286,7 +3385,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 111
+                    "line": 115
                 },
                 {
                     "name": "offset",
@@ -3297,7 +3396,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 49
+                    "line": 53
                 },
                 {
                     "name": "offsetGym",
@@ -3308,7 +3407,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 109
+                    "line": 113
                 },
                 {
                     "name": "total",
@@ -3319,7 +3418,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 50
+                    "line": 54
                 },
                 {
                     "name": "totalGym",
@@ -3330,7 +3429,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 110
+                    "line": 114
                 },
                 {
                     "name": "user",
@@ -3340,7 +3439,7 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 27
+                    "line": 31
                 }
             ],
             "methodsClass": [
@@ -3350,7 +3449,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3360,7 +3459,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 115,
+                    "line": 119,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3383,7 +3482,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3426,7 +3525,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 130,
+                    "line": 134,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3456,7 +3555,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 86,
+                    "line": 90,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3466,7 +3565,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 147,
+                    "line": 151,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3476,7 +3575,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 95,
+                    "line": 99,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3486,7 +3585,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 156,
+                    "line": 160,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -3502,18 +3601,18 @@
                     "type": "component"
                 },
                 {
-                    "name": "ButtonComponent",
+                    "name": "SpinnerComponent",
                     "type": "component"
                 },
                 {
-                    "name": "SpinnerComponent",
+                    "name": "PaginationComponent",
                     "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { AppwriteDbService } from '../../services/appwrite-db.service';\nimport { AuthService } from '../../services/auth-service';\nimport {\n  GymRecordsDocuments,\n  RunningAndCyclingRecordsDocuments,\n  User,\n} from '../../services/interfaces/appwrite-db.interfaces';\nimport { CardComponent } from '../../components/elements/card/card.component';\nimport {\n  activityTypes,\n  activityTypesColors,\n  activityTypesSvg,\n  gymExcercisesColors,\n} from '../../data/record-data';\nimport { ButtonComponent } from '../../components/elements/button/button.component';\nimport { SpinnerComponent } from '../../components/spinner/spinner.component';\n\n@Component({\n  selector: 'app-pr-history-page',\n  standalone: true,\n  imports: [CardComponent, ButtonComponent, SpinnerComponent],\n  templateUrl: './pr-history-page.component.html',\n  styleUrl: './pr-history-page.component.scss',\n})\nexport class PrHistoryPageComponent {\n  user?: User;\n  activityTypes = activityTypes;\n  activityTypesSvg = activityTypesSvg;\n  activityTypesColors = activityTypesColors;\n  gymExcercisesColors = gymExcercisesColors;\n\n  constructor(\n    private appWriteDbService: AppwriteDbService,\n    private authService: AuthService\n  ) {\n    this.authService.loggedInUser$.subscribe((user) => {\n      this.user = user;\n    });\n    this.getGymMaxPagination();\n    this.getEnduranceMaxPagination();\n    this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n  }\n\n  //endurance\n  loadingEndurance = false;\n  limitPagination = 5;\n  offset = 0;\n  total = 0;\n  maxPage = 0;\n  currentPage = 1;\n  enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];\n  getEnduranceMaxPagination() {\n    this.appWriteDbService.getUserRecordsLength(this.user!.$id).subscribe({\n      next: (response) => {\n        if (response) {\n          this.total = response.total;\n          this.maxPage = Math.ceil(this.total / this.limitPagination);\n        }\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {},\n    });\n  }\n\n  getUserEnduranceRecordsPagination(limit: number, offset: number) {\n    this.loadingEndurance = true;\n    this.appWriteDbService\n      .getUserRecordsPagination(this.user!.$id, limit, offset)\n      .subscribe({\n        next: (response) => {\n          this.enduranceRecords = response;\n        },\n        error: (error) => {\n          console.error(error);\n        },\n        complete: () => {\n          this.loadingEndurance = false;\n        },\n      });\n  }\n\n  nextPageEndurance() {\n    if (this.currentPage === this.maxPage) {\n    } else {\n      this.offset += this.limitPagination;\n      this.currentPage += 1;\n      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    }\n  }\n\n  prevPageEndurance() {\n    if (this.currentPage === 1) {\n    } else {\n      this.offset -= this.limitPagination;\n      this.currentPage -= 1;\n      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    }\n  }\n\n  //endurance\n\n  //gym\n  loadingGym = false;\n  limitPaginationGym = 5;\n  offsetGym = 0;\n  totalGym = 0;\n  maxPageGym = 0;\n  currentPageGym = 1;\n  gymRecords: GymRecordsDocuments[] = [];\n\n  getGymMaxPagination() {\n    this.appWriteDbService.getUserGymRecordsLength(this.user!.$id).subscribe({\n      next: (response) => {\n        if (response) {\n          this.totalGym = response.total;\n          this.maxPageGym = Math.ceil(this.totalGym / this.limitPaginationGym);\n        }\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {},\n    });\n  }\n\n  getUserGymRecordsPagination(limit: number, offset: number) {\n    this.loadingGym = true;\n    this.appWriteDbService\n      .getUserGymRecordsPagination(this.user!.$id, limit, offset)\n      .subscribe({\n        next: (response) => {\n          this.gymRecords = response;\n        },\n        error: (error) => {\n          console.error(error);\n        },\n        complete: () => {\n          this.loadingGym = false;\n        },\n      });\n  }\n\n  nextPageGym() {\n    if (this.currentPageGym === this.maxPageGym) {\n    } else {\n      this.offsetGym += this.limitPaginationGym;\n      this.currentPageGym += 1;\n      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n    }\n  }\n\n  prevPageGym() {\n    if (this.currentPageGym === 1) {\n    } else {\n      this.offsetGym -= this.limitPaginationGym;\n      this.currentPageGym -= 1;\n      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n    }\n  }\n  //gym\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { AppwriteDbService } from '../../services/appwrite-db.service';\nimport { AuthService } from '../../services/auth-service';\nimport {\n  GymRecordsDocuments,\n  RunningAndCyclingRecordsDocuments,\n  User,\n} from '../../services/interfaces/appwrite-db.interfaces';\nimport { CardComponent } from '../../components/elements/card/card.component';\nimport {\n  activityTypes,\n  activityTypesColors,\n  activityTypesSvg,\n  gymExcercisesColors,\n} from '../../data/record-data';\nimport { SpinnerComponent } from '../../components/spinner/spinner.component';\nimport { PaginationComponent } from '../../components/elements/pagination/pagination.component';\n\n@Component({\n  selector: 'app-pr-history-page',\n  standalone: true,\n  imports: [\n    CardComponent,\n    SpinnerComponent,\n    PaginationComponent,\n  ],\n  templateUrl: './pr-history-page.component.html',\n  styleUrl: './pr-history-page.component.scss',\n})\nexport class PrHistoryPageComponent {\n  user?: User;\n  activityTypes = activityTypes;\n  activityTypesSvg = activityTypesSvg;\n  activityTypesColors = activityTypesColors;\n  gymExcercisesColors = gymExcercisesColors;\n\n  constructor(\n    private appWriteDbService: AppwriteDbService,\n    private authService: AuthService\n  ) {\n    this.authService.loggedInUser$.subscribe((user) => {\n      this.user = user;\n    });\n    this.getGymMaxPagination();\n    this.getEnduranceMaxPagination();\n    this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n  }\n\n  //endurance\n  loadingEndurance = false;\n  limitPagination = 5;\n  offset = 0;\n  total = 0;\n  maxPage = 0;\n  currentPage = 1;\n  enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];\n  getEnduranceMaxPagination() {\n    this.appWriteDbService.getUserRecordsLength(this.user!.$id).subscribe({\n      next: (response) => {\n        if (response) {\n          this.total = response.total;\n          this.maxPage = Math.ceil(this.total / this.limitPagination);\n        }\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {},\n    });\n  }\n\n  getUserEnduranceRecordsPagination(limit: number, offset: number) {\n    this.loadingEndurance = true;\n    this.appWriteDbService\n      .getUserRecordsPagination(this.user!.$id, limit, offset)\n      .subscribe({\n        next: (response) => {\n          this.enduranceRecords = response;\n        },\n        error: (error) => {\n          console.error(error);\n        },\n        complete: () => {\n          this.loadingEndurance = false;\n        },\n      });\n  }\n\n  nextPageEndurance() {\n    if (this.currentPage === this.maxPage) {\n    } else {\n      this.offset += this.limitPagination;\n      this.currentPage += 1;\n      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    }\n  }\n\n  prevPageEndurance() {\n    if (this.currentPage === 1) {\n    } else {\n      this.offset -= this.limitPagination;\n      this.currentPage -= 1;\n      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);\n    }\n  }\n\n  //endurance\n\n  //gym\n  loadingGym = false;\n  limitPaginationGym = 5;\n  offsetGym = 0;\n  totalGym = 0;\n  maxPageGym = 0;\n  currentPageGym = 1;\n  gymRecords: GymRecordsDocuments[] = [];\n\n  getGymMaxPagination() {\n    this.appWriteDbService.getUserGymRecordsLength(this.user!.$id).subscribe({\n      next: (response) => {\n        if (response) {\n          this.totalGym = response.total;\n          this.maxPageGym = Math.ceil(this.totalGym / this.limitPaginationGym);\n        }\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {},\n    });\n  }\n\n  getUserGymRecordsPagination(limit: number, offset: number) {\n    this.loadingGym = true;\n    this.appWriteDbService\n      .getUserGymRecordsPagination(this.user!.$id, limit, offset)\n      .subscribe({\n        next: (response) => {\n          this.gymRecords = response;\n        },\n        error: (error) => {\n          console.error(error);\n        },\n        complete: () => {\n          this.loadingGym = false;\n        },\n      });\n  }\n\n  nextPageGym() {\n    if (this.currentPageGym === this.maxPageGym) {\n    } else {\n      this.offsetGym += this.limitPaginationGym;\n      this.currentPageGym += 1;\n      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n    }\n  }\n\n  prevPageGym() {\n    if (this.currentPageGym === 1) {\n    } else {\n      this.offsetGym -= this.limitPaginationGym;\n      this.currentPageGym -= 1;\n      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);\n    }\n  }\n  //gym\n\n}\n",
             "styleUrl": "./pr-history-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -3537,7 +3636,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 31,
+                "line": 35,
                 "jsdoctags": [
                     {
                         "name": "appWriteDbService",
@@ -3560,7 +3659,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<div class=\"history-page-container\">\n  <div class=\"history-page-container-header\">\n    <div class=\"history-page-container-header-title\">\n      <h2 class=\"no-margin\">Your pr history</h2>\n    </div>\n  </div>\n  <div class=\"history-page-container-content\">\n    <h2>Endurance records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingEndurance){\n      @for(record of enduranceRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"activityTypes[record.type] || ''\" size=\"mobile\" [description]=\"\n            'You recorded ' + record.distance + 'kms in ' + record.record_time\n          \" [svgContent]=\"activityTypesSvg[record.type]\" [color]=\"activityTypesColors[record.type] || ''\" />\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n    <div class=\"history-page-pagination\">\n      <app-button size=\"small\" (click)=\"prevPageEndurance()\" label=\"<\" [disabled]=\"currentPage === 1\">\n      </app-button>\n      <app-button size=\"small\" (click)=\"nextPageEndurance()\" label=\">\" [disabled]=\"maxPage === currentPage\">\n      </app-button>\n    </div>\n    <h2>Gym records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingGym){\n      @for(record of gymRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"record.body_part\" size=\"mobile\"\n          [description]=\"'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'\"\n          [color]=\"gymExcercisesColors[record.body_part] || ''\"></app-card>\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n  </div>\n  <div class=\"history-page-pagination\">\n    <app-button size=\"small\" (click)=\"prevPageGym()\" label=\"<\" [disabled]=\"currentPageGym === 1\">\n    </app-button>\n    <app-button size=\"small\" (click)=\"nextPageGym()\" label=\">\" [disabled]=\"maxPageGym === currentPageGym\">\n    </app-button>\n  </div>\n</div>"
+            "templateData": "<div class=\"history-page-container\">\n  <div class=\"history-page-container-header\">\n    <div class=\"history-page-container-header-title\">\n      <h2 class=\"no-margin\">Your pr history</h2>\n    </div>\n  </div>\n  <div class=\"history-page-container-content\">\n    <h2>Endurance records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingEndurance){\n      @for(record of enduranceRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"activityTypes[record.type] || ''\" size=\"mobile\" [description]=\"\n            'You recorded ' + record.distance + 'kms in ' + record.record_time\n          \" [svgContent]=\"activityTypesSvg[record.type]\" [color]=\"activityTypesColors[record.type] || ''\" />\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n    <div class=\"history-page-pagination\">\n      <app-pagination (nextPage)=\"nextPageEndurance()\" (prevPage)=\"prevPageEndurance()\" [currentPage]=\"currentPage\"\n        [maxPage]=\"maxPage\" />\n    </div>\n    <h2>Gym records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingGym){\n      @for(record of gymRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"record.body_part\" size=\"mobile\"\n          [description]=\"'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'\"\n          [color]=\"gymExcercisesColors[record.body_part] || ''\"></app-card>\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n  </div>\n  <div class=\"history-page-pagination\">\n    <app-pagination (nextPage)=\"nextPageGym()\" (prevPage)=\"prevPageGym()\" [currentPage]=\"currentPageGym\"\n      [maxPage]=\"maxPageGym\" />\n  </div>\n</div>"
         },
         {
             "name": "PrPageComponent",
@@ -4570,6 +4669,15 @@
                 "name": "CardComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/elements/pagination/pagination.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PaginationComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
