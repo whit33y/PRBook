@@ -8,10 +8,15 @@
   justify-content: center;
 }
 
-.home-page-add-container-cards .card:last-child {
-  margin-bottom: 40px;
+.gym-record {
+  margin-top: 5px;
 }
 
-.gym-record{
-  margin-top: 5px;
+h2 {
+  margin: 0;
+  text-align: center;
+}
+
+h2:first-of-type {
+  margin-top: 20px;
 }

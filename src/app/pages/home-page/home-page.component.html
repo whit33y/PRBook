@@ -1,39 +1,4 @@
 <div class="home-page-container">
-    @if(!loading){
-    @if(loadedRecords!.length > 0){
-    <div>
-        <h2>Your last records</h2>
-        @if(loadedRecords![loadedRecords!.length-1].type === 1){
-        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[1]"
-            size='mobile'></app-card>
-        }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {
-        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[2]"
-            size='mobile'></app-card>
-        }@else {
-        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
-            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[3]"
-            size='mobile'></app-card>
-        }
-        @if(loadedGymRecords){
-        <div class="gym-record">
-            <app-card [title]="'Congratulations, new ' + loadedGymRecords[0].excercise + ' record'"
-                [description]="'You lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise + ' for ' + loadedGymRecords[0].reps + ' reps/seconds.'"
-                size='mobile' color="white"></app-card>
-        </div>
-        }
-    </div>
-    }@else {
-    <h2>Your last recorded PR</h2>
-    <app-card title="Nothing to see here!" description="Dont be shy, add your record!"
-        [svgContent]="activityTypesSvg[1]" [size]="isMobile ? 'mobile': 'desktop'"></app-card>
-    }
-    }@else {
-    <div class="home-page-container-loading">
-        <app-spinner></app-spinner>
-    </div>
-    }
     <div class="home-page-add-container">
         <h2>Add new endurance sport record</h2>
         <div class="home-page-add-container-cards">
@@ -62,4 +27,39 @@
             </div>
         </div>
     </div>
+    @if(!loading){
+    @if(loadedRecords!.length > 0){
+    <div>
+        <h2>Your last endurance/gym records</h2>
+        @if(loadedRecords![loadedRecords!.length-1].type === 1){
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[1]"
+            size='mobile'></app-card>
+        }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[2]"
+            size='mobile'></app-card>
+        }@else {
+        <app-card [title]="'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'"
+            [description]="loadedRecords![loadedRecords!.length-1].record_time" [svgContent]="activityTypesSvg[3]"
+            size='mobile'></app-card>
+        }
+        @if(loadedGymRecords){
+        <div class="gym-record">
+            <app-card [title]="'Congratulations, new ' + loadedGymRecords[0].excercise + ' record'"
+                [description]="'You lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise + ' for ' + loadedGymRecords[0].reps + ' reps/seconds.'"
+                size='mobile' color="blue"></app-card>
+        </div>
+        }
+    </div>
+    }@else {
+    <h2>Your last recorded PR</h2>
+    <app-card title="Nothing to see here!" description="Dont be shy, add your record!"
+        [svgContent]="activityTypesSvg[1]" size="mobile"></app-card>
+    }
+    }@else {
+    <div class="home-page-container-loading">
+        <app-spinner></app-spinner>
+    </div>
+    }
 </div>
