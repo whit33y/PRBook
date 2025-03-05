@@ -11,7 +11,9 @@
         [cutCornerLeft]="true"></app-button>
     </div>
     } @if(successMessage){
-    <p class="green">Successfully added new record!</p>
+    
+    <p class="green">Successfully added new record! Redictering...</p>
+    <app-spinner></app-spinner>
     }
   </div>
   @if(!successMessage){ @if(isEndurance){

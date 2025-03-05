@@ -17,11 +17,12 @@ import {
   swimmingDistances,
 } from '../../data/record-data';
 import { User } from '../../services/interfaces/appwrite-db.interfaces';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-new-record-page',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, SpinnerComponent],
   templateUrl: './new-record-page.component.html',
   styleUrl: './new-record-page.component.scss',
 })
