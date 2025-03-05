@@ -19,11 +19,7 @@ import { PaginationComponent } from '../../components/elements/pagination/pagina
 @Component({
   selector: 'app-pr-history-page',
   standalone: true,
-  imports: [
-    CardComponent,
-    SpinnerComponent,
-    PaginationComponent,
-  ],
+  imports: [CardComponent, SpinnerComponent, PaginationComponent],
   templateUrl: './pr-history-page.component.html',
   styleUrl: './pr-history-page.component.scss',
 })
@@ -66,7 +62,12 @@ export class PrHistoryPageComponent {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {},
+      complete: () => {
+        if (this.currentPage > this.maxPage) {
+          console.log('change');
+          this.currentPage = this.maxPage;
+        }
+      },
     });
   }
 
@@ -127,7 +128,12 @@ export class PrHistoryPageComponent {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {},
+      complete: () => {
+        if (this.currentPageGym > this.maxPageGym) {
+          console.log('change');
+          this.currentPageGym = this.maxPageGym;
+        }
+      },
     });
   }
 
@@ -167,4 +173,33 @@ export class PrHistoryPageComponent {
   }
   //gym
 
+  //delete
+
+  logDelete(id: string) {
+    console.log(id);
+  }
+
+  deleteGymRecord(document_id: string) {
+    this.appWriteDbService.deleteGymRecord(document_id).subscribe({
+      next: (response) => {},
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        window.location.reload();
+      },
+    });
+  }
+
+  deleteEnduranceRecord(document_id: string) {
+    this.appWriteDbService.deleteEnduranceRecord(document_id).subscribe({
+      next: (response) => {},
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        window.location.reload();
+      },
+    });
+  }
 }

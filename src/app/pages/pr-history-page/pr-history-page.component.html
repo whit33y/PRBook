@@ -12,7 +12,8 @@
       <div class="card-margin">
         <app-card [title]="activityTypes[record.type] || ''" size="mobile" [description]="
             'You recorded ' + record.distance + 'kms in ' + record.record_time
-          " [svgContent]="activityTypesSvg[record.type]" [color]="activityTypesColors[record.type] || ''" />
+          " [svgContent]="activityTypesSvg[record.type]" [color]="activityTypesColors[record.type] || ''"
+          [delete]="true" (emitDelete)="deleteEnduranceRecord(record.$id)" />
       </div>
       }
       }@else {
@@ -21,7 +22,7 @@
     </div>
     <div class="history-page-pagination">
       <app-pagination (nextPage)="nextPageEndurance()" (prevPage)="prevPageEndurance()" [currentPage]="currentPage"
-        [maxPage]="maxPage"/>
+        [maxPage]="maxPage" />
     </div>
     <h2>Gym records</h2>
     <div class="history-page-container-content-records">
@@ -30,7 +31,8 @@
       <div class="card-margin">
         <app-card [title]="record.body_part" size="mobile"
           [description]="'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'"
-          [color]="gymExcercisesColors[record.body_part] || ''"></app-card>
+          [color]="gymExcercisesColors[record.body_part] || ''" [delete]="true"
+          (emitDelete)="deleteGymRecord(record.$id)"></app-card>
       </div>
       }
       }@else {
@@ -40,6 +42,6 @@
   </div>
   <div class="history-page-pagination">
     <app-pagination (nextPage)="nextPageGym()" (prevPage)="prevPageGym()" [currentPage]="currentPageGym"
-      [maxPage]="maxPageGym"/>
+      [maxPage]="maxPageGym" />
   </div>
 </div>
