@@ -63,10 +63,6 @@ export class PrHistoryPageComponent {
         console.error(error);
       },
       complete: () => {
-        if (this.currentPage > this.maxPage) {
-          console.log('change');
-          this.currentPage = this.maxPage;
-        }
       },
     });
   }
@@ -129,10 +125,6 @@ export class PrHistoryPageComponent {
         console.error(error);
       },
       complete: () => {
-        if (this.currentPageGym > this.maxPageGym) {
-          console.log('change');
-          this.currentPageGym = this.maxPageGym;
-        }
       },
     });
   }
@@ -186,7 +178,12 @@ export class PrHistoryPageComponent {
         console.error(error);
       },
       complete: () => {
-        window.location.reload();
+        this.getGymMaxPagination();
+        this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
+        if(this.currentPageGym === this.maxPageGym){
+          this.prevPageEndurance();
+          this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
+        }
       },
     });
   }
@@ -198,7 +195,12 @@ export class PrHistoryPageComponent {
         console.error(error);
       },
       complete: () => {
-        window.location.reload();
+        this.getEnduranceMaxPagination();
+        this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
+        if(this.currentPage === this.maxPage){
+          this.prevPageEndurance();
+          this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
+        }
       },
     });
   }
