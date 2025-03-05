@@ -595,7 +595,7 @@
     "injectables": [
         {
             "name": "AppwriteDbService",
-            "id": "injectable-AppwriteDbService-cfb9a0bb9f345a6f44bcf8b4414241681ec5078f92adeb125429e41161f817187fab56631938dbb11cb3984477f0235f5ae2302c255a0e4db92df384fdef7dc7",
+            "id": "injectable-AppwriteDbService-f431b85547b89d91a70914f66b885ad6a713b6de1c04d2ae66acffabe1b0a7755637f4045b843e59d06ea488e02a1f5b4f22cd7980be433590f8deb3affaaad0",
             "file": "src/app/services/appwrite-db.service.ts",
             "properties": [
                 {
@@ -692,7 +692,7 @@
                     "optional": false,
                     "returnType": "Observable<GymRecordsDocuments | null>",
                     "typeParameters": [],
-                    "line": 250,
+                    "line": 255,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -774,7 +774,7 @@
                     "optional": false,
                     "returnType": "Observable<RunningAndCyclingRecordsDocuments | null>",
                     "typeParameters": [],
-                    "line": 223,
+                    "line": 228,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -817,6 +817,62 @@
                     ]
                 },
                 {
+                    "name": "deleteEnduranceRecord",
+                    "args": [
+                        {
+                            "name": "record_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 288,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "record_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteGymRecord",
+                    "args": [
+                        {
+                            "name": "record_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 304,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "record_id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
                     "name": "getBestGymRecord",
                     "args": [
                         {
@@ -835,7 +891,7 @@
                     "optional": false,
                     "returnType": "Observable<GymRecordsDocuments | null>",
                     "typeParameters": [],
-                    "line": 159,
+                    "line": 164,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -884,7 +940,7 @@
                     "optional": false,
                     "returnType": "Observable<RunningAndCyclingRecordsDocuments | null>",
                     "typeParameters": [],
-                    "line": 186,
+                    "line": 191,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -930,7 +986,7 @@
                     "optional": false,
                     "returnType": "Observable<GymRecordsDocuments[]>",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 104,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -958,7 +1014,7 @@
                     "optional": false,
                     "returnType": "Observable<GymRecords>",
                     "typeParameters": [],
-                    "line": 118,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -998,7 +1054,7 @@
                     "optional": false,
                     "returnType": "Observable<GymRecordsDocuments[]>",
                     "typeParameters": [],
-                    "line": 135,
+                    "line": 140,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1072,7 +1128,7 @@
                     "optional": false,
                     "returnType": "Observable<RunningAndCyclingRecords>",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1112,7 +1168,7 @@
                     "optional": false,
                     "returnType": "Observable<RunningAndCyclingRecordsDocuments[]>",
                     "typeParameters": [],
-                    "line": 70,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1150,7 +1206,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Databases, Query } from 'appwrite';\nimport { client } from '../../lib/appwrite';\nimport { environment } from '../../../environment';\nimport {\n  GymRecords,\n  GymRecordsDocuments,\n  RunningAndCyclingRecords,\n  RunningAndCyclingRecordsDocuments,\n} from './interfaces/appwrite-db.interfaces';\nimport { catchError, from, map, Observable, of } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AppwriteDbService {\n  private database: Databases;\n  private databaseId = environment.databaseId;\n  private runningAndCyclingRecordsId = environment.runningAndCyclingRecordsId;\n  private gymRecordsId = environment.gymRecordsId;\n\n  constructor() {\n    this.database = new Databases(client);\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  getUserRecords(\n    userId: string\n  ): Observable<RunningAndCyclingRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [Query.equal('user_id', userId), Query.orderDesc('$createdAt')]\n      )\n    ).pipe(\n      map(\n        (response) => response.documents as RunningAndCyclingRecordsDocuments[]\n      ),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserRecordsLength(userId: string): Observable<RunningAndCyclingRecords> {\n    if (!userId) {\n      return of();\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [Query.equal('user_id', userId)]\n      )\n    ).pipe(\n      map((response) => response as RunningAndCyclingRecords),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of();\n      })\n    );\n  }\n\n  getUserRecordsPagination(\n    userId: string,\n    limit: number,\n    offset: number\n  ): Observable<RunningAndCyclingRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [\n          Query.equal('user_id', userId),\n          Query.orderDesc('$createdAt'),\n          Query.limit(limit),\n          Query.offset(offset),\n        ]\n      )\n    ).pipe(\n      map(\n        (response) => response.documents as RunningAndCyclingRecordsDocuments[]\n      ),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserGymRecords(userId: string): Observable<GymRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.orderDesc('$createdAt'),\n      ])\n    ).pipe(\n      map((response) => response.documents as GymRecordsDocuments[]),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserGymRecordsLength(userId: string): Observable<GymRecords> {\n    if (!userId) {\n      return of();\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n      ])\n    ).pipe(\n      map((response) => response as GymRecords),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of();\n      })\n    );\n  }\n\n  getUserGymRecordsPagination(\n    userId: string,\n    limit: number,\n    offset: number\n  ): Observable<GymRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.orderDesc('$createdAt'),\n        Query.limit(limit),\n        Query.offset(offset),\n      ])\n    ).pipe(\n      map((response) => response.documents as GymRecordsDocuments[]),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getBestGymRecord(\n    userId: string,\n    exercise: string\n  ): Observable<GymRecordsDocuments | null> {\n    if (!userId || !exercise) {\n      return of(null);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.equal('excercise', exercise),\n        Query.orderDesc('weight'),\n        Query.limit(1),\n      ])\n    ).pipe(\n      map((response) =>\n        response.documents.length > 0\n          ? (response.documents[0] as GymRecordsDocuments)\n          : null\n      ),\n      catchError((error) => {\n        console.error('Failed loading best gym record:', error);\n        return of(null);\n      })\n    );\n  }\n\n  getBestTimeRecord(\n    userId: string,\n    type: number,\n    distance: number\n  ): Observable<RunningAndCyclingRecordsDocuments | null> {\n    if (!userId || !type || !distance) {\n      return of(null);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [\n          Query.equal('user_id', userId),\n          Query.equal('type', type),\n          Query.equal('distance', distance),\n          Query.orderAsc('record_time'),\n          Query.limit(1),\n        ]\n      )\n    ).pipe(\n      map((response) =>\n        response.documents.length > 0\n          ? (response.documents[0] as RunningAndCyclingRecordsDocuments)\n          : null\n      ),\n      catchError((error) => {\n        console.error('Failed loading best time record:', error);\n        return of(null);\n      })\n    );\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  //create create create create create create create create create\n\n  createNewRecord(\n    user_id: string,\n    distance: number,\n    record_time: string,\n    type: number\n  ): Observable<RunningAndCyclingRecordsDocuments | null> {\n    return from(\n      this.database.createDocument(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        'unique()',\n        {\n          user_id,\n          distance,\n          record_time,\n          type,\n        }\n      )\n    ).pipe(\n      map((response) => response as RunningAndCyclingRecordsDocuments),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  createNewGymRecord(\n    user_id: string,\n    weight: number,\n    body_part: string,\n    excercise: string,\n    reps: number\n  ): Observable<GymRecordsDocuments | null> {\n    return from(\n      this.database.createDocument(\n        this.databaseId,\n        this.gymRecordsId,\n        'unique()',\n        {\n          user_id,\n          weight,\n          body_part,\n          excercise,\n          reps,\n        }\n      )\n    ).pipe(\n      map((response) => response as GymRecordsDocuments),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  //create create create create create create create create create\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Databases, Query } from 'appwrite';\nimport { client } from '../../lib/appwrite';\nimport { environment } from '../../../environment';\nimport {\n  GymRecords,\n  GymRecordsDocuments,\n  RunningAndCyclingRecords,\n  RunningAndCyclingRecordsDocuments,\n} from './interfaces/appwrite-db.interfaces';\nimport { catchError, from, map, Observable, of } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AppwriteDbService {\n  private database: Databases;\n  private databaseId = environment.databaseId;\n  private runningAndCyclingRecordsId = environment.runningAndCyclingRecordsId;\n  private gymRecordsId = environment.gymRecordsId;\n\n  constructor() {\n    this.database = new Databases(client);\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  getUserRecords(\n    userId: string\n  ): Observable<RunningAndCyclingRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [\n          Query.equal('user_id', userId),\n          Query.orderDesc('$createdAt'),\n          Query.limit(1),\n        ]\n      )\n    ).pipe(\n      map(\n        (response) => response.documents as RunningAndCyclingRecordsDocuments[]\n      ),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserRecordsLength(userId: string): Observable<RunningAndCyclingRecords> {\n    if (!userId) {\n      return of();\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [Query.equal('user_id', userId)]\n      )\n    ).pipe(\n      map((response) => response as RunningAndCyclingRecords),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of();\n      })\n    );\n  }\n\n  getUserRecordsPagination(\n    userId: string,\n    limit: number,\n    offset: number\n  ): Observable<RunningAndCyclingRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [\n          Query.equal('user_id', userId),\n          Query.orderDesc('$createdAt'),\n          Query.limit(limit),\n          Query.offset(offset),\n        ]\n      )\n    ).pipe(\n      map(\n        (response) => response.documents as RunningAndCyclingRecordsDocuments[]\n      ),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserGymRecords(userId: string): Observable<GymRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.orderDesc('$createdAt'),\n        Query.limit(1),\n      ])\n    ).pipe(\n      map((response) => response.documents as GymRecordsDocuments[]),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getUserGymRecordsLength(userId: string): Observable<GymRecords> {\n    if (!userId) {\n      return of();\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n      ])\n    ).pipe(\n      map((response) => response as GymRecords),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of();\n      })\n    );\n  }\n\n  getUserGymRecordsPagination(\n    userId: string,\n    limit: number,\n    offset: number\n  ): Observable<GymRecordsDocuments[]> {\n    if (!userId) {\n      return of([]);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.orderDesc('$createdAt'),\n        Query.limit(limit),\n        Query.offset(offset),\n      ])\n    ).pipe(\n      map((response) => response.documents as GymRecordsDocuments[]),\n      catchError((error) => {\n        console.error('Failed loading records:', error);\n        return of([]);\n      })\n    );\n  }\n\n  getBestGymRecord(\n    userId: string,\n    exercise: string\n  ): Observable<GymRecordsDocuments | null> {\n    if (!userId || !exercise) {\n      return of(null);\n    }\n    return from(\n      this.database.listDocuments(this.databaseId, this.gymRecordsId, [\n        Query.equal('user_id', userId),\n        Query.equal('excercise', exercise),\n        Query.orderDesc('weight'),\n        Query.limit(1),\n      ])\n    ).pipe(\n      map((response) =>\n        response.documents.length > 0\n          ? (response.documents[0] as GymRecordsDocuments)\n          : null\n      ),\n      catchError((error) => {\n        console.error('Failed loading best gym record:', error);\n        return of(null);\n      })\n    );\n  }\n\n  getBestTimeRecord(\n    userId: string,\n    type: number,\n    distance: number\n  ): Observable<RunningAndCyclingRecordsDocuments | null> {\n    if (!userId || !type || !distance) {\n      return of(null);\n    }\n    return from(\n      this.database.listDocuments(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        [\n          Query.equal('user_id', userId),\n          Query.equal('type', type),\n          Query.equal('distance', distance),\n          Query.orderAsc('record_time'),\n          Query.limit(1),\n        ]\n      )\n    ).pipe(\n      map((response) =>\n        response.documents.length > 0\n          ? (response.documents[0] as RunningAndCyclingRecordsDocuments)\n          : null\n      ),\n      catchError((error) => {\n        console.error('Failed loading best time record:', error);\n        return of(null);\n      })\n    );\n  }\n\n  //get get get get get get get get get get get get get get get get\n\n  //create create create create create create create create create\n\n  createNewRecord(\n    user_id: string,\n    distance: number,\n    record_time: string,\n    type: number\n  ): Observable<RunningAndCyclingRecordsDocuments | null> {\n    return from(\n      this.database.createDocument(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        'unique()',\n        {\n          user_id,\n          distance,\n          record_time,\n          type,\n        }\n      )\n    ).pipe(\n      map((response) => response as RunningAndCyclingRecordsDocuments),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  createNewGymRecord(\n    user_id: string,\n    weight: number,\n    body_part: string,\n    excercise: string,\n    reps: number\n  ): Observable<GymRecordsDocuments | null> {\n    return from(\n      this.database.createDocument(\n        this.databaseId,\n        this.gymRecordsId,\n        'unique()',\n        {\n          user_id,\n          weight,\n          body_part,\n          excercise,\n          reps,\n        }\n      )\n    ).pipe(\n      map((response) => response as GymRecordsDocuments),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  //create create create create create create create create create\n\n  //delete delete delete delete delete delete delete delete delete\n\n  deleteEnduranceRecord(record_id: string): Observable<any> {\n    return from(\n      this.database.deleteDocument(\n        this.databaseId,\n        this.runningAndCyclingRecordsId,\n        record_id\n      )\n    ).pipe(\n      map((response) => response),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  deleteGymRecord(record_id: string): Observable<any> {\n    return from(\n      this.database.deleteDocument(\n        this.databaseId,\n        this.gymRecordsId,\n        record_id\n      )\n    ).pipe(\n      map((response) => response),\n      catchError((error) => {\n        console.error(error);\n        return of(null);\n      })\n    );\n  }\n\n  //delete delete delete delete delete delete delete delete delete\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -1777,7 +1833,7 @@
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-b1c013ea631f47725b33f7575f13fb74946ab4b4abadd79d626067dbcf5f5cf41bf547ea36d53bc619210d1d48f094b2bec36f211fd1afd753e3ff6820c1c50e",
+            "id": "component-CardComponent-f178e0052886cc57c6092ffdb963d2e2c29fcc145ff240d7f73d8006332edaed1c93a837044d1ad1ae33dfa5c052d4fcfbffcb403d55ee2a03703868059b7769",
             "file": "src/app/components/elements/card/card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1800,6 +1856,15 @@
                     "deprecationMessage": "",
                     "line": 16,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "delete",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1833,7 +1898,7 @@
                     "name": "svgContent",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 21,
                     "type": "string",
                     "decorators": []
                 },
@@ -1849,11 +1914,19 @@
             ],
             "outputsClass": [
                 {
+                    "name": "emitDelete",
+                    "defaultValue": "new EventEmitter<boolean>(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "EventEmitter"
+                },
+                {
                     "name": "onClick",
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 19,
                     "type": "EventEmitter"
                 }
             ],
@@ -1867,7 +1940,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 24,
+                    "line": 26,
                     "modifierKind": [
                         123
                     ]
@@ -1881,7 +1954,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35
+                    "line": 37
                 }
             ],
             "methodsClass": [],
@@ -1899,7 +1972,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n@Component({\n  selector: 'app-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './card.component.html',\n  styleUrl: './card.component.scss',\n})\nexport class CardComponent {\n  @Input() size: 'desktop' | 'mobile' = 'desktop';\n  @Input() title: string = 'Title';\n  @Input() description: string = 'Example description!';\n  @Input() color: string = 'purple';\n  @Input() pointer: boolean = false;\n  @Output() onClick = new EventEmitter<Event>();\n  @Input() set svgContent(content: string) {\n    this._svgContent = content || this._svgContent;\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(content);\n  }\n\n  private _svgContent: string = `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\"\n            stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path d=\"M2 12h1\" />\n            <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n            <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M9 12h6\" />\n            <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n            <path d=\"M22 12h-1\" />\n        </svg>`;\n  safeSvgContent: SafeHtml = '';\n\n  constructor(private sanitizer: DomSanitizer) {\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(\n      this._svgContent\n    );\n  }\n\n  get svgContent(): string {\n    return this._svgContent;\n  }\n\n  public get classes(): string[] {\n    const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';\n    const pointer = this.pointer ? 'pointer' : 'no-pointer';\n    return ['card', mode, `card-${this.color}`, pointer];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n@Component({\n  selector: 'app-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './card.component.html',\n  styleUrl: './card.component.scss',\n})\nexport class CardComponent {\n  @Input() size: 'desktop' | 'mobile' = 'desktop';\n  @Input() title: string = 'Title';\n  @Input() description: string = 'Example description!';\n  @Input() color: string = 'purple';\n  @Input() pointer: boolean = false;\n  @Input() delete?: boolean = false;\n  @Output() onClick = new EventEmitter<Event>();\n  @Output() emitDelete = new EventEmitter<boolean>(true);\n  @Input() set svgContent(content: string) {\n    this._svgContent = content || this._svgContent;\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(content);\n  }\n\n  private _svgContent: string = `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\"\n            stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path d=\"M2 12h1\" />\n            <path d=\"M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2\" />\n            <path d=\"M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M9 12h6\" />\n            <path d=\"M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z\" />\n            <path d=\"M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2\" />\n            <path d=\"M22 12h-1\" />\n        </svg>`;\n  safeSvgContent: SafeHtml = '';\n\n  constructor(private sanitizer: DomSanitizer) {\n    this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(\n      this._svgContent\n    );\n  }\n\n  get svgContent(): string {\n    return this._svgContent;\n  }\n\n  public get classes(): string[] {\n    const mode = this.size === 'desktop' ? 'card-desktop' : 'card-mobile';\n    const pointer = this.pointer ? 'pointer' : 'no-pointer';\n    return ['card', mode, `card-${this.color}`, pointer];\n  }\n}\n",
             "styleUrl": "./card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1917,7 +1990,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 35,
+                "line": 37,
                 "jsdoctags": [
                     {
                         "name": "sanitizer",
@@ -1948,7 +2021,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 19,
+                        "line": 21,
                         "jsdoctags": [
                             {
                                 "name": "content",
@@ -1965,7 +2038,7 @@
                         "name": "svgContent",
                         "type": "string",
                         "returnType": "string",
-                        "line": 43
+                        "line": 45
                     }
                 },
                 "classes": {
@@ -1974,15 +2047,15 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 47
+                        "line": 49
                     }
                 }
             },
-            "templateData": "<div [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    <div class=\"card-image\">\n        <div class=\"svg-container\" [innerHTML]=\"safeSvgContent\"></div>\n    </div>\n    <div class=\"card-text\">\n        <div class=\"card-text-title\">\n            <h3>{{title}}</h3>\n        </div>\n        <div class=\"card-text-description\">\n            <p>{{description}}</p>\n        </div>\n    </div>\n</div>"
+            "templateData": "<div [ngClass]=\"classes\" (click)=\"onClick.emit($event)\">\n    <div class=\"card-image\">\n        <div class=\"svg-container\" [innerHTML]=\"safeSvgContent\"></div>\n    </div>\n    <div class=\"card-text\">\n        <div class=\"card-text-title\">\n            <h3>{{title}}</h3>\n        </div>\n        <div class=\"card-text-description\">\n            <p>{{description}}</p>\n        </div>\n    </div>\n    @if(delete){\n    <div class=\"card-delete\" (click)=\"emitDelete.emit(true)\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\"\n            class=\"icon icon-tabler icons-tabler-filled icon-tabler-trash\">\n            <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n            <path\n                d=\"M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z\" />\n            <path\n                d=\"M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z\" />\n        </svg>\n    </div>\n    }\n</div>"
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-8a60337cd99521c7582c2a72c84db07777cc4769e848fd04b47a2e0271da9c95164593ad36dab9db1ee343bdc5c1e938ce8fbb3c6d2d2aa468edd1d3aa2edf10",
+            "id": "component-FooterComponent-73acb8df9bd983f99b3a87027fa0f2c7509b8bdbbc15359ca226a4a1fe3bdeba7d20be394360bf9008c46ac4f274101f9650cab0fc1a5bf5cc74d828870ba943",
             "file": "src/app/components/footer/footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2000,7 +2073,28 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "goToGithub",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "goToLinkedin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -2010,13 +2104,39 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-footer',\n  standalone: true,\n  imports: [],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss'\n})\nexport class FooterComponent {\n\n}\n",
+            "sourceCode": "import { DOCUMENT } from '@angular/common';\nimport { Component, Inject } from '@angular/core';\n\n@Component({\n  selector: 'app-footer',\n  standalone: true,\n  imports: [],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n})\nexport class FooterComponent {\n  constructor(@Inject(DOCUMENT) private document: Document) {}\n\n  goToGithub() {\n    window.open('https://github.com/whit33y');\n  }\n\n  goToLinkedin() {\n    window.open('https://www.linkedin.com/in/jakub-bryska-b905b0279/');\n  }\n}\n",
             "styleUrl": "./footer.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "document",
+                        "type": "Document",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "document",
+                        "type": "Document",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<footer>\n    <div class=\"footer-container\">\n        <div>\n            <p>PRBook 2025</p>\n        </div>\n        <div class=\"footer-container-links\">\n            <div class=\"link\">\n                Github\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-github\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path\n                        d=\"M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5\" />\n                </svg>\n            </div>\n            <div class=\"link\">\n                Linkedin\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M8 11v5\" />\n                    <path d=\"M8 8v.01\" />\n                    <path d=\"M12 16v-5\" />\n                    <path d=\"M16 16v-3a2 2 0 1 0 -4 0\" />\n                    <path d=\"M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\" />\n                </svg>\n            </div>\n        </div>\n    </div>\n</footer>"
+            "templateData": "<footer>\n    <div class=\"footer-container\">\n        <div>\n            <p>PRBook 2025</p>\n        </div>\n        <div class=\"footer-container-links\">\n            <div class=\"link\" (click)=\"goToGithub()\">\n                Github\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-github\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path\n                        d=\"M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5\" />\n                </svg>\n            </div>\n            <div class=\"link\" (click)=\"goToLinkedin()\">\n                Linkedin\n                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"\n                    stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                    class=\"icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin\">\n                    <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n                    <path d=\"M8 11v5\" />\n                    <path d=\"M8 8v.01\" />\n                    <path d=\"M12 16v-5\" />\n                    <path d=\"M16 16v-3a2 2 0 1 0 -4 0\" />\n                    <path d=\"M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\" />\n                </svg>\n            </div>\n        </div>\n    </div>\n</footer>"
         },
         {
             "name": "HeaderComponent",
@@ -2203,7 +2323,7 @@
         },
         {
             "name": "HomePageComponent",
-            "id": "component-HomePageComponent-dc6082a4f7b869f05fc6a00cd47aff88b4a21c056d2cf447180813ec6775d921aabee1e38fc5a64884f478233a785392b5e0a21006e0b18c7cb66c563c3985af",
+            "id": "component-HomePageComponent-2af8bd64827d5cdd9bc67141cd3bff3343383d14b04703ba5f74ee72debbf27790dbea607cade32c0c8c297619905e098ecf266004140453b5d11de3617b48c5",
             "file": "src/app/pages/home-page/home-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2222,11 +2342,11 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "bike",
-                    "defaultValue": "'<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-bike\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M19 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M12 19l0 -4l-3 -3l5 -4l2 3l3 0\" /><path d=\"M17 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /></svg>'",
+                    "name": "activityTypesSvg",
+                    "defaultValue": "activityTypesSvg",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
@@ -2241,7 +2361,17 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 28
+                },
+                {
+                    "name": "loadedGymRecords",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "GymRecordsDocuments[] | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 63
                 },
                 {
                     "name": "loadedRecords",
@@ -2251,7 +2381,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 48
+                    "line": 46
                 },
                 {
                     "name": "loading",
@@ -2262,29 +2392,18 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 47
+                    "line": 45
                 },
                 {
-                    "name": "runner",
-                    "defaultValue": "'<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-run\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M4 17l5 1l.75 -1.5\" /><path d=\"M15 21l0 -4l-4 -3l1 -6\" /><path d=\"M7 12l0 -3l5 -1l3 3l3 1\" /></svg>'",
+                    "name": "loadingGym",
+                    "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "boolean",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 33
-                },
-                {
-                    "name": "swim",
-                    "defaultValue": "'<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-swimming\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M16 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M6 11l4 -2l3.5 3l-1.5 2\" /><path d=\"M3 16.75a2.4 2.4 0 0 0 1 .25a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 1 -.25\" /></svg>'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 37
+                    "line": 62
                 },
                 {
                     "name": "user",
@@ -2294,10 +2413,38 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 39
+                    "line": 36
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "loadGymRecords",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "loadUserRecords",
                     "args": [
@@ -2311,7 +2458,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 49,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2346,7 +2493,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 79,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2377,7 +2524,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2387,7 +2534,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 31,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -2413,7 +2560,7 @@
                     ],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29
+                    "line": 31
                 }
             ],
             "standalone": true,
@@ -2430,7 +2577,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, HostListener } from '@angular/core';\nimport { AppwriteDbService } from '../../services/appwrite-db.service';\nimport { AuthService } from '../../services/auth-service';\nimport { CardComponent } from '../../components/elements/card/card.component';\nimport {\n  RunningAndCyclingRecordsDocuments,\n  User,\n} from '../../services/interfaces/appwrite-db.interfaces';\nimport { Router } from '@angular/router';\nimport { SpinnerComponent } from '../../components/spinner/spinner.component';\n\n@Component({\n  selector: 'app-home-page',\n  standalone: true,\n  imports: [CardComponent, SpinnerComponent],\n  templateUrl: './home-page.component.html',\n  styleUrl: './home-page.component.scss',\n})\nexport class HomePageComponent {\n  constructor(\n    private AppwriteDbService: AppwriteDbService,\n    private authService: AuthService,\n    private router: Router\n  ) {}\n\n  isMobile: boolean = window.innerWidth <= 768;\n\n  @HostListener('window:resize', ['$event'])\n  onResize() {\n    this.isMobile = window.innerWidth <= 768;\n  }\n\n  runner =\n    '<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-run\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M4 17l5 1l.75 -1.5\" /><path d=\"M15 21l0 -4l-4 -3l1 -6\" /><path d=\"M7 12l0 -3l5 -1l3 3l3 1\" /></svg>';\n  bike =\n    '<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-bike\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M5 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M19 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\" /><path d=\"M12 19l0 -4l-3 -3l5 -4l2 3l3 0\" /><path d=\"M17 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /></svg>';\n  swim =\n    '<svg  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"  fill=\"none\"  stroke=\"currentColor\"  stroke-width=\"2\"  stroke-linecap=\"round\"  stroke-linejoin=\"round\"  class=\"icon icon-tabler icons-tabler-outline icon-tabler-swimming\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M16 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\" /><path d=\"M6 11l4 -2l3.5 3l-1.5 2\" /><path d=\"M3 16.75a2.4 2.4 0 0 0 1 .25a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 1 -.25\" /></svg>';\n  user?: User;\n  ngOnInit() {\n    this.authService.loggedInUser$.subscribe((user) => {\n      this.user = user;\n    });\n    this.loadUserRecords(this.user!.$id);\n  }\n\n  loading: boolean = false;\n  loadedRecords: RunningAndCyclingRecordsDocuments[] | undefined;\n  loadUserRecords(id: string) {\n    this.loading = true;\n    this.AppwriteDbService.getUserRecords(id).subscribe({\n      next: (response) => {\n        this.loadedRecords = response;\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {\n        this.loading = false;\n      },\n    });\n  }\n\n  navigateTo(route: string, params?: { [key: string]: any }) {\n    if (params) {\n      this.router.navigate([route], { queryParams: params });\n    } else {\n      this.router.navigate([route]);\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, HostListener } from '@angular/core';\nimport { AppwriteDbService } from '../../services/appwrite-db.service';\nimport { AuthService } from '../../services/auth-service';\nimport { CardComponent } from '../../components/elements/card/card.component';\nimport {\n  GymRecordsDocuments,\n  RunningAndCyclingRecordsDocuments,\n  User,\n} from '../../services/interfaces/appwrite-db.interfaces';\nimport { Router } from '@angular/router';\nimport { SpinnerComponent } from '../../components/spinner/spinner.component';\nimport { activityTypesSvg } from '../../data/record-data';\n\n@Component({\n  selector: 'app-home-page',\n  standalone: true,\n  imports: [CardComponent, SpinnerComponent],\n  templateUrl: './home-page.component.html',\n  styleUrl: './home-page.component.scss',\n})\nexport class HomePageComponent {\n  constructor(\n    private AppwriteDbService: AppwriteDbService,\n    private authService: AuthService,\n    private router: Router\n  ) {}\n\n  isMobile: boolean = window.innerWidth <= 768;\n\n  @HostListener('window:resize', ['$event'])\n  onResize() {\n    this.isMobile = window.innerWidth <= 768;\n  }\n\n  activityTypesSvg = activityTypesSvg\n  user?: User;\n  ngOnInit() {\n    this.authService.loggedInUser$.subscribe((user) => {\n      this.user = user;\n    });\n    this.loadUserRecords(this.user!.$id);\n    this.loadGymRecords(this.user!.$id);\n  }\n\n  loading: boolean = false;\n  loadedRecords: RunningAndCyclingRecordsDocuments[] | undefined;\n  loadUserRecords(id: string) {\n    this.loading = true;\n    this.AppwriteDbService.getUserRecords(id).subscribe({\n      next: (response) => {\n        this.loadedRecords = response;\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {\n        this.loading = false;\n      },\n    });\n  }\n\n  loadingGym: boolean = false\n  loadedGymRecords: GymRecordsDocuments[] | undefined;\n  loadGymRecords(id: string){\n    this.loadingGym = true;\n    this.AppwriteDbService.getUserGymRecords(id).subscribe({\n      next: (response) => {\n        this.loadedGymRecords = response;\n      },\n      error: (error) => {\n        console.error(error);\n      },\n      complete: () => {\n        this.loadingGym = false;\n      },\n    });\n  }\n\n  navigateTo(route: string, params?: { [key: string]: any }) {\n    if (params) {\n      this.router.navigate([route], { queryParams: params });\n    } else {\n      this.router.navigate([route]);\n    }\n  }\n}\n",
             "styleUrl": "./home-page.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -2460,7 +2607,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 19,
+                "line": 21,
                 "jsdoctags": [
                     {
                         "name": "AppwriteDbService",
@@ -2492,7 +2639,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<div class=\"home-page-container\">\n    @if(!loading){\n    @if(loadedRecords!.length > 0){\n    <div>\n        <h2>Your last recorded endurance PR</h2>\n        @if(loadedRecords![loadedRecords!.length-1].type === 1){\n        <app-card [title]=\"'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"runner\"\n            [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n        }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {\n        <app-card [title]=\"'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"bike\"\n            [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n        }@else {\n        <app-card [title]=\"'Congratulation ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"swim\"\n            [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n        }\n    </div>\n    }@else {\n    <h2>Your last recorded PR</h2>\n    <app-card title=\"Nothing to see here!\" description=\"Dont be shy, add your record!\" [svgContent]=\"runner\"\n        [size]=\"isMobile ? 'mobile': 'desktop'\"></app-card>\n    }\n    }@else {\n    <div class=\"home-page-container-loading\">\n        <app-spinner></app-spinner>\n    </div>\n    }\n    <div class=\"home-page-add-container\">\n        <h2>Add new endurance sport record</h2>\n        <div class=\"home-page-add-container-cards\">\n            <div class=\"card\">\n                <app-card title=\"New running record!\" description=\"That was pretty fast!\" [svgContent]=\"runner\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"blue\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'run'})\"></app-card>\n            </div>\n            <div class=\"card\">\n                <app-card title=\"New bikeing record!\" description=\"Great job!\" [svgContent]=\"bike\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"green\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'bike'})\"></app-card>\n            </div>\n            <div class=\"card\">\n                <app-card title=\"New swiming record!\" description=\"Like a fish!\" [svgContent]=\"swim\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"red\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'swim'})\"></app-card>\n            </div>\n        </div>\n        <h2>Add new strength record</h2>\n        <div class=\"home-page-add-container-cards\">\n            <div class=\"card\">\n                <app-card title=\"Chest, biceps, triceps\" description=\"Getting stronger huh?\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'gym'})\"></app-card>\n            </div>\n        </div>\n    </div>\n</div>"
+            "templateData": "<div class=\"home-page-container\">\n    <div class=\"home-page-add-container\">\n        <h2>Add new endurance sport record</h2>\n        <div class=\"home-page-add-container-cards\">\n            <div class=\"card\">\n                <app-card title=\"New running record!\" description=\"That was pretty fast!\"\n                    [svgContent]=\"activityTypesSvg[1]\" [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"blue\"\n                    [pointer]='true' (onClick)=\"navigateTo('/new-record', {type: 'run'})\"></app-card>\n            </div>\n            <div class=\"card\">\n                <app-card title=\"New bikeing record!\" description=\"Great job!\" [svgContent]=\"activityTypesSvg[2]\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"green\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'bike'})\"></app-card>\n            </div>\n            <div class=\"card\">\n                <app-card title=\"New swiming record!\" description=\"Like a fish!\" [svgContent]=\"activityTypesSvg[3]\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" color=\"red\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'swim'})\"></app-card>\n            </div>\n        </div>\n        <h2>Add new strength record</h2>\n        <div class=\"home-page-add-container-cards\">\n            <div class=\"card\">\n                <app-card title=\"Chest, biceps, triceps\" description=\"Getting stronger huh?\"\n                    [size]=\"isMobile ? 'mobile': 'desktop'\" [pointer]='true'\n                    (onClick)=\"navigateTo('/new-record', {type: 'gym'})\"></app-card>\n            </div>\n        </div>\n    </div>\n    @if(!loading){\n    @if(loadedRecords!.length > 0){\n    <div>\n        <h2>Your last endurance/gym records</h2>\n        @if(loadedRecords![loadedRecords!.length-1].type === 1){\n        <app-card [title]=\"'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"activityTypesSvg[1]\"\n            size='mobile'></app-card>\n        }@else if(loadedRecords![loadedRecords!.length-1].type === 2) {\n        <app-card [title]=\"'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"activityTypesSvg[2]\"\n            size='mobile'></app-card>\n        }@else {\n        <app-card [title]=\"'Congratulations ' + loadedRecords![loadedRecords!.length-1].distance + 'km' + ' record'\"\n            [description]=\"loadedRecords![loadedRecords!.length-1].record_time\" [svgContent]=\"activityTypesSvg[3]\"\n            size='mobile'></app-card>\n        }\n        @if(loadedGymRecords){\n        <div class=\"gym-record\">\n            <app-card [title]=\"'Congratulations, new ' + loadedGymRecords[0].excercise + ' record'\"\n                [description]=\"'You lifted ' + loadedGymRecords[0].weight + 'kg in ' + loadedGymRecords[0].excercise + ' for ' + loadedGymRecords[0].reps + ' reps/seconds.'\"\n                size='mobile' color=\"blue\"></app-card>\n        </div>\n        }\n    </div>\n    }@else {\n    <h2>Your last recorded PR</h2>\n    <app-card title=\"Nothing to see here!\" description=\"Dont be shy, add your record!\"\n        [svgContent]=\"activityTypesSvg[1]\" size=\"mobile\"></app-card>\n    }\n    }@else {\n    <div class=\"home-page-container-loading\">\n        <app-spinner></app-spinner>\n    </div>\n    }\n</div>"
         },
         {
             "name": "LoginPageComponent",
@@ -3116,7 +3263,7 @@
         },
         {
             "name": "PaginationComponent",
-            "id": "component-PaginationComponent-0af806fd2f72236b76357c262f59ea94a5a6a6a1564b2e50b93c651529f61177365a3356d3875c1c74598c8d4894dc88613de65abf73d8292fe43e1b5864ac92",
+            "id": "component-PaginationComponent-36e0aa062141ed47dbd2936a57d77fd1bb974935655e27362069fc06ddda0f5847d6c6c71a4ad3f9e52f5769ac55dc120ade7979807e7ba9fd293400618ee4f0",
             "file": "src/app/components/elements/pagination/pagination.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3194,24 +3341,33 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-pagination',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './pagination.component.html',\n  styleUrl: './pagination.component.scss',\n})\nexport class PaginationComponent {\n  @Input() currentPage = 0;\n  @Input() maxPage = 0;\n  @Input() color = 'purple';\n  @Output() nextPage = new EventEmitter<boolean>(true);\n  @Output() prevPage = new EventEmitter<boolean>(true);\n\n  public get classes(): string[] {\n    return [`pagination-${this.color}`];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-pagination',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './pagination.component.html',\n  styleUrl: './pagination.component.scss',\n})\nexport class PaginationComponent {\n  @Input() currentPage = 0;\n  @Input() maxPage = 0;\n  @Input() color = 'purple';\n  @Output() nextPage = new EventEmitter<boolean>(true);\n  @Output() prevPage = new EventEmitter<boolean>(true);\n\n  public get buttonClass(): string[] {\n    return [`button-${this.color}`];\n  }\n  public get numberClass(): string[] {\n    return [`number-${this.color}`];\n  }\n}\n",
             "styleUrl": "./pagination.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
             "accessors": {
-                "classes": {
-                    "name": "classes",
+                "buttonClass": {
+                    "name": "buttonClass",
                     "getSignature": {
-                        "name": "classes",
+                        "name": "buttonClass",
                         "type": "[]",
                         "returnType": "string[]",
                         "line": 18
                     }
+                },
+                "numberClass": {
+                    "name": "numberClass",
+                    "getSignature": {
+                        "name": "numberClass",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 21
+                    }
                 }
             },
-            "templateData": "<div class=\"pagination-component\">\n  <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"{'disabled': currentPage === 1, classes}\"><</div>\n  @if(currentPage === maxPage && maxPage >= 3){\n    <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-number\">{{currentPage - 2}}</div>\n      }\n  @if(currentPage > 1){\n    <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === 1, classes}\">{{currentPage - 1}}</div>\n  }\n  <div class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage}\">{{currentPage}}</div>\n  @if(currentPage < maxPage){\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === maxPage, classes}\">{{currentPage + 1}}</div>\n    }\n  @if(currentPage === 1 && maxPage >= 3){\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-number\" [ngClass]=\"{'active': currentPage === maxPage, classes}\">{{currentPage + 2}}</div>\n    }\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"{'disabled': currentPage === maxPage, classes}\">></div>\n</div>\n"
+            "templateData": "<div class=\"pagination-component\">\n  <div (click)=\"prevPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"currentPage === 1 ? 'disabled' : buttonClass\"><</div>\n  <div class=\"pagination-component-number\" [ngClass]=\"numberClass\">{{currentPage}} / {{maxPage}}</div>\n  <div (click)=\"nextPage.emit(true)\" class=\"pagination-component-button\" [ngClass]=\"currentPage === maxPage ? 'disabled' : buttonClass\">></div>\n</div>\n"
         },
         {
             "name": "PrHistoryPageComponent",
@@ -3659,7 +3815,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<div class=\"history-page-container\">\n  <div class=\"history-page-container-header\">\n    <div class=\"history-page-container-header-title\">\n      <h2 class=\"no-margin\">Your pr history</h2>\n    </div>\n  </div>\n  <div class=\"history-page-container-content\">\n    <h2>Endurance records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingEndurance){\n      @for(record of enduranceRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"activityTypes[record.type] || ''\" size=\"mobile\" [description]=\"\n            'You recorded ' + record.distance + 'kms in ' + record.record_time\n          \" [svgContent]=\"activityTypesSvg[record.type]\" [color]=\"activityTypesColors[record.type] || ''\" />\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n    <div class=\"history-page-pagination\">\n      <app-pagination (nextPage)=\"nextPageEndurance()\" (prevPage)=\"prevPageEndurance()\" [currentPage]=\"currentPage\"\n        [maxPage]=\"maxPage\" />\n    </div>\n    <h2>Gym records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingGym){\n      @for(record of gymRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"record.body_part\" size=\"mobile\"\n          [description]=\"'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'\"\n          [color]=\"gymExcercisesColors[record.body_part] || ''\"></app-card>\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n  </div>\n  <div class=\"history-page-pagination\">\n    <app-pagination (nextPage)=\"nextPageGym()\" (prevPage)=\"prevPageGym()\" [currentPage]=\"currentPageGym\"\n      [maxPage]=\"maxPageGym\" />\n  </div>\n</div>"
+            "templateData": "<div class=\"history-page-container\">\n  <div class=\"history-page-container-header\">\n    <div class=\"history-page-container-header-title\">\n      <h2 class=\"no-margin\">Your pr history</h2>\n    </div>\n  </div>\n  <div class=\"history-page-container-content\">\n    <h2>Endurance records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingEndurance){\n      @for(record of enduranceRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"activityTypes[record.type] || ''\" size=\"mobile\" [description]=\"\n            'You recorded ' + record.distance + 'kms in ' + record.record_time\n          \" [svgContent]=\"activityTypesSvg[record.type]\" [color]=\"activityTypesColors[record.type] || ''\" />\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n    <div class=\"history-page-pagination\">\n      <app-pagination (nextPage)=\"nextPageEndurance()\" (prevPage)=\"prevPageEndurance()\" [currentPage]=\"currentPage\"\n        [maxPage]=\"maxPage\"/>\n    </div>\n    <h2>Gym records</h2>\n    <div class=\"history-page-container-content-records\">\n      @if(!loadingGym){\n      @for(record of gymRecords; track $index){\n      <div class=\"card-margin\">\n        <app-card [title]=\"record.body_part\" size=\"mobile\"\n          [description]=\"'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'\"\n          [color]=\"gymExcercisesColors[record.body_part] || ''\"></app-card>\n      </div>\n      }\n      }@else {\n      <app-spinner />\n      }\n    </div>\n  </div>\n  <div class=\"history-page-pagination\">\n    <app-pagination (nextPage)=\"nextPageGym()\" (prevPage)=\"prevPageGym()\" [currentPage]=\"currentPageGym\"\n      [maxPage]=\"maxPageGym\"/>\n  </div>\n</div>"
         },
         {
             "name": "PrPageComponent",
@@ -4668,7 +4824,7 @@
                 "linktype": "component",
                 "name": "CardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/13",
                 "status": "low"
             },
             {
@@ -4686,7 +4842,7 @@
                 "linktype": "component",
                 "name": "FooterComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -4812,7 +4968,7 @@
                 "linktype": "component",
                 "name": "HomePageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -4866,7 +5022,7 @@
                 "linktype": "injectable",
                 "name": "AppwriteDbService",
                 "coveragePercent": 0,
-                "coverageCount": "0/16",
+                "coverageCount": "0/18",
                 "status": "low"
             },
             {

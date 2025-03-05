@@ -77,12 +77,17 @@
   background-color: var(--background-red);
 }
 
-.card-yellow{
+.card-yellow {
   border-color: var(--main-yellow);
   background-color: var(--background-yellow);
 }
 
-.card-white{
+.card-white {
   border-color: var(--main-white);
   background-color: var(--background-white);
+}
+
+.card-delete {
+  display: flex;
+  align-items: center;
 }

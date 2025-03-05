@@ -15,7 +15,9 @@ export class CardComponent {
   @Input() description: string = 'Example description!';
   @Input() color: string = 'purple';
   @Input() pointer: boolean = false;
+  @Input() delete?: boolean = false;
   @Output() onClick = new EventEmitter<Event>();
+  @Output() emitDelete = new EventEmitter<boolean>(true);
   @Input() set svgContent(content: string) {
     this._svgContent = content || this._svgContent;
     this.safeSvgContent = this.sanitizer.bypassSecurityTrustHtml(content);
