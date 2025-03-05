@@ -1,3 +1,3 @@
-<button type="button" [ngClass]="classes" (click)="onClick.emit($event)">
+<button type="button" [ngClass]="classes" (click)="onClick.emit($event)" [disabled]="disabled">
     <p>{{label}}</p>
 </button>
