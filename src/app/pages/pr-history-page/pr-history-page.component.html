@@ -16,6 +16,9 @@
           [delete]="true" (emitDelete)="deleteEnduranceRecord(record.$id)" />
       </div>
       }
+      @if(enduranceRecords.length === 0){
+        <p>No records to show!</p>
+      }
       }@else {
       <app-spinner />
       }
@@ -34,6 +37,9 @@
           [color]="gymExcercisesColors[record.body_part] || ''" [delete]="true"
           (emitDelete)="deleteGymRecord(record.$id)"></app-card>
       </div>
+      }
+      @if(gymRecords.length === 0){
+        <p>No records to show!</p>
       }
       }@else {
       <app-spinner />

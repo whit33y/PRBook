@@ -1,5 +1,5 @@
 <div class="pagination-component">
-  <div (click)="prevPage.emit(true)" class="pagination-component-button" [ngClass]="currentPage === 1 ? 'disabled' : buttonClass"><</div>
+  <div (click)="prevPage.emit(true)" class="pagination-component-button" [ngClass]="currentPage === 1 || maxPage === 0 ? 'disabled' : buttonClass"><</div>
   <div class="pagination-component-number" [ngClass]="numberClass">{{currentPage}} / {{maxPage}}</div>
-  <div (click)="nextPage.emit(true)" class="pagination-component-button" [ngClass]="currentPage === maxPage ? 'disabled' : buttonClass">></div>
+  <div (click)="nextPage.emit(true)" class="pagination-component-button" [ngClass]="currentPage === maxPage || maxPage === 0 ? 'disabled' : buttonClass">></div>
 </div>
