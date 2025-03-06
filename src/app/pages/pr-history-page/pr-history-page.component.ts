@@ -117,16 +117,20 @@ export class PrHistoryPageComponent {
       console.error('Invalid service method');
       return;
     }
-    type ? (this.loadingEndurance = true) : (this.loadingGym = true);
+    type === 'endurance'
+      ? (this.loadingEndurance = true)
+      : (this.loadingGym = true);
     (serviceMethod as Observable<any>).subscribe({
       next: (response) => {
-        type
+        type === 'endurance'
           ? (this.enduranceRecords = response)
           : (this.gymRecords = response);
       },
       error: (error) => console.error(error),
       complete: () => {
-        type ? (this.loadingEndurance = false) : (this.loadingGym = false);
+        type === 'endurance'
+          ? (this.loadingEndurance = false)
+          : (this.loadingGym = false);
       },
     });
   }
