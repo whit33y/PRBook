@@ -45,80 +45,97 @@ export class PrPageComponent {
     });
     if (this.user) {
       for (let group of this.enduranceGroupsFor) {
-        this.enduranceRecordsPushArray(
+        this.recordsPushArray(
+          'endurance',
+          group.array,
           group.type,
           group.distances,
-          group.array
+          undefined
         );
       }
       for (let group of this.gymExcerciseGroupFor) {
-        this.gymRecordsPushArray(group.part, group.array);
+        this.recordsPushArray(
+          'gym',
+          group.array,
+          undefined,
+          undefined,
+          group.part
+        );
       }
     }
   }
 
-  //endurance endurance endurance endurance endurance endurance
   loadingEndurance = false;
-  runningDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  cyclingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  swimmingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  enduranceGroups = [
-    { title: 'Running', data: this.runningDistancesArray },
-    { title: 'Cycling', data: this.cyclingDistancesArray },
-    { title: 'Swimming', data: this.swimmingDistancesArray },
-  ];
-  enduranceGroupsFor = [
-    {
-      type: 1,
-      distances: this.runningDistances,
-      array: this.runningDistancesArray,
-    },
-    {
-      type: 2,
-      distances: this.cyclingDistances,
-      array: this.cyclingDistancesArray,
-    },
-    {
-      type: 3,
-      distances: this.swimmingDistances,
-      array: this.swimmingDistancesArray,
-    },
-  ];
+  loadingGym = false;
 
-  getUserBestEnduranceRecord(
-    type: number,
-    distance: number,
-    array: RunningAndCyclingRecordsDocuments[]
+  recordsPushArray(
+    sport: 'endurance' | 'gym',
+    pushArray: any,
+    type?: number,
+    distances?: number[],
+    bodyPart?: string[]
   ) {
-    this.loadingEndurance = true;
-    this.appWriteDbService
-      .getBestTimeRecord(this.user!.$id, type, distance)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            array.push(response);
-          }
-          this.loadingEndurance = false;
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
-  }
-
-  enduranceRecordsPushArray(
-    type: number,
-    distances: number[],
-    pushArray: RunningAndCyclingRecordsDocuments[]
-  ) {
-    for (let i = 0; i < runningDistances.length; i++) {
-      this.getUserBestEnduranceRecord(type, distances[i], pushArray);
+    if (sport === 'endurance' && Array.isArray(pushArray)) {
+      for (let i = 0; i < runningDistances.length; i++) {
+        this.getUserBest(
+          'endurance',
+          pushArray,
+          type!,
+          distances![i],
+          undefined
+        );
+      }
+    }
+    if (sport === 'gym' && bodyPart) {
+      for (let i = 0; i < bodyPart.length; i++) {
+        console.log(pushArray, bodyPart);
+        this.getUserBest('gym', pushArray, undefined, undefined, bodyPart[i]);
+      }
     }
   }
-  //endurance endurance endurance endurance endurance endurance
 
-  //gym gym gym gym gym gym gym gym gym gym gym gym gym gym gym
-  loadingGym = false;
+  getUserBest(
+    sport: 'endurance' | 'gym',
+    array: any,
+    type?: number,
+    distance?: number,
+    excercise?: string
+  ) {
+    if (sport === 'endurance' && Array.isArray(array)) {
+      this.loadingEndurance = true;
+      this.appWriteDbService
+        .getBestTimeRecord(this.user!.$id, type!, distance!)
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              array.push(response);
+            }
+            this.loadingEndurance = false;
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+    }
+    if (sport === 'gym' && Array.isArray(array)) {
+      this.loadingGym = true;
+      this.appWriteDbService
+        .getBestGymRecord(this.user!.$id, excercise!)
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              array.push(response);
+            }
+            this.loadingGym = false;
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+    }
+  }
+
+  //groups
   chestExcercisesArray: GymRecordsDocuments[] = [];
   backExcercisesArray: GymRecordsDocuments[] = [];
   legsExcercisesArray: GymRecordsDocuments[] = [];
@@ -144,28 +161,29 @@ export class PrPageComponent {
     },
     { part: this.bodyPartExcercises.Core, array: this.coreExcercisesArray },
   ];
-
-  getUserBestGymRecord(excercise: string, array: GymRecordsDocuments[]) {
-    this.loadingGym = true;
-    this.appWriteDbService
-      .getBestGymRecord(this.user!.$id, excercise)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            array.push(response);
-          }
-          this.loadingGym = false;
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
-  }
-
-  gymRecordsPushArray(bodyPart: string[], pushArray: GymRecordsDocuments[]) {
-    for (let i = 0; i < bodyPart.length; i++) {
-      this.getUserBestGymRecord(bodyPart[i], pushArray);
-    }
-  }
-  //gym gym gym gym gym gym gym gym gym gym gym gym gym gym gym
+  runningDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
+  cyclingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
+  swimmingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
+  enduranceGroups = [
+    { title: 'Running', data: this.runningDistancesArray },
+    { title: 'Cycling', data: this.cyclingDistancesArray },
+    { title: 'Swimming', data: this.swimmingDistancesArray },
+  ];
+  enduranceGroupsFor = [
+    {
+      type: 1,
+      distances: this.runningDistances,
+      array: this.runningDistancesArray,
+    },
+    {
+      type: 2,
+      distances: this.cyclingDistances,
+      array: this.cyclingDistancesArray,
+    },
+    {
+      type: 3,
+      distances: this.swimmingDistances,
+      array: this.swimmingDistancesArray,
+    },
+  ];
 }

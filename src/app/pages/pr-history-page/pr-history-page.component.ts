@@ -102,17 +102,18 @@ export class PrHistoryPageComponent {
     limit: number,
     offset: number
   ) {
-    const serviceMethod = type
-      ? this.appWriteDbService.getUserRecordsPagination(
-          this.user!.$id,
-          limit,
-          offset
-        )
-      : this.appWriteDbService.getUserGymRecordsPagination(
-          this.user!.$id,
-          limit,
-          offset
-        );
+    const serviceMethod =
+      type === 'endurance'
+        ? this.appWriteDbService.getUserRecordsPagination(
+            this.user!.$id,
+            limit,
+            offset
+          )
+        : this.appWriteDbService.getUserGymRecordsPagination(
+            this.user!.$id,
+            limit,
+            offset
+          );
     if (!serviceMethod || !('subscribe' in serviceMethod)) {
       console.error('Invalid service method');
       return;
