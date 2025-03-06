@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { activityTypesSvg } from '../../data/record-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -19,59 +20,58 @@ import { activityTypesSvg } from '../../data/record-data';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+  activityTypesSvg = activityTypesSvg;
+  user?: User;
+  loadingEndurance: boolean = false;
+  loadedRecords: RunningAndCyclingRecordsDocuments[] | undefined;
+  loadingGym: boolean = false;
+  loadedGymRecords: GymRecordsDocuments[] | undefined;
+
   constructor(
-    private AppwriteDbService: AppwriteDbService,
+    private appWriteDbService: AppwriteDbService,
     private authService: AuthService,
     private router: Router
   ) {}
 
-  isMobile: boolean = window.innerWidth <= 768;
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.isMobile = window.innerWidth <= 768;
-  }
-
-  activityTypesSvg = activityTypesSvg
-  user?: User;
   ngOnInit() {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
     });
-    this.loadUserRecords(this.user!.$id);
-    this.loadGymRecords(this.user!.$id);
+    this.loadUserRecords('endurance', this.user!.$id);
+    this.loadUserRecords('gym', this.user!.$id);
   }
 
-  loading: boolean = false;
-  loadedRecords: RunningAndCyclingRecordsDocuments[] | undefined;
-  loadUserRecords(id: string) {
-    this.loading = true;
-    this.AppwriteDbService.getUserRecords(id).subscribe({
+  loadUserRecords(type: 'endurance' | 'gym', id: string) {
+    const serviceMethod =
+      type === 'endurance'
+        ? this.appWriteDbService.getUserRecords(id)
+        : this.appWriteDbService.getUserGymRecords(id);
+    type === 'endurance'
+      ? (this.loadingEndurance = true)
+      : (this.loadingGym = true);
+    if (!serviceMethod || !('subscribe' in serviceMethod)) {
+      console.error('Invalid service method');
+      return;
+    }
+    (
+      serviceMethod as Observable<
+        RunningAndCyclingRecordsDocuments[] | GymRecordsDocuments[]
+      >
+    ).subscribe({
       next: (response) => {
-        this.loadedRecords = response;
+        if (type === 'endurance') {
+          this.loadedRecords = response as RunningAndCyclingRecordsDocuments[];
+        } else {
+          this.loadedGymRecords = response as GymRecordsDocuments[];
+        }
       },
       error: (error) => {
         console.error(error);
       },
       complete: () => {
-        this.loading = false;
-      },
-    });
-  }
-
-  loadingGym: boolean = false
-  loadedGymRecords: GymRecordsDocuments[] | undefined;
-  loadGymRecords(id: string){
-    this.loadingGym = true;
-    this.AppwriteDbService.getUserGymRecords(id).subscribe({
-      next: (response) => {
-        this.loadedGymRecords = response;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        this.loadingGym = false;
+        type === 'endurance'
+          ? (this.loadingEndurance = false)
+          : (this.loadingGym = false);
       },
     });
   }
@@ -82,5 +82,11 @@ export class HomePageComponent {
     } else {
       this.router.navigate([route]);
     }
+  }
+
+  isMobile: boolean = window.innerWidth <= 768;
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isMobile = window.innerWidth <= 768;
   }
 }
