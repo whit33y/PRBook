@@ -15,6 +15,7 @@ import {
 } from '../../data/record-data';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { PaginationComponent } from '../../components/elements/pagination/pagination.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pr-history-page',
@@ -37,10 +38,18 @@ export class PrHistoryPageComponent {
     this.authService.loggedInUser$.subscribe((user) => {
       this.user = user;
     });
-    this.getGymMaxPagination();
-    this.getEnduranceMaxPagination();
-    this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
-    this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
+    this.getMaxPagination('endurance');
+    this.getMaxPagination('gym');
+    this.getUserRecordsPagination(
+      'endurance',
+      this.limitPagination,
+      this.offset
+    );
+    this.getUserRecordsPagination(
+      'gym',
+      this.limitPaginationGym,
+      this.offsetGym
+    );
   }
 
   //endurance
@@ -51,59 +60,6 @@ export class PrHistoryPageComponent {
   maxPage = 0;
   currentPage = 1;
   enduranceRecords: RunningAndCyclingRecordsDocuments[] = [];
-  getEnduranceMaxPagination() {
-    this.appWriteDbService.getUserRecordsLength(this.user!.$id).subscribe({
-      next: (response) => {
-        if (response) {
-          this.total = response.total;
-          this.maxPage = Math.ceil(this.total / this.limitPagination);
-        }
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-      },
-    });
-  }
-
-  getUserEnduranceRecordsPagination(limit: number, offset: number) {
-    this.loadingEndurance = true;
-    this.appWriteDbService
-      .getUserRecordsPagination(this.user!.$id, limit, offset)
-      .subscribe({
-        next: (response) => {
-          this.enduranceRecords = response;
-        },
-        error: (error) => {
-          console.error(error);
-        },
-        complete: () => {
-          this.loadingEndurance = false;
-        },
-      });
-  }
-
-  nextPageEndurance() {
-    if (this.currentPage === this.maxPage) {
-    } else {
-      this.offset += this.limitPagination;
-      this.currentPage += 1;
-      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
-    }
-  }
-
-  prevPageEndurance() {
-    if (this.currentPage === 1) {
-    } else {
-      this.offset -= this.limitPagination;
-      this.currentPage -= 1;
-      this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
-    }
-  }
-
-  //endurance
-
   //gym
   loadingGym = false;
   limitPaginationGym = 5;
@@ -113,91 +69,165 @@ export class PrHistoryPageComponent {
   currentPageGym = 1;
   gymRecords: GymRecordsDocuments[] = [];
 
-  getGymMaxPagination() {
-    this.appWriteDbService.getUserGymRecordsLength(this.user!.$id).subscribe({
+  //get records
+  getMaxPagination(type: 'endurance' | 'gym') {
+    const serviceMethod =
+      type === 'endurance'
+        ? this.appWriteDbService.getUserRecordsLength(this.user!.$id)
+        : this.appWriteDbService.getUserGymRecordsLength(this.user!.$id);
+    if (!serviceMethod || !('subscribe' in serviceMethod)) {
+      console.error('Invalid service method');
+      return;
+    }
+    (serviceMethod as Observable<{ total: number }>).subscribe({
       next: (response) => {
         if (response) {
-          this.totalGym = response.total;
-          this.maxPageGym = Math.ceil(this.totalGym / this.limitPaginationGym);
+          if (type === 'endurance') {
+            this.total = response.total;
+            this.maxPage = Math.ceil(this.total / this.limitPagination);
+          } else {
+            this.totalGym = response.total;
+            this.maxPageGym = Math.ceil(
+              this.totalGym / this.limitPaginationGym
+            );
+          }
         }
       },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-      },
+      error: (error) => console.error(error),
     });
   }
 
-  getUserGymRecordsPagination(limit: number, offset: number) {
-    this.loadingGym = true;
-    this.appWriteDbService
-      .getUserGymRecordsPagination(this.user!.$id, limit, offset)
-      .subscribe({
-        next: (response) => {
-          this.gymRecords = response;
-        },
-        error: (error) => {
-          console.error(error);
-        },
-        complete: () => {
-          this.loadingGym = false;
-        },
-      });
-  }
-
-  nextPageGym() {
-    if (this.currentPageGym === this.maxPageGym) {
-    } else {
-      this.offsetGym += this.limitPaginationGym;
-      this.currentPageGym += 1;
-      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
+  getUserRecordsPagination(
+    type: 'endurance' | 'gym',
+    limit: number,
+    offset: number
+  ) {
+    const serviceMethod = type
+      ? this.appWriteDbService.getUserRecordsPagination(
+          this.user!.$id,
+          limit,
+          offset
+        )
+      : this.appWriteDbService.getUserGymRecordsPagination(
+          this.user!.$id,
+          limit,
+          offset
+        );
+    if (!serviceMethod || !('subscribe' in serviceMethod)) {
+      console.error('Invalid service method');
+      return;
     }
+    type ? (this.loadingEndurance = true) : (this.loadingGym = true);
+    (serviceMethod as Observable<any>).subscribe({
+      next: (response) => {
+        type
+          ? (this.enduranceRecords = response)
+          : (this.gymRecords = response);
+      },
+      error: (error) => console.error(error),
+      complete: () => {
+        type ? (this.loadingEndurance = false) : (this.loadingGym = false);
+      },
+    });
   }
-
-  prevPageGym() {
-    if (this.currentPageGym === 1) {
-    } else {
-      this.offsetGym -= this.limitPaginationGym;
-      this.currentPageGym -= 1;
-      this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
-    }
-  }
-  //gym
-
+  //get records
   //delete
-
-  deleteGymRecord(document_id: string) {
-    this.appWriteDbService.deleteGymRecord(document_id).subscribe({
+  deleteRecord(document_id: string, type: 'endurance' | 'gym') {
+    const serviceMethod =
+      type === 'endurance' ? 'deleteEnduranceRecord' : 'deleteGymRecord';
+    this.appWriteDbService[serviceMethod](document_id).subscribe({
       next: () => {},
       error: (error) => {
         console.error(error);
       },
       complete: () => {
-        this.getGymMaxPagination();
-        this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
-        if(this.currentPageGym === this.maxPageGym){
-          this.prevPageGym();
-          this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
+        if (type === 'endurance') {
+          this.getMaxPagination('endurance');
+          this.getUserRecordsPagination(
+            'endurance',
+            this.limitPagination,
+            this.offset
+          );
+          if (this.currentPage === this.maxPage) {
+            this.prevPage('endurance');
+            this.getUserRecordsPagination(
+              'endurance',
+              this.limitPagination,
+              this.offset
+            );
+          }
+        }
+        if (type === 'gym') {
+          this.getMaxPagination('gym');
+          this.getUserRecordsPagination(
+            'gym',
+            this.limitPaginationGym,
+            this.offsetGym
+          );
+          if (this.currentPageGym === this.maxPageGym) {
+            this.prevPage('gym');
+            this.getUserRecordsPagination(
+              'gym',
+              this.limitPaginationGym,
+              this.offsetGym
+            );
+          }
         }
       },
     });
   }
-
-  deleteEnduranceRecord(document_id: string) {
-    this.appWriteDbService.deleteEnduranceRecord(document_id).subscribe({
-      next: () => {},
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
-        this.getEnduranceMaxPagination();
-        this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
-        if(this.currentPage === this.maxPage){
-          this.prevPageEndurance();
-          this.getUserEnduranceRecordsPagination(this.limitPagination, this.offset);
-        }
-      },
-    });
+  //delte
+  //pagination functions
+  nextPage(type: 'endurance' | 'gym') {
+    if (type === 'endurance') {
+      if (this.currentPage === this.maxPage) {
+      } else {
+        this.offset += this.limitPagination;
+        this.currentPage += 1;
+        this.getUserRecordsPagination(
+          'endurance',
+          this.limitPagination,
+          this.offset
+        );
+      }
+    }
+    if (type === 'gym') {
+      if (this.currentPageGym === this.maxPageGym) {
+      } else {
+        this.offsetGym += this.limitPaginationGym;
+        this.currentPageGym += 1;
+        this.getUserRecordsPagination(
+          'gym',
+          this.limitPaginationGym,
+          this.offsetGym
+        );
+      }
+    }
+  }
+  prevPage(type: 'endurance' | 'gym') {
+    if (type === 'endurance') {
+      if (this.currentPage === 1) {
+      } else {
+        this.offset -= this.limitPagination;
+        this.currentPage -= 1;
+        this.getUserRecordsPagination(
+          'endurance',
+          this.limitPagination,
+          this.offset
+        );
+      }
+    }
+    if (type === 'gym') {
+      if (this.currentPageGym === 1) {
+      } else {
+        this.offsetGym -= this.limitPaginationGym;
+        this.currentPageGym -= 1;
+        this.getUserRecordsPagination(
+          'gym',
+          this.limitPaginationGym,
+          this.offsetGym
+        );
+      }
+    }
   }
 }

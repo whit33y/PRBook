@@ -13,18 +13,18 @@
         <app-card [title]="activityTypes[record.type] || ''" size="mobile" [description]="
             'You recorded ' + record.distance + 'kms in ' + record.record_time
           " [svgContent]="activityTypesSvg[record.type]" [color]="activityTypesColors[record.type] || ''"
-          [delete]="true" (emitDelete)="deleteEnduranceRecord(record.$id)" />
+          [delete]="true" (emitDelete)="deleteRecord(record.$id, 'endurance')" />
       </div>
       }
       @if(enduranceRecords.length === 0){
-        <p>No records to show!</p>
+      <p>No records to show!</p>
       }
       }@else {
       <app-spinner />
       }
     </div>
     <div class="history-page-pagination">
-      <app-pagination (nextPage)="nextPageEndurance()" (prevPage)="prevPageEndurance()" [currentPage]="currentPage"
+      <app-pagination (nextPage)="nextPage('endurance')" (prevPage)="prevPage('endurance')" [currentPage]="currentPage"
         [maxPage]="maxPage" />
     </div>
     <h2>Gym records</h2>
@@ -35,11 +35,11 @@
         <app-card [title]="record.body_part" size="mobile"
           [description]="'You recorded ' + record.weight + ' kgs in ' + record.excercise + ' for ' + record.reps + ' reps/seconds'"
           [color]="gymExcercisesColors[record.body_part] || ''" [delete]="true"
-          (emitDelete)="deleteGymRecord(record.$id)"></app-card>
+          (emitDelete)="deleteRecord(record.$id, 'gym')"></app-card>
       </div>
       }
       @if(gymRecords.length === 0){
-        <p>No records to show!</p>
+      <p>No records to show!</p>
       }
       }@else {
       <app-spinner />
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="history-page-pagination">
-    <app-pagination (nextPage)="nextPageGym()" (prevPage)="prevPageGym()" [currentPage]="currentPageGym"
+    <app-pagination (nextPage)="nextPage('gym')" (prevPage)="prevPage('gym')" [currentPage]="currentPageGym"
       [maxPage]="maxPageGym" />
   </div>
 </div>
