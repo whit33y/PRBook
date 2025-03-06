@@ -167,13 +167,9 @@ export class PrHistoryPageComponent {
 
   //delete
 
-  logDelete(id: string) {
-    console.log(id);
-  }
-
   deleteGymRecord(document_id: string) {
     this.appWriteDbService.deleteGymRecord(document_id).subscribe({
-      next: (response) => {},
+      next: () => {},
       error: (error) => {
         console.error(error);
       },
@@ -181,7 +177,7 @@ export class PrHistoryPageComponent {
         this.getGymMaxPagination();
         this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
         if(this.currentPageGym === this.maxPageGym){
-          this.prevPageEndurance();
+          this.prevPageGym();
           this.getUserGymRecordsPagination(this.limitPaginationGym, this.offsetGym);
         }
       },
@@ -190,7 +186,7 @@ export class PrHistoryPageComponent {
 
   deleteEnduranceRecord(document_id: string) {
     this.appWriteDbService.deleteEnduranceRecord(document_id).subscribe({
-      next: (response) => {},
+      next: () => {},
       error: (error) => {
         console.error(error);
       },
