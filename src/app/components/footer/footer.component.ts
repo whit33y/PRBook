@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -9,13 +8,9 @@ import { Component, Inject } from '@angular/core';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor() {}
 
-  goToGithub() {
-    window.open('https://github.com/whit33y');
-  }
-
-  goToLinkedin() {
-    window.open('https://www.linkedin.com/in/jakub-bryska-b905b0279/');
+  goTo(link: string) {
+    window.open(link);
   }
 }
