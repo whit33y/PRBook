@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  GymRecordsDocuments,
-  RunningAndCyclingRecordsDocuments,
-  User,
-} from '../../services/interfaces/appwrite-db.interfaces';
+import { User } from '../../services/interfaces/appwrite-db.interfaces';
 import { AuthService } from '../../services/auth-service';
 import { AppwriteDbService } from '../../services/appwrite-db.service';
 import {
@@ -18,6 +14,12 @@ import {
 } from '../../data/record-data';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { CardComponent } from '../../components/elements/card/card.component';
+import {
+  gymExerciseGroups,
+  gymExcerciseGroupFor,
+  enduranceGroups,
+  enduranceGroupsFor,
+} from '../../data/pr-page-data';
 
 @Component({
   selector: 'app-pr-page',
@@ -27,7 +29,6 @@ import { CardComponent } from '../../components/elements/card/card.component';
   styleUrl: './pr-page.component.scss',
 })
 export class PrPageComponent {
-  user?: User;
   runningDistances = runningDistances;
   cyclingDistances = cyclingDistances;
   swimmingDistances = swimmingDistances;
@@ -36,6 +37,14 @@ export class PrPageComponent {
   activityTypesSvg = activityTypesSvg;
   activityTypesColors = activityTypesColors;
   gymExcercisesColors = gymExcercisesColors;
+  gymExerciseGroups = gymExerciseGroups;
+  gymExcerciseGroupFor = gymExcerciseGroupFor;
+  enduranceGroups = enduranceGroups;
+  enduranceGroupsFor = enduranceGroupsFor;
+
+  user?: User;
+  loadingEndurance: boolean = false;
+  loadingGym: boolean = false;
   constructor(
     private authService: AuthService,
     private appWriteDbService: AppwriteDbService
@@ -64,9 +73,6 @@ export class PrPageComponent {
       }
     }
   }
-
-  loadingEndurance = false;
-  loadingGym = false;
 
   recordsPushArray(
     sport: 'endurance' | 'gym',
@@ -134,56 +140,4 @@ export class PrPageComponent {
         });
     }
   }
-
-  //groups
-  chestExcercisesArray: GymRecordsDocuments[] = [];
-  backExcercisesArray: GymRecordsDocuments[] = [];
-  legsExcercisesArray: GymRecordsDocuments[] = [];
-  shouldersExcercisesArray: GymRecordsDocuments[] = [];
-  armsExcercisesArray: GymRecordsDocuments[] = [];
-  coreExcercisesArray: GymRecordsDocuments[] = [];
-  gymExerciseGroups = [
-    { title: 'Chest', data: this.chestExcercisesArray },
-    { title: 'Back', data: this.backExcercisesArray },
-    { title: 'Legs', data: this.legsExcercisesArray },
-    { title: 'Arms', data: this.armsExcercisesArray },
-    { title: 'Shoulders', data: this.shouldersExcercisesArray },
-    { title: 'Core', data: this.coreExcercisesArray },
-  ];
-  gymExcerciseGroupFor = [
-    { part: this.bodyPartExcercises.Chest, array: this.chestExcercisesArray },
-    { part: this.bodyPartExcercises.Back, array: this.backExcercisesArray },
-    { part: this.bodyPartExcercises.Legs, array: this.legsExcercisesArray },
-    { part: this.bodyPartExcercises.Arms, array: this.armsExcercisesArray },
-    {
-      part: this.bodyPartExcercises.Shoulders,
-      array: this.shouldersExcercisesArray,
-    },
-    { part: this.bodyPartExcercises.Core, array: this.coreExcercisesArray },
-  ];
-  runningDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  cyclingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  swimmingDistancesArray: RunningAndCyclingRecordsDocuments[] = [];
-  enduranceGroups = [
-    { title: 'Running', data: this.runningDistancesArray },
-    { title: 'Cycling', data: this.cyclingDistancesArray },
-    { title: 'Swimming', data: this.swimmingDistancesArray },
-  ];
-  enduranceGroupsFor = [
-    {
-      type: 1,
-      distances: this.runningDistances,
-      array: this.runningDistancesArray,
-    },
-    {
-      type: 2,
-      distances: this.cyclingDistances,
-      array: this.cyclingDistancesArray,
-    },
-    {
-      type: 3,
-      distances: this.swimmingDistances,
-      array: this.swimmingDistancesArray,
-    },
-  ];
 }
