@@ -81,6 +81,7 @@ export class PrPageComponent {
     distances?: number[],
     bodyPart?: string[]
   ) {
+    pushArray.length = 0;
     if (sport === 'endurance' && Array.isArray(pushArray)) {
       for (let i = 0; i < runningDistances.length; i++) {
         this.getUserBest(
@@ -94,7 +95,6 @@ export class PrPageComponent {
     }
     if (sport === 'gym' && bodyPart) {
       for (let i = 0; i < bodyPart.length; i++) {
-        console.log(pushArray, bodyPart);
         this.getUserBest('gym', pushArray, undefined, undefined, bodyPart[i]);
       }
     }
